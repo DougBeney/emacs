@@ -176,10 +176,10 @@
 (use-package ivy
   :config
   (use-package counsel)
-  (use-package ivy-posframe)
+  ;(use-package ivy-posframe)
   (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
   (ivy-mode 1)
-  (ivy-posframe-mode 1)
+  ;(ivy-posframe-mode 1)
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
   ;; enable this if you want `swiper' to use it
