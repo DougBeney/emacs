@@ -92,3 +92,11 @@
 
 (if (not custom-enabled-themes)
     (load-theme 'wheatgrass t))
+
+(defmacro section (&rest body)
+  `(progn
+     ,@body))
+
+(defun reload-config ()
+  (interactive)
+  (load-file (concat user-emacs-directory "init.el")))

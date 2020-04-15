@@ -1,126 +1,185 @@
 (load "~/.emacs.d/sanemacs.el" nil t)
 
-;;; Your configuration goes below this line.
-;;; use-package is already loaded and ready to go!
-;;; use-package docs: https://github.com/jwiegley/use-package
+(section ; Helper Functions
+ (defun dougbeney/set-font (options &optional face)
+   (let ((family (plist-get options :family))
+         (weight (plist-get options :weight))
+         (width (plist-get options :width))
+         (height (plist-get options :height))
+         (the-face (if face face 'default)))
+     (set-face-attribute the-face nil
+                         :family (if family family (face-attribute the-face :family))
+                         :height (if height height (face-attribute the-face :height))
+                         :weight (if weight weight (face-attribute the-face :weight))
+                         :width (if width width (face-attribute the-face :width)))))
 
-(use-package dashboard
-  :if (< (length command-line-args) 2)
-  :config
-  (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
-  (setq dashboard-banner-logo-title "Welcome to Sanemacs, Doug!")
-  (setq dashboard-center-content t)
-  (setq dashboard-startup-banner "~/.emacs.d/sanemacs-logo.png")
-  (setq dashboard-items '((agenda . 5)
-                          (recents  . 5)
-                          (projects . 15)
-                          (bookmarks . 5)))
-  (dashboard-setup-startup-hook))
+ (defmacro dougbeney/set-font-local (new-face-name options &optional new-face-description)
+   (let ((new-face-name (gensym new-face-name))
+         (new-face-description
+          (if new-face-description
+              new-face-description
+            "Custom face created by user")))
+     `(progn
+        (defface ,new-face-name
+          '((t ,@options))
+          ,new-face-description)
+        (buffer-face-set ',new-face-name))))
 
-(defun dougbeney/set-font (options &optional face)
-  (let ((family (plist-get options :family))
-        (weight (plist-get options :weight))
-        (width (plist-get options :width))
-        (height (plist-get options :height))
-        (the-face (if face face 'default)))
-    (set-face-attribute the-face nil
-                        :family (if family family (face-attribute the-face :family))
-                        :height (if height height (face-attribute the-face :height))
-                        :weight (if weight weight (face-attribute the-face :weight))
-                        :width (if width width (face-attribute the-face :width)))))
+ (defun dougbeney/terminal ()
+   (interactive)
+   (split-window nil 8 'above)
+   (ansi-term "/bin/bash"))
 
-(defmacro dougbeney/set-font-local (new-face-name options &optional new-face-description)
-  (let ((new-face-name (gensym new-face-name))
-        (new-face-description
-         (if new-face-description
-             new-face-description
-           "Custom face created by user")))
-    `(progn
-       (defface ,new-face-name
-         '((t ,@options))
-         ,new-face-description)
-       (buffer-face-set ',new-face-name))))
+ (defun dougbeney/edit-emacs-config ()
+   (interactive)
+   (find-file "~/.emacs.d/init.el"))
 
-(defun dougbeney/terminal ()
-  (interactive)
-  (split-window nil 8 'above)
-  (ansi-term "/bin/bash"))
+ (defun dougbeney/view-blog-posts ()
+   (interactive)
+   (dired "~/Code/Jekyll/dougie.io/_posts"))
 
-(dougbeney/set-font '(:family "IBM Plex Mono"
-                              :height 100))
+ (defun dougbeney/open-terminal-in-workdir ()
+   (interactive)
+   (call-process-shell-command
+    (concat "tilix --working-directory=" default-directory) nil 0))
 
-(setq-default indent-tabs-mode nil)
-(setq-default line-spacing 4)
+ (defun dougbeney/neotree-smart-toggle ()
+   (interactive)
+   (if (string= major-mode "neotree-mode")
+       (neotree-toggle)
+     (neotree-show)))
 
-(setq window-divider-default-places t)
-(setq window-divider-default-bottom-width 5)
-(setq window-divider-default-right-width 5)
+ (defun dougbeney/neotree-cd-to-pwd ()
+   (interactive)
+   (neo-global--open-dir default-directory))
 
-(global-set-key [mouse-3] 'mouse-popup-menubar-stuff)
-(global-set-key (kbd "C-c o") 'ff-find-other-file)
-(global-set-key (kbd "M-7") 'dougbeney/terminal)
+ (defun dougbeney/neotree-cd-to-pwd-and-show ()
+   (interactive)
+   (dougbeney/neotree-cd-to-pwd)
+   (neotree-show))
 
-(defun dougbeney/whitespace-mode ()
-  (interactive)
-  (setq-local whitespace-style '(face tabs tab-mark trailing))
-  (custom-set-faces
-   '(whitespace-tab ((t (:foreground "#636363")))))
-  (setq-local whitespace-display-mappings
-              '((tab-mark 9 [124 9] [92 9])))
-  (whitespace-mode)
-                                        ;  (hl-line-mode)
-  )
+ (defun dougbeney/neotree-cd-to-code-dir ()
+   (interactive)
+   (neo-global--open-dir "~/Code")))
 
-(add-hook 'prog-mode-hook #'dougbeney/whitespace-mode)
-(setq-default show-trailing-whitespace nil)
 
-;;; Duplicate line
-(global-set-key (kbd "C-c C-d") (kbd "C-a C-SPC C-n M-w C-y C-p C-a"))
 
-(defun dougbeney/edit-emacs-config ()
-  (interactive)
-  (find-file "~/.emacs.d/init.el"))
+(section ; No-config packages I need
+ (use-package all-the-icons))
 
-(global-set-key (kbd "C-c e") #'dougbeney/edit-emacs-config)
+(section ; Top-Level Config
+                                        ; Setting the theme
+ (setq dark-theme 'sanityinc-tomorrow-eighties
+       light-theme 'adwaita)
 
-(defun dougbeney/open-terminal-in-workdir ()
-  (interactive)
-  (call-process-shell-command
-   (concat "tilix --working-directory=" default-directory) nil 0))
+ (load-theme dark-theme)
+ (load-theme light-theme t t)
 
-(global-set-key (kbd "C-c t") 'dougbeney/open-terminal-in-workdir)
+ (setq dark-theme-activated t
+       light-theme-activated nil)
 
-(defun dougbeney/neotree-smart-toggle ()
-  (interactive)
-  (if (string= major-mode "neotree-mode")
-      (neotree-toggle)
-    (neotree-show)))
+ (defun dougbeney/set-theme-based-on-mode (&optional source debug)
+   (if (and dark-theme-activated
+            buffer-file-name
+            (string= (file-name-extension buffer-file-name) "md")
+            (not (string= (car custom-enabled-themes) light-theme)))
+       (progn
+         (when debug
+           (print source)
+           (print buffer-file-name))
+         (setq light-theme-activated t) (setq dark-theme-activated nil)
+         (enable-theme light-theme))
+     (when (and light-theme-activated
+                (not (string= major-mode "markdown-mode"))
+                (not (string= (car custom-enabled-themes) dark-theme)))
+       (progn
+         (when debug
+           (print source)
+           (print buffer-file-name))
+         (setq light-theme-activated nil) (setq dark-theme-activated t)
+         (enable-theme dark-theme)))))
 
-(defun dougbeney/neotree-cd-to-pwd ()
-  (interactive)
-  (neo-global--open-dir default-directory))
+ (add-hook 'pre-command-hook
+           (lambda ()
+             (dougbeney/set-theme-based-on-mode "pre command hook")))
+ ;; (add-hook 'buffer-list-update-hook
+ ;;           (lambda ()
+ ;;             (dougbeney/set-theme-based-on-mode "buffer list hook")))
+ (add-hook 'after-change-major-mode-hook
+           (lambda ()
+             (dougbeney/set-theme-based-on-mode "after change major mode hook")))
 
-(defun dougbeney/neotree-cd-to-pwd-and-show ()
-  (interactive)
-  (dougbeney/neotree-cd-to-pwd)
-  (neotree-show))
+ ;; Set the font
+ (dougbeney/set-font '(:family "IBM Plex Mono"
+                               :height 100))
 
-(defun dougbeney/neotree-cd-to-code-dir ()
-  (interactive)
-  (neo-global--open-dir "~/Code"))
+ (setq-default indent-tabs-mode nil)
+ (setq-default line-spacing 4)
 
-(use-package neotree
-  :bind ("M-0" . dougbeney/neotree-smart-toggle)
-  :bind ("M-9" . dougbeney/neotree-cd-to-pwd-and-show)
-  :bind ("M-8" . dougbeney/neotree-cd-to-code-dir)
-  :hook (neotree-mode . (lambda ()
-                          (setq-local line-spacing 10)
-                          (setq-local buffer-face-mode-face '(:family "Fira Sans" :height 100 :weight 'normal))
-                          (buffer-face-mode)))
-  :config
-  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-  (setq neo-window-fixed-size nil)
-  (setq projectile-switch-project-action 'neotree-projectile-action))
+ (setq window-divider-default-places t)
+ (setq window-divider-default-bottom-width 5)
+ (setq window-divider-default-right-width 5))
+
+(section ; Global Key Bindings
+ ;; Right click
+ (global-set-key [mouse-3] 'mouse-popup-menubar-stuff)
+
+ ;; Find other file. Useful for C/C++
+ (global-set-key (kbd "C-c o") 'ff-find-other-file)
+
+ ;; Open terminal on bottom of screen
+ (global-set-key (kbd "M-7") 'dougbeney/terminal)
+
+ ;;; Duplicate line
+ (global-set-key (kbd "C-c C-d") (kbd "C-a C-SPC C-n M-w C-y C-p C-a"))
+
+ (global-set-key (kbd "C-c e") #'dougbeney/edit-emacs-config)
+
+ (global-set-key (kbd "C-c t") #'dougbeney/open-terminal-in-workdir))
+
+;;; Open blog post directory
+(global-set-key (kbd "C-c b") #'dougbeney/view-blog-posts)
+(global-set-key (kbd "C-c r") #'reload-config)
+
+(section ; UI / UX
+ (use-package dashboard
+   :if (< (length command-line-args) 2)
+   :config
+   (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+   (setq dashboard-banner-logo-title "Welcome to Sanemacs, Doug!")
+   (setq dashboard-center-content t)
+   (setq dashboard-startup-banner "~/.emacs.d/sanemacs-logo.png")
+   (setq dashboard-items '((agenda . 5)
+                           (recents  . 5)
+                           (projects . 15)
+                           (bookmarks . 5)))
+   (dashboard-setup-startup-hook))
+
+ (use-package neotree
+   :bind ("M-0" . dougbeney/neotree-smart-toggle)
+   :bind ("M-9" . dougbeney/neotree-cd-to-pwd-and-show)
+   :bind ("M-8" . dougbeney/neotree-cd-to-code-dir)
+   :hook (neotree-mode . (lambda ()
+                           (setq-local line-spacing 10)
+                           (setq-local buffer-face-mode-face '(:family "Fira Sans" :height 100 :weight 'normal))
+                           (buffer-face-mode)))
+   :config
+   (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+   (setq neo-window-fixed-size nil)
+   (setq projectile-switch-project-action 'neotree-projectile-action)))
+
+(section ; Sane Enhancements
+ ;; Show tabs and trailing whitespace
+ (defun dougbeney/whitespace-mode ()
+   (interactive)
+   (setq-local whitespace-style '(face tabs tab-mark trailing))
+   (custom-set-faces
+    '(whitespace-tab ((t (:foreground "#636363")))))
+   (setq-local whitespace-display-mappings '((tab-mark 9 [124 9] [92 9])))
+   (whitespace-mode))
+
+ (add-hook 'prog-mode-hook #'dougbeney/whitespace-mode)
+ (setq-default show-trailing-whitespace nil))
 
 (use-package term
   :commands ansi-term
@@ -176,16 +235,16 @@
 (use-package ivy
   :config
   (use-package counsel)
-  ;(use-package ivy-posframe)
+  ;;(use-package ivy-posframe)
   (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
   (ivy-mode 1)
-  ;(ivy-posframe-mode 1)
+  ;; (ivy-posframe-mode 1)
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
   ;; enable this if you want `swiper' to use it
   ;; (setq search-default-mode #'char-fold-to-regexp)
   (global-set-key "\C-s" 'swiper)
-;  (global-set-key (kbd "C-c C-r") 'ivy-resume)
+  ;;  (global-set-key (kbd "C-c C-r") 'ivy-resume)
   (global-set-key (kbd "M-x") 'counsel-M-x)
   (global-set-key (kbd "C-x C-f") 'counsel-find-file)
   (global-set-key (kbd "<f1> f") 'counsel-describe-function)
@@ -204,11 +263,6 @@
   :bind ("M-i" . helm-swoop)
   :bind ("C-x M-i" . helm-multi-swoop)
   :bind ("C-c M-i" . helm-multi-swoop-all))
-
-(use-package helm-projectile
-  :after (projectile)
-  :config
-  (helm-projectile-on))
 
 (use-package autopair
   :config
@@ -239,10 +293,24 @@
 
 (use-package web-mode
   :mode "\\.html?\\'"
-  :mode "\\.php\\'")
-
-(use-package vue-mode
+  :mode "\\.php\\'"
   :mode "\\.vue\\'")
+
+(use-package markdown-mode
+  :mode "//.md\\'"
+  :mode "\\.markdown\\'"
+  :hook (markdown-mode . (lambda ()
+                           (olivetti-mode 1)
+                           (dougbeney/set-font-local dougbeney-term-mode-face
+                                                     (:family "Liberation Serif"
+                                                              :height 120))
+                           (fringe-mode -1)))
+  :init
+  (setq markdown-header-scaling t
+        markdown-hide-markup t))
+
+;; (use-package vue-mode
+;;   )
 
 (use-package sass-mode
   :mode "\\.s?css\\'")
@@ -251,6 +319,7 @@
   :hook (web-mode . emmet-mode))
 
 ;; (use-package vue-mode
+;;   :mode "\\.vue\\'"
 ;;   :config
 ;;   (setq mmm-submode-decoration-level 0))
 
@@ -270,11 +339,20 @@
   :config
   (telephone-line-mode 1))
 
-(use-package all-the-icons)
+;; (use-package evil
+;;   :init
+;;   (setq evil-want-keybinding nil)
+;;   :config
+;;   (evil-mode 1)
+;;   (use-package evil-collection
+;;     :config
+;;     (setq evil-want-keybinding nil)
+;;     (evil-collection-init)))
 
-(set-frame-parameter nil 'fullscreen 'maximized)
+;; (use-package evil-surround
+;;   :config
+;;   (global-evil-surround-mode 1))
 
-(use-package js2-mode
-  :mode "\\.js\\'"
-  :config
-  (setq js2-strict-missing-semi-warning nil))
+(use-package olivetti
+  :init
+  (setq-default olivetti-body-width 140))
