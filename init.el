@@ -28,7 +28,7 @@
  (defun dougbeney/terminal ()
    (interactive)
    (split-window nil 8 'above)
-   (ansi-term "/bin/bash"))
+   (ansi-term (getenv "SHELL")))
 
  (defun dougbeney/edit-emacs-config ()
    (interactive)
@@ -62,18 +62,21 @@
    (interactive)
    (neo-global--open-dir "~/Code")))
 
-
-
 (section ; No-config packages I need
  (use-package all-the-icons))
 
 (section ; Top-Level Config
+ ; Proper exec path
+ (setq exec-path (append exec-path (split-string (shell-command-to-string "echo $PATH") path-separator)))
+
                                         ; Setting the theme
- (setq dark-theme 'sanityinc-tomorrow-eighties
+ (setq dark-theme 'wheatgrass
        light-theme 'adwaita)
 
  (load-theme dark-theme)
  (load-theme light-theme t t)
+
+ (setenv "PATH" (concat (getenv "PATH") (shell-command-to-string "echo $PATH")))
 
  (setq dark-theme-activated t
        light-theme-activated nil)
@@ -111,10 +114,10 @@
 
  ;; Set the font
  (dougbeney/set-font '(:family "IBM Plex Mono"
-                               :height 100))
+                               :height 90))
 
  (setq-default indent-tabs-mode nil)
- (setq-default line-spacing 4)
+ (setq-default line-spacing 0)
 
  (setq window-divider-default-places t)
  (setq window-divider-default-bottom-width 5)
@@ -178,7 +181,7 @@
    (setq-local whitespace-display-mappings '((tab-mark 9 [124 9] [92 9])))
    (whitespace-mode))
 
- (add-hook 'prog-mode-hook #'dougbeney/whitespace-mode)
+ ;; (add-hook 'prog-mode-hook #'dougbeney/whitespace-mode)
  (setq-default show-trailing-whitespace nil))
 
 (use-package term
@@ -270,7 +273,9 @@
 
 (use-package elpy
   :init
-  (elpy-enable))
+  (elpy-enable)
+  (setq elpy-rpc-virtualenv-path 'default)
+  (setq elpy-rpc-python-command "python3"))
 
 (use-package magit
   :config
@@ -291,11 +296,6 @@
             (eyebrowse-mode t)
             (setq eyebrowse-new-workspace t)))
 
-(use-package web-mode
-  :mode "\\.html?\\'"
-  :mode "\\.php\\'"
-  :mode "\\.vue\\'")
-
 (use-package markdown-mode
   :mode "//.md\\'"
   :mode "\\.markdown\\'"
@@ -307,7 +307,7 @@
                            (fringe-mode -1)))
   :init
   (setq markdown-header-scaling t
-        markdown-hide-markup t))
+        markdown-hide-markup nil))
 
 ;; (use-package vue-mode
 ;;   )
