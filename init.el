@@ -3,14 +3,14 @@
 
 (section ; No-config packages
  (use-package all-the-icons :defer t)
- (use-package dracula-theme :defer t))
+ (use-package cyberpunk-theme :defer t))
 
 (section ; Top-Level Config
 
  (setenv "PATH" (concat (getenv "PATH") (shell-command-to-string "echo $PATH")))
  (setq exec-path (append exec-path (split-string (shell-command-to-string "echo $PATH"))))
 
- (setq dark-theme 'dracula
+ (setq dark-theme 'cyberpunk
        light-theme 'adwaita)
 
  (load-theme dark-theme)
