@@ -187,12 +187,11 @@
 ;;   (setq elpy-rpc-virtualenv-path 'default)
 ;;   (setq elpy-rpc-python-command "python3"))
 
-(use-package python-mode
+(use-package python
   :hook (python-mode . lsp)
   :ensure-system-package (pyls . "pip install ‘python-language-server[all]’"))
 
-(use-package js-mode
-  :ensure nil
+(use-package js
   :mode "\\.js\\'"
   :hook (js-mode . lsp)
   :ensure-system-package (javascript-typescript-langserver "npm i -g javascript-typescript-langserver"))
