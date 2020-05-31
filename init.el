@@ -104,7 +104,7 @@
   :hook (term-mode . (lambda ()
                        (dougbeney/set-font-local dougbeney-term-mode-face
                                                  (:family "Ubuntu Mono"
-                                                          :height 120))
+                                                          :height 90))
                        (setq-local line-spacing 0)
                        (setq-local mode-line-format nil)))
   :config
@@ -183,6 +183,9 @@
 
 (use-package php-mode
   :mode "\\.php\\'")
+
+(use-package yaml-mode
+  :mode "\\.ya?ml\\'")
 
 (use-package markdown-mode
   :mode "//.md\\'"

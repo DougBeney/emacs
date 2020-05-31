@@ -29,7 +29,7 @@
 (defun dougbeney/terminal ()
   (interactive)
   (split-window nil 8 'above)
-  (ansi-term "/bin/bash"))
+  (ansi-term (getenv "SHELL")))
 
 (defun dougbeney/edit-emacs-config ()
   (interactive)
