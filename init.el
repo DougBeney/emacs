@@ -187,6 +187,11 @@
 (use-package yaml-mode
   :mode "\\.ya?ml\\'")
 
+(use-package pug-mode
+  :init
+  (setq pug-tab-width 4)
+  :mode "\\.pug\\'")
+
 (use-package markdown-mode
   :mode "//.md\\'"
   :mode "\\.markdown\\'"
@@ -230,6 +235,8 @@
     :config
       (push 'company-lsp company-backends))
   :hook ((php-mode . lsp)
+         (js-mode . lsp)
+         (ruby-mode . lsp)
          (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)
 
