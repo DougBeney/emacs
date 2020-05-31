@@ -189,7 +189,11 @@
 
 (use-package python
   :hook (python-mode . lsp)
-  :ensure-system-package (pyls . "pip install ‘python-language-server[all]’"))
+  :ensure-system-package (pyls . "pip install ‘python-language-server[all]’")
+  :ensure-system-package (ipython . "pip install ipython")
+  :config
+  (setenv "PYTHONUSERBASE" "/home/doug/.local/opt/packages/python")
+  (setq python-shell-interpreter "ipython"))
 
 (use-package js
   :mode "\\.js\\'"
