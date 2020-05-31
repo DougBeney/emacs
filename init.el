@@ -3,11 +3,12 @@
 
 (section ; No-config packages
  (use-package all-the-icons :defer t)
- (use-package cyberpunk-theme :defer t))
+ (use-package cyberpunk-theme :defer t)
+ (use-package use-package-ensure-system-package))
 
 (section ; Top-Level Config
 
- (setenv "PATH" (concat (getenv "PATH") (shell-command-to-string "echo $PATH")))
+ ;(setenv "PATH" (concat (getenv "PATH") (shell-command-to-string "echo $PATH")))
  (setq exec-path (append exec-path (split-string (shell-command-to-string "echo $PATH"))))
 
  (setq dark-theme 'cyberpunk
@@ -152,12 +153,6 @@
   :config
   (autopair-global-mode))
 
-(use-package elpy
-  :init
-  (elpy-enable)
-  (setq elpy-rpc-virtualenv-path 'default)
-  (setq elpy-rpc-python-command "python3"))
-
 (use-package magit
   :config
   (global-set-key (kbd "C-x g") 'magit-status))
@@ -182,7 +177,25 @@
   :mode "\\.vue\\'")
 
 (use-package php-mode
-  :mode "\\.php\\'")
+  :mode "\\.php\\'"
+  :hook (php-mode . lsp)
+  :ensure-system-package (intelephense "npm i intelephense -g"))
+
+;; (use-package elpy
+;;   :init
+;;   (elpy-enable)
+;;   (setq elpy-rpc-virtualenv-path 'default)
+;;   (setq elpy-rpc-python-command "python3"))
+
+(use-package python-mode
+  :hook (python-mode . lsp)
+  :ensure-system-package (pyls . "pip install ‘python-language-server[all]’"))
+
+(use-package js-mode
+  :ensure nil
+  :mode "\\.js\\'"
+  :hook (js-mode . lsp)
+  :ensure-system-package (javascript-typescript-langserver "npm i -g javascript-typescript-langserver"))
 
 (use-package yaml-mode
   :mode "\\.ya?ml\\'")
@@ -212,6 +225,10 @@
   :mode "\\.scss\\'"
   :mode "\\.sass\\'")
 
+(use-package ruby-mode
+  :hook (ruby-mode . lsp)
+  :ensure-system-package (solargraph . "gem install solargraph"))
+
 (use-package emmet-mode
   :hook (web-mode . emmet-mode))
 
@@ -234,10 +251,7 @@
   (use-package company-lsp
     :config
       (push 'company-lsp company-backends))
-  :hook ((php-mode . lsp)
-         (js-mode . lsp)
-         (ruby-mode . lsp)
-         (lsp-mode . lsp-enable-which-key-integration))
+  :hook ((lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)
 
 (use-package lsp-ui :commands lsp-ui-mode)
