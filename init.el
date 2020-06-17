@@ -11,7 +11,7 @@
  ;(setenv "PATH" (concat (getenv "PATH") (shell-command-to-string "echo $PATH")))
  (setq exec-path (append exec-path (split-string (shell-command-to-string "echo $PATH"))))
 
- (setq dark-theme 'cyberpunk
+ (setq dark-theme 'dracula
        light-theme 'adwaita)
 
  (load-theme dark-theme)
@@ -29,11 +29,11 @@
              (dougbeney/set-theme-based-on-mode "after change major mode hook")))
 
  ;; Set the font
- (dougbeney/set-font '(:family "IBM Plex Mono"
-                               :height 90))
+ (dougbeney/set-font '(:family "Input Mono"
+                               :height 100))
 
  (setq-default indent-tabs-mode nil)
- (setq-default line-spacing 0)
+ (setq-default line-spacing 2)
 
  (setq window-divider-default-places t)
  (setq window-divider-default-bottom-width 5)
@@ -54,7 +54,11 @@
 
  (global-set-key (kbd "C-c e") #'dougbeney/edit-emacs-config)
 
- (global-set-key (kbd "C-c t") #'dougbeney/open-terminal-in-workdir))
+ (global-set-key (kbd "C-c t") #'dougbeney/open-terminal-in-workdir)
+
+ (global-set-key (kbd "C-c c w") (lambda () (interactive) (dired "~/Google Drive/Work/Client Work")))
+
+ )
 
 ;;; Open blog post directory
 (global-set-key (kbd "C-c b") #'dougbeney/view-blog-posts)
@@ -176,10 +180,10 @@
   :mode "\\.html?\\'"
   :mode "\\.vue\\'")
 
-(use-package php-mode
-  :mode "\\.php\\'"
-  :hook (php-mode . lsp)
-  :ensure-system-package (intelephense "npm i intelephense -g"))
+;; (use-package php-mode
+;;   :mode "\\.php\\'"
+;; ;  :hook (php-mode . lsp)
+;;   )
 
 ;; (use-package elpy
 ;;   :init
@@ -190,10 +194,9 @@
 (use-package python
   :hook (python-mode . lsp)
   :ensure-system-package (pyls . "pip install ‘python-language-server[all]’")
-  :ensure-system-package (ipython . "pip install ipython")
   :config
   (setenv "PYTHONUSERBASE" "/home/doug/.local/opt/packages/python")
-  (setq python-shell-interpreter "ipython"))
+  (setq python-shell-interpreter "python3"))
 
 (use-package js
   :mode "\\.js\\'"
@@ -253,7 +256,8 @@
   :config
   (use-package company-lsp
     :config
-      (push 'company-lsp company-backends))
+    (setq company-idle-delay 0)
+    (push 'company-lsp company-backends))
   :hook ((lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)
 
