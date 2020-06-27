@@ -23,6 +23,5 @@
              'workflow
              'data-stores
              'general-purpose-langs
-             'python
              'web
              'writing)
