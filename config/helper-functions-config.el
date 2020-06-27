@@ -37,6 +37,14 @@
   (interactive)
   (find-file "~/.emacs.d/init.el"))
 
+(defun dougbeney/edit-emacs-config-file ()
+  (interactive)
+  (let ((files
+         (split-string
+          (shell-command-to-string
+           "find ~/.emacs.d/config -type f -iname '*.el'"))))
+    (find-file (completing-read "Select Config you wish to edit: " files))))
+
 (defun dougbeney/view-blog-posts ()
   (interactive)
   (dired "~/Code/Jekyll/dougie.io/_posts"))
