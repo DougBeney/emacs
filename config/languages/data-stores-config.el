@@ -7,3 +7,6 @@
 
 (use-package yaml-mode
   :mode "\\.ya?ml\\'")
+
+(use-package json-mode
+  :mode "\\.json\\'")
