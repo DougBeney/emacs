@@ -1,6 +1,8 @@
 ;;;
-;;; Helper Functions
+;; helper-functions-config.el
 ;;;
+
+(provide 'helper-functions-config)
 
 (defun dougbeney/set-font (options &optional face)
   (let ((family (plist-get options :family))

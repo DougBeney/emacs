@@ -1,11 +1,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; Sanemacs version 0.2.7 ;;;
+;;; Sanemacs version 0.3.0 ;;;
 ;;; https://sanemacs.com   ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;; Make sure to commit the changes to Sanemacs!
-
-;;; for performance
+;;; For performance
 (setq gc-cons-threshold 100000000)
 (setq read-process-output-max (* 1024 1024)) ;; 1mb
 
@@ -49,7 +47,9 @@
 (setq ring-bell-function 'ignore)         ; Disable bell sound
 (fset 'yes-or-no-p 'y-or-n-p)             ; y-or-n-p makes answering questions faster
 (show-paren-mode 1)                       ; Show closing parens by default
-(setq linum-format "%4d ")                ; Prettify line number format
+(setq linum-format "%4d ")                ; Line number format
+(delete-selection-mode 1)                 ; Selected text will be overwritten when you start typing
+(setq byte-compile-warnings nil)
 (use-package undo-tree                    ; Enable undo-tree, sane undo/redo behavior
   :init (global-undo-tree-mode))
 (add-hook 'before-save-hook
@@ -66,9 +66,10 @@
   (delete-region (point) (mark)))
 
 ;;; Keybindings
+(global-set-key [mouse-3] 'mouse-popup-menubar-stuff)          ; Gives right-click a context menu
 (global-set-key (kbd "C->") 'indent-rigidly-right-to-tab-stop) ; Indent selection by one tab length
 (global-set-key (kbd "C-<") 'indent-rigidly-left-to-tab-stop)  ; De-indent selection by one tab length
-(global-set-key (kbd "M-DEL") 'sanemacs/backward-kill-word)
+(global-set-key (kbd "M-DEL") 'sanemacs/backward-kill-word)    ; Kill word without copying it to your clipboard
 
 ;;; Offload the custom-set-variables to a separate file
 ;;; This keeps your init.el neater and you have the option

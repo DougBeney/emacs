@@ -1,6 +1,4 @@
-Emacs Config v2
+Emacs Config
 ---
 
-## Screenshot
-
-![screenshot](screenshot.png)
+My personal emacs config! Emacs me at `emacs@dougie.io` for any questions.
