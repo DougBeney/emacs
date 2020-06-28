@@ -38,6 +38,9 @@
   ;; Auto-scroll terminal on new output
   (setq comint-scroll-to-bottom-on-input t))
 
+(use-package all-the-icons-ivy
+  :init
+  (all-the-icons-ivy-setup))
 
 ;; Fancy pants stuff for auto theme-switching
 
