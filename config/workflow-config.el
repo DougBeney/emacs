@@ -32,6 +32,11 @@
   :config
   (setq company-idle-delay 0))
 
+;; Snippets
+(use-package yasnippet
+  :config
+  (yas-global-mode 1))
+
 ;; Project management
 (use-package projectile
   :init

@@ -5,20 +5,13 @@
 
 (provide 'general-purpose-langs-config)
 
-(use-package python
-  :hook (python-mode . lsp)
-  :mode "\\.py\\'"
-  :config
-  (setenv "PYTHONUSERBASE" "/home/doug/.local/opt/packages/python")
-  (setq python-shell-interpreter "python3"))
-
 (use-package elpy
   :init
-  :mode "\\.py\\'"
-  :config
-  (elpy-enable)
+  (setenv "PYTHONUSERBASE" "/home/doug/.local/opt/packages/python")
+  (setq python-shell-interpreter "python3")
   (setq elpy-rpc-virtualenv-path 'default)
-  (setq elpy-rpc-python-command "python3"))
+  (setq elpy-rpc-python-command "python3")
+  (elpy-enable))
 
 (use-package ruby-mode
   :hook (ruby-mode . lsp))
