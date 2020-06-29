@@ -11,10 +11,11 @@
 ;; Counsel - Adds Ivy completion for other Emacs shit. Ex. Viewing buffer list.
 ;; Swiper - Better search for searching for text in document. C-s
 ;; Note: This is NOT code auto-completion. Refer to company for that.
-(use-package counsel
+(use-package counsel ;; ivy
   :config
   (ivy-mode 1)
   (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
+  (setq ivy-height 30)
   (use-package ivy-posframe)
   (ivy-posframe-mode 1)
   ;; (setq ivy-use-virtual-buffers t)
