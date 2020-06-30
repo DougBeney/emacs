@@ -14,12 +14,12 @@
 (use-package counsel ;; ivy
   :config
   (ivy-mode 1)
-  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
-  (setq ivy-height 30)
+  (setq ivy-height 25)
   (use-package ivy-posframe)
-  (ivy-posframe-mode 1)
-  ;; (setq ivy-use-virtual-buffers t)
-  ;; (setq enable-recursive-minibuffers t)
+  ;(setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
+  ;(ivy-posframe-mode 1)
+  (setq ivy-use-virtual-buffers t)
+  (setq enable-recursive-minibuffers t)
   (global-set-key "\C-s" 'swiper)
   (global-set-key (kbd "M-x") 'counsel-M-x)
   (global-set-key (kbd "C-x C-f") 'counsel-find-file)
