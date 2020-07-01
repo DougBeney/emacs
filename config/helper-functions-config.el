@@ -29,7 +29,7 @@
        (buffer-face-set ',new-face-name))))
 
 (defun dougbeney/shell-cmd-output-completion (prompt shellcmd)
-  (let ((selection (split-string (shell-command-to-string shellcmd))))
+  (let ((selection (split-string (shell-command-to-string shellcmd) "[\n\r]")))
     (completing-read prompt selection)))
 
 (defun dougbeney/terminal ()
