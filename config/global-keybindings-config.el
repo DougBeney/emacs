@@ -7,7 +7,7 @@
 (require 'helper-functions-config)
 
 (global-set-key (kbd "C-c r") #'reload-config)
-(global-set-key (kbd "C-c C-c e") #'dougbeney/edit-emacs-config)
+(global-set-key (kbd "C-c C-e") #'dougbeney/edit-emacs-config)
 (global-set-key (kbd "C-c e") #'dougbeney/edit-emacs-config-file)
 
 ;; Useful in C/C++ projects. Switch between the .c and .h file

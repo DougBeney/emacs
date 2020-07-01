@@ -7,6 +7,9 @@
 
 (require 'helper-functions-config)
 
+;; evil - Vim keybindings for Emacs
+;(use-package evil)
+
 ;; Ivy - Provides a nifty auto-complete for finding files and shit.
 ;; Counsel - Adds Ivy completion for other Emacs shit. Ex. Viewing buffer list.
 ;; Swiper - Better search for searching for text in document. C-s
