@@ -42,13 +42,16 @@
 (use-package projectile
   :init
   :config
-  (setq projectile-globally-ignored-files (list "db.sqlite3"))
-  (setq projectile-globally-ignored-directories
-        (list ".venv" "node_modules"))
-  (setq projectile-globally-ignored-file-suffixes
-        (list "sqlite" "sqlite3"))
+  (setq projectile-completion-system 'ivy
+        projectile-globally-ignored-files '("db.sqlite3")
+        projectile-globally-ignored-directories '(".venv" "node_modules")
+        projectile-globally-ignored-file-suffixes '("sqlite" "sqlite3")
+        projectile-project-search-path (cddr (directory-files "~/Code" t)))
   (projectile-mode +1)
-  (setq projectile-project-search-path (cddr (directory-files "~/Code" t)))
+  (use-package counsel-projectile
+    :requires counsel
+    :config
+    (counsel-projectile-mode +1))
   (define-key projectile-mode-map (kbd "M-m") 'projectile-command-map))
 
 (use-package neotree

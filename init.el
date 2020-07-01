@@ -24,4 +24,6 @@
              'data-stores
              'general-purpose-langs
              'web
-             'writing)
+             'writing
+             'org
+             'fun)

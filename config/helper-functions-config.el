@@ -28,6 +28,10 @@
          ,new-face-description)
        (buffer-face-set ',new-face-name))))
 
+(defun dougbeney/shell-cmd-output-completion (prompt shellcmd)
+  (let ((selection (split-string (shell-command-to-string shellcmd))))
+    (completing-read prompt selection)))
+
 (defun dougbeney/terminal ()
   (interactive)
   (split-window nil 8 'above)
@@ -39,11 +43,10 @@
 
 (defun dougbeney/edit-emacs-config-file ()
   (interactive)
-  (let ((files
-         (split-string
-          (shell-command-to-string
-           "find ~/.emacs.d/config -type f -iname '*.el'"))))
-    (find-file (completing-read "Select Config you wish to edit: " files))))
+  (find-file
+   (dougbeney/shell-cmd-output-completion
+    "Select Config you wish to edit: "
+    "find ~/.emacs.d/ -maxdepth 1 -type f -iname '*.el' && find ~/.emacs.d/config -type f -iname '*.el'")))
 
 (defun dougbeney/view-blog-posts ()
   (interactive)
