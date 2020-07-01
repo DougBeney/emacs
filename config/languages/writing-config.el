@@ -1,6 +1,6 @@
 ;;;
 ;; writing-config.el
-;; Filetypes for writing, such as org or markdown.
+;; Filetypes for writing, such as markdown. (go to org-config.el for org-mode configuration)
 ;;;
 
 (provide 'writing-config)

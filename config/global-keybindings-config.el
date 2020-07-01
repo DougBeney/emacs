@@ -11,7 +11,7 @@
 (global-set-key (kbd "C-c e") #'dougbeney/edit-emacs-config-file)
 
 ;; Useful in C/C++ projects. Switch between the .c and .h file
-(global-set-key (kbd "C-c o") 'ff-find-other-file)
+(global-set-key (kbd "C-c 0") 'ff-find-other-file)
 
 ;; Duplicate line
 (global-set-key (kbd "C-c C-d") (kbd "C-a C-SPC C-n M-w C-y C-p C-a"))
