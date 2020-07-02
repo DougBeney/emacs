@@ -25,3 +25,6 @@
                             autodetailing
                             jeepzj
                             entrepreneur+startups+hwstartups)))
+
+(use-package csv-mode
+  :mode "\\.csv\\'")
