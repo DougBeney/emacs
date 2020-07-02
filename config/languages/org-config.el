@@ -10,6 +10,10 @@
 (setq org-daynotes-root (concat org-root "Day Notes/"))
 (setq org-home-file (concat org-root "home.org"))
 
+(defun org-open-root-dir ()
+  (interactive)
+  (dired org-root))
+
 (defun org-open-home ()
   (interactive)
   (find-file org-home-file))
@@ -38,4 +42,5 @@
 (use-package org
   :bind (("C-c o" . org-open-file)
          ("C-c C-o" . org-open-home)
-         ("C-c \\" . org-open-todays-daynote)))
+         ("C-c \\" . org-open-todays-daynote)
+         ("C-c C-\\" . org-open-root-dir)))
