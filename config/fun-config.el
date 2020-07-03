@@ -28,4 +28,4 @@
 
 (use-package csv-mode
   :mode "\\.csv\\'"
-  :hook (csv . csv-align-mode))
+  :hook (csv-mode . csv-align-mode))
