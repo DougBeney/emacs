@@ -27,4 +27,5 @@
                             entrepreneur+startups+hwstartups)))
 
 (use-package csv-mode
-  :mode "\\.csv\\'")
+  :mode "\\.csv\\'"
+  :hook (csv-mode . csv-align-mode))
