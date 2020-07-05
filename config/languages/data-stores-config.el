@@ -10,3 +10,7 @@
 
 (use-package json-mode
   :mode "\\.json\\'")
+
+(use-package conf-mode
+  :ensure nil
+  :mode "sxhkdrc\\'")

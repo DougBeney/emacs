@@ -12,7 +12,7 @@
                            (olivetti-mode 1)
                            (dougbeney/set-font-local dougbeney-term-mode-face
                                                      (:family "Liberation Serif"
-                                                              :height 120))
+                                                              :height 150))
                            (fringe-mode -1)))
   :init
   (setq markdown-header-scaling t))
