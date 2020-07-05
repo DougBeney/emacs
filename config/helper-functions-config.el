@@ -37,17 +37,6 @@
   (split-window nil 8 'above)
   (ansi-term (getenv "SHELL")))
 
-(defun dougbeney/edit-emacs-config ()
-  (interactive)
-  (find-file "~/.emacs.d/init.el"))
-
-(defun dougbeney/edit-emacs-config-file ()
-  (interactive)
-  (find-file
-   (dougbeney/shell-cmd-output-completion
-    "Select Config you wish to edit: "
-    "find ~/.emacs.d/ -maxdepth 1 -type f -iname '*.el' && find ~/.emacs.d/config -type f -iname '*.el'")))
-
 (defun dougbeney/view-blog-posts ()
   (interactive)
   (dired "~/Code/Jekyll/dougie.io/_posts"))

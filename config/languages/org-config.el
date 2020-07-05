@@ -54,9 +54,24 @@
 
     (find-file (concat org-weeknotes-root week-note-fname ))))
 
+(defun org-open-next-weeknote ()
+  (interactive)
+  (let* ((week-date (string-trim-right
+                     (shell-command-to-string "date -d \"next monday\" +%Y-%m-week-2%U")))
+         (week-note-fname (concat week-date ".org"))
+         (week-note (concat org-weeknotes-root week-note-fname)))
+
+    (shell-command (concat "mkdir -p '" org-weeknotes-root "'"))
+
+    (when (not (file-exists-p week-note))
+      (shell-command (concat "echo '#+title: " week-date " Notes\n\n* ' > '" week-note "'")))
+
+    (find-file (concat org-weeknotes-root week-note-fname ))))
+
 (use-package org
   :bind (("C-c o" . org-open-file)
          ("C-c C-o" . org-open-home)
          ("C-c \\" . org-open-todays-daynote)
          ("C-c C-x \\" . org-open-weeknote)
+         ("C-c C-x C-\\" . org-open-weeknote)
          ("C-c C-\\" . org-open-root-dir)))

@@ -5,10 +5,15 @@
 (provide 'global-keybindings-config)
 
 (require 'helper-functions-config)
+(require 'config-editing-config)
 
 (global-set-key (kbd "C-c r") #'reload-config)
+
 (global-set-key (kbd "C-c C-e") #'dougbeney/edit-emacs-config)
 (global-set-key (kbd "C-c e") #'dougbeney/edit-emacs-config-file)
+
+(global-set-key (kbd "C-c C-x b") #'dougbeney/edit-bspwm-config-file)
+(global-set-key (kbd "C-c C-x C-b") #'dougbeney/bspwm-dir)
 
 ;; Useful in C/C++ projects. Switch between the .c and .h file
 (global-set-key (kbd "C-c 0") 'ff-find-other-file)

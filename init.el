@@ -26,4 +26,5 @@
              'web
              'writing
              'org
-             'fun)
+             'fun
+             'config-editing)
