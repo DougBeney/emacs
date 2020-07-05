@@ -8,6 +8,7 @@
 
 (setq org-root (concat (shell-command-to-string "printf $HOME") "/Sync/Org/"))
 (setq org-daynotes-root (concat org-root "Day Notes/"))
+(setq org-weeknotes-root (concat org-root "Week Notes/"))
 (setq org-home-file (concat org-root "home.org"))
 
 (defun org-open-root-dir ()
@@ -39,8 +40,23 @@
 
     (find-file (concat org-daynotes-root todays-daynote-fname ))))
 
+(defun org-open-weeknote ()
+  (interactive)
+  (let* ((week-date (string-trim-right
+                       (shell-command-to-string "date +%Y-%m-week-%U")))
+         (week-note-fname (concat week-date ".org"))
+         (week-note (concat org-weeknotes-root week-note-fname)))
+
+    (shell-command (concat "mkdir -p '" org-weeknotes-root "'"))
+
+    (when (not (file-exists-p week-note))
+      (shell-command (concat "echo '#+title: " week-date " Notes\n\n* ' > '" week-note "'")))
+
+    (find-file (concat org-weeknotes-root week-note-fname ))))
+
 (use-package org
   :bind (("C-c o" . org-open-file)
          ("C-c C-o" . org-open-home)
          ("C-c \\" . org-open-todays-daynote)
+         ("C-c C-x \\" . org-open-weeknote)
          ("C-c C-\\" . org-open-root-dir)))
