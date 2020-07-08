@@ -44,7 +44,7 @@
 (defun dougbeney/open-terminal-in-workdir ()
   (interactive)
   (call-process-shell-command
-   (concat "gnome-terminal --working-directory=" default-directory) nil 0))
+   (concat "termite --directory=" default-directory) nil 0))
 
 (defun dougbeney/neotree-smart-toggle ()
   (interactive)

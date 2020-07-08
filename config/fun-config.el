@@ -29,3 +29,9 @@
 (use-package csv-mode
   :mode "\\.csv\\'"
   :hook (csv-mode . csv-align-mode))
+
+(use-package openwith
+  :config
+  (setq openwith-associations '(("\\.xlsx\\'" "libreoffice" (file))
+                                ("\\.\\(jpe?g\\|png\\)" "eog" (file))))
+  (openwith-mode t))
