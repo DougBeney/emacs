@@ -11,8 +11,8 @@
 (use-package web-mode
   :mode "\\.html?\\'"
   :mode "\\.vue\\'"
-  :mode "\\.php\\'"
-  :mode "\\.js\\'")
+  :mode "\\.js\\'"
+  :mode "\\.php\\'")
 
 ;; (use-package js
 ;;   :mode "\\.js\\'"
@@ -26,6 +26,3 @@
 (use-package sass-mode
   :mode "\\.scss\\'"
   :mode "\\.sass\\'")
-
-;; (use-package php-mode
-;;   :mode "\\.php\\'")
