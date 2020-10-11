@@ -11,4 +11,4 @@
 (dougbeney/set-font '(:family "IBM Plex Mono"
                               :height 90))
 
-(setq-default line-spacing 2)
+(setq-default line-spacing 0)
