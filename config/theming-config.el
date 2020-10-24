@@ -1,5 +1,5 @@
 ;;;
-;; theming-config.el
+;; Theming-config.el
 ;;;
 
 (provide 'theming-config)
@@ -15,6 +15,7 @@
 (use-package dracula-theme :defer t)
 (use-package atom-one-dark-theme :defer t)
 (use-package doom-themes :defer t)
+(use-package gruvbox-theme :defer t)
 
 (use-package all-the-icons :defer t)
 
