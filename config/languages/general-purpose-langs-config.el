@@ -15,3 +15,16 @@
 
 (use-package ruby-mode
   :hook (ruby-mode . lsp))
+
+(use-package lsp-mode
+  :hook ((c-mode-hook . lsp)
+         (c++-mode-hook . lsp))
+  :commands lsp
+  :init
+  (setq gc-cons-threshold 100000000)
+  (setq lsp-idle-delay 0.500)
+  (setq lsp-keymap-prefix "C-c l"))
+
+(use-package lsp-ui :commands lsp-ui-mode)
+
+(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)

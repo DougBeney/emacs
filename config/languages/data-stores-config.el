@@ -10,3 +10,6 @@
 
 (use-package json-mode
   :mode "\\.json\\'")
+
+(use-package meson-mode
+  :mode "meson//.build\\'")
