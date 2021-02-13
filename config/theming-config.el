@@ -44,6 +44,8 @@
   :init
   (all-the-icons-ivy-setup))
 
+(use-package rainbow-mode)
+
 ;; Fancy pants stuff for auto theme-switching
 
 ;; (setq dark-theme 'cyberpunk
