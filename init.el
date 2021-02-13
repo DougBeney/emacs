@@ -23,8 +23,10 @@
              'workflow
              'data-stores
              'general-purpose-langs
+             'shell-langs
              'web
              'writing
              'org
              'fun
              'config-editing)
+(put 'downcase-region 'disabled nil)

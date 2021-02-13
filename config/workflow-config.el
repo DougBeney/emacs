@@ -110,3 +110,5 @@
   :requires magit
   :hook ((after-init . global-diff-hl-mode)
          (magit-post-refresh . diff-hl-magit-post-refresh)))
+
+(use-package yafolding)
