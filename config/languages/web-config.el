@@ -12,8 +12,7 @@
   :mode "\\.html?\\'"
   :mode "\\.vue\\'"
   :mode "\\.js\\'"
-  :mode "\\.php\\'"
-  )
+  :mode "\\.php\\'")
 
 ;; (use-package php-mode
 ;;  :mode "\\.php\\'"
