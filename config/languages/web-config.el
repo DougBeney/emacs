@@ -12,7 +12,9 @@
   :mode "\\.html?\\'"
   :mode "\\.vue\\'"
   :mode "\\.js\\'"
-  :mode "\\.php\\'")
+  :mode "\\.php\\'"
+  :config
+  (web-mode-use-tabs))
 
 ;; (use-package php-mode
 ;;  :mode "\\.php\\'"

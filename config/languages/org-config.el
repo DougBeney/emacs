@@ -74,4 +74,9 @@
          ("C-c \\" . org-open-todays-daynote)
          ("C-c C-x \\" . org-open-weeknote)
          ("C-c C-x C-\\" . org-open-weeknote)
-         ("C-c C-\\" . org-open-root-dir)))
+         ("C-c C-\\" . org-open-root-dir))
+  :config
+  (setq-default org-src-preserve-indentation t)
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((python . t) (emacs-lisp . t))))
