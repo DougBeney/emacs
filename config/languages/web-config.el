@@ -8,13 +8,13 @@
 (use-package emmet-mode
   :hook (web-mode . emmet-mode))
 
-(use-package web-mode
-  :mode "\\.html?\\'"
-  :mode "\\.vue\\'"
-  :mode "\\.js\\'"
-  :mode "\\.php\\'"
-  :config
-  (web-mode-use-tabs))
+;; (use-package web-mode
+;;   :mode "\\.html?\\'"
+;;   :mode "\\.vue\\'"
+;;   :mode "\\.js\\'"
+;;   :mode "\\.php\\'"
+;;   :config
+;;   (web-mode-use-tabs))
 
 ;; (use-package php-mode
 ;;  :mode "\\.php\\'"
@@ -29,6 +29,6 @@
   (setq pug-tab-width 4)
   :mode "\\.pug\\'")
 
-(use-package sass-mode
+(use-package ssass-mode
   :mode "\\.scss\\'"
   :mode "\\.sass\\'")

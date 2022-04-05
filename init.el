@@ -30,3 +30,8 @@
              'fun
              'config-editing)
 (put 'downcase-region 'disabled nil)
+
+;; (use-package esup
+;;   :ensure t
+;;   ;; To use MELPA Stable use ":pin melpa-stable",
+;;   :pin melpa)
