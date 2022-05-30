@@ -41,7 +41,8 @@
 ;; Company is for code auto-completion
 (use-package company
   :hook (after-init . global-company-mode)
-  :bind ("M-/" . company-complete)
+  :bind ("M-/" . company-idle-delay-complete)
+  :bind ("C-x C-/" . dabbrev-expand)
   :config
   (setq company-idle-delay 0))
 
@@ -98,9 +99,10 @@
             (setq eyebrowse-new-workspace t)))
 
 ;; Automatically closes parenthesis, brackets, and quotes
-(use-package autopair
-  :config
-  (autopair-global-mode))
+;; (use-package autopair
+;;   :config
+;;   (autopair-global-mode))
+(add-hook 'prog-mode-hook 'electric-pair-mode)
 
 ;; git related packages
 (use-package magit

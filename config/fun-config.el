@@ -53,3 +53,7 @@
 ;;           (minibuffer . t)
 ;;           (menu-bar-lines . t)
 ;;           (window-system . x))))
+
+(use-package activity-watch-mode
+  :init
+  (global-activity-watch-mode))
