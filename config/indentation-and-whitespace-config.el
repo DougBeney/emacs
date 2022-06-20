@@ -7,10 +7,12 @@
 (setq-default custom-tab-width 4)
 
 (setq-default indent-tabs-mode t)
-(setq-default show-trailing-whitespace t)
 (setq-default tab-width custom-tab-width)
-
 (setq-default py-indent-tabs-mode t)
+
+(add-hook 'prog-mode-hook
+		  (lambda ()
+			(setq show-trailing-whitespace t)))
 
 (add-hook 'python-mode-hook
 		  (lambda ()

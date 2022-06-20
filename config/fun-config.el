@@ -5,6 +5,11 @@
 
 (provide 'fun-config)
 
+(use-package eww
+  :ensure nil
+  :init
+  (setq eww-search-prefix "https://lite.duckduckgo.com/lite/?q="))
+
 (use-package md4rd
   :commands md4rd
   :bind (("C-c C-r" . md4rd))
