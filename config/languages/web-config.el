@@ -29,6 +29,5 @@
   (setq pug-tab-width 4)
   :mode "\\.pug\\'")
 
-(use-package ssass-mode
-  :mode "\\.scss\\'"
-  :mode "\\.sass\\'")
+(use-package scss-mode
+  :mode "\\.scss\\'")

@@ -62,3 +62,5 @@
 (use-package activity-watch-mode
   :init
   (global-activity-watch-mode))
+
+(use-package lorem-ipsum)

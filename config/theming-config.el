@@ -13,7 +13,7 @@
 ;; Themes
 ;; (use-package cyberpunk-theme :defer t)
 ;; (use-package dracula-theme :defer t)
-;; (use-package atom-one-dark-theme :defer t)
+(use-package atom-one-dark-theme :defer t)
 ;; (use-package doom-themes :defer t)
 ;; (use-package gruvbox-theme :defer t)
 (use-package monokai-theme :defer t)
