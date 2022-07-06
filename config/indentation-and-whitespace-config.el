@@ -20,11 +20,10 @@
 			(setq python-indent 4)
 			(setq tab-width 4)))
 
-(add-hook 'ssass-mode-hook
-		  (lambda ()
-			(setq indent-tabs-mode t)
-			(setq tab-width 4)
-			(setq ssass-tab-width 4)))
+;; (add-hook 'scss-mode-hook
+;; 		  (lambda ()
+;; 			(setq indent-tabs-mode t)
+;; 			(setq tab-width 4)))
 
 (add-hook 'php-mode-hook
 		  (lambda ()

@@ -9,12 +9,14 @@
   :hook (web-mode . emmet-mode))
 
 (use-package web-mode
-  ;; :mode "\\.html?\\'"
+  :mode "\\.html\\'"
   :mode "\\.vue\\'"
-  ;; :mode "\\.js\\'"
+  :mode "\\.jsx\\'"
+  :mode "\\.js\\'"
   :mode "\\.php\\'"
   :config
-  (web-mode-use-tabs))
+  (web-mode-use-tabs)
+  (emmet-mode 1))
 
 ;; (use-package php-mode
 ;;  :mode "\\.php\\'"
