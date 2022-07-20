@@ -29,7 +29,9 @@
           (lambda ()
             (setq indent-tabs-mode t)))
 
-(use-package highlight-indent-guides)
+(use-package highlight-indent-guides
+  :config
+  (setq highlight-indent-guides-method 'character))
 
 (defun dougbeney/use-spaces ()
   (setq indent-tabs-mode nil))
