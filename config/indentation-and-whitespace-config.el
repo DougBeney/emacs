@@ -11,20 +11,28 @@
 (setq-default py-indent-tabs-mode t)
 
 (add-hook 'prog-mode-hook
-		  (lambda ()
-			(setq show-trailing-whitespace t)))
+          (lambda ()
+            (setq show-trailing-whitespace t)))
 
 (add-hook 'python-mode-hook
-		  (lambda ()
-			(setq indent-tabs-mode t)
-			(setq python-indent 4)
-			(setq tab-width 4)))
+          (lambda ()
+            (setq indent-tabs-mode t)
+            (setq python-indent 4)
+            (setq tab-width 4)))
 
 ;; (add-hook 'scss-mode-hook
-;; 		  (lambda ()
-;; 			(setq indent-tabs-mode t)
-;; 			(setq tab-width 4)))
+;;          (lambda ()
+;;            (setq indent-tabs-mode t)
+;;            (setq tab-width 4)))
 
 (add-hook 'php-mode-hook
-		  (lambda ()
-			(setq indent-tabs-mode t)))
+          (lambda ()
+            (setq indent-tabs-mode t)))
+
+(use-package highlight-indent-guides)
+
+(defun dougbeney/use-spaces ()
+  (setq indent-tabs-mode nil))
+
+(add-hook 'emacs-lisp-mode 'dougbeney/use-spaces)
+(add-hook 'lisp-mode 'dougbeney/use-spaces)
