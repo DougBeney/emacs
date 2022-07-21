@@ -10,6 +10,7 @@
 
 (use-package web-mode
   :mode "\\.html\\'"
+  :mode "\\.liquid\\'"
   :mode "\\.vue\\'"
   :mode "\\.jsx\\'"
   :mode "\\.js\\'"

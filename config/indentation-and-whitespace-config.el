@@ -29,6 +29,11 @@
           (lambda ()
             (setq indent-tabs-mode t)))
 
+(add-hook 'pug-mode-hook
+		  (lambda ()
+			(setq tab-width 2)
+			(setq pug-tab-width 2)))
+
 (use-package highlight-indent-guides
   :config
   (setq highlight-indent-guides-method 'character))
