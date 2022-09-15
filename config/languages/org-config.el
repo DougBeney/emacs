@@ -80,3 +80,6 @@
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((python . t) (emacs-lisp . t))))
+
+(use-package org-bullets
+  :hook (org-mode . org-bullets-mode))

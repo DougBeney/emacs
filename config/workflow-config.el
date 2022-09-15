@@ -114,3 +114,6 @@
          (magit-post-refresh . diff-hl-magit-post-refresh)))
 
 (use-package yafolding)
+
+(use-package expand-region
+  :bind ("C-;" . er/expand-region))
