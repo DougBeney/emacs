@@ -3,6 +3,13 @@
 ;; General purpose languages like Python, Ruby, or even C++
 ;;;
 
+;; (global-font-lock-mode -1)
+
+;; (use-package tree-sitter
+;;   :config
+;;   (global-tree-sitter-mode)
+;;   (use-package tree-sitter-langs))
+
 (provide 'general-purpose-langs-config)
 
 ;; (use-package elpy
@@ -17,17 +24,17 @@
   ;; :hook (ruby-mode . lsp)
   )
 
-;; (use-package lsp-mode
-;;   :hook ((c-mode-hook . lsp)
-;;          (c++-mode-hook . lsp))
-;;   :commands lsp
-;;   :init
-;;   (setq gc-cons-threshold 100000000)
-;;   (setq lsp-idle-delay 0.500)
-;;   (setq lsp-keymap-prefix "C-c l")
-;;   :config
-;;   (use-package lsp-ui :commands lsp-ui-mode)
-;;   (use-package lsp-ivy :commands lsp-ivy-workspace-symbol))
+(use-package lsp-mode
+  :hook ((c-mode-hook . lsp)
+         (c++-mode-hook . lsp))
+  :commands lsp
+  :init
+  (setq gc-cons-threshold 100000000)
+  (setq lsp-idle-delay 0.500)
+  (setq lsp-keymap-prefix "C-c l")
+  :config
+  (use-package lsp-ui :commands lsp-ui-mode)
+  (use-package lsp-ivy :commands lsp-ivy-workspace-symbol))
 
 ;; (use-package lsp-pyright
 ;;   :hook (python-mode . (lambda ()
@@ -35,3 +42,5 @@
 ;;                          (lsp))))
 
 (use-package eglot)
+
+(use-package pyvenv)

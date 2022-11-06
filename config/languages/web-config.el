@@ -19,13 +19,10 @@
   (web-mode-use-tabs)
   (emmet-mode 1))
 
-;; (use-package php-mode
-;;  :mode "\\.php\\'"
-;;   )
+;; (use-package vue-mode
+;;   :mode "\\.vue\\'")
 
-;; (use-package js
-;;   :mode "\\.js\\'"
-;;   :hook (js-mode . lsp))
+(use-package php-mode)
 
 (use-package pug-mode
   :init

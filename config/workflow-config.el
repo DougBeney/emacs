@@ -8,11 +8,14 @@
 (require 'helper-functions-config)
 
 ;; evil - Vim keybindings for Emacs
-;; (use-package evil
-;;   :init
-;;   (setq evil-want-keybinding nil)
-;;   :config
-;;   (evil-mode 1))
+(use-package evil
+  :init
+  ;; (setq evil-want-keybinding nil)
+  :config
+  (evil-mode 1)
+  (use-package evil-collection
+	:init
+	(evil-collection-init)))
 
 ;; (use-package evil-collection
 ;;   :after evil
@@ -44,7 +47,13 @@
   :bind ("M-/" . company-idle-delay-complete)
   :bind ("C-x C-/" . dabbrev-expand)
   :config
-  (setq company-idle-delay 0))
+  (setq company-idle-delay 0)
+  (setq company-show-numbers t)
+  (use-package company-tabnine))
+
+(use-package editorconfig
+  :config
+  (editorconfig-mode 1))
 
 ;; Snippets
 (use-package yasnippet
@@ -72,13 +81,15 @@
   :bind ("M-9" . dougbeney/neotree-cd-to-pwd-and-show)
   :bind ("M-8" . dougbeney/neotree-cd-to-code-dir)
   :hook (neotree-mode . (lambda ()
-                          (setq-local line-spacing 10)
+                          (setq-local line-spacing 5)
                           (setq-local buffer-face-mode-face '(:family "Fira Sans" :height 100 :weight 'normal))
                           (buffer-face-mode)))
   :config
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
   (setq neo-window-fixed-size nil)
-  (setq projectile-switch-project-action 'neotree-projectile-action))
+  (setq projectile-switch-project-action 'neotree-projectile-action)
+  (defun neo-path--insert-header-buttonized (path) nil)
+  (setq neo-banner-message " "))
 
 ;; Jump to a character. Avy is an alternative to ace.
 (use-package avy
@@ -113,7 +124,8 @@
   :hook ((after-init . global-diff-hl-mode)
          (magit-post-refresh . diff-hl-magit-post-refresh)))
 
-(use-package yafolding)
+;; (use-package yafolding)
+(use-package origami)
 
 (use-package expand-region
   :bind ("C-;" . er/expand-region))
