@@ -1,4 +1,5 @@
 (load "~/.emacs.d/sanemacs.el" nil t) ; https://Sanemacs.com
+(setq byte-compile-warnings '(cl-functions))
 
 ;; Time to load up my config!
 ;; All of my main configuration files are in ~/.emacs.d/config/
@@ -32,3 +33,5 @@
 
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
+
+(setq byte-compile-warnings '(cl-functions)) ; Supress cl deprecated warning

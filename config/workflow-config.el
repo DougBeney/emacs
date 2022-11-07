@@ -10,7 +10,7 @@
 ;; evil - Vim keybindings for Emacs
 (use-package evil
   :init
-  ;; (setq evil-want-keybinding nil)
+  (setq evil-want-keybinding nil)
   :config
   (evil-mode 1)
   (use-package evil-collection
@@ -57,8 +57,7 @@
 
 ;; Snippets
 (use-package yasnippet
-  :config
-  (yas-global-mode 1))
+  :hook (prog-mode . yas-minor-mode))
 
 ;; Project management
 (use-package projectile
@@ -68,7 +67,8 @@
         projectile-globally-ignored-files '("db.sqlite3")
         projectile-globally-ignored-directories '(".venv" "node_modules")
         projectile-globally-ignored-file-suffixes '("sqlite" "sqlite3")
-        projectile-project-search-path (cddr (directory-files "~/Code" t)))
+        projectile-project-search-path (cddr (directory-files "~/Code" t))
+		projectile-auto-discover nil)
   (projectile-mode +1)
   (use-package counsel-projectile
     :requires counsel

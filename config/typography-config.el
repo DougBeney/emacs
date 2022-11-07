@@ -9,6 +9,6 @@
 
 ;;; Set the default font
 (dougbeney/set-font '(:family "Fira Code"
-                              :height 120))
+                              :height 110))
 
 (setq-default line-spacing 0)

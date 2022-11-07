@@ -1,11 +1,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; Sanemacs version 0.3.2 ;;;
+;;; Sanemacs version 1.0.0 ;;;
 ;;; https://sanemacs.com   ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;; For performance
 (setq gc-cons-threshold 100000000)
-(setq read-process-output-max (* 1024 1024)) ;; 1mb
+(setq read-process-output-max (* 1024 1024))
 
 
 (add-hook 'after-init-hook #'(lambda ()
@@ -25,18 +25,24 @@
 (when (version< emacs-version "26.3")
   (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"))
 
-;;; Setup package.el
-(require 'package)
-(setq package-enable-at-startup nil)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-(unless package--initialized (package-initialize))
+;;; Setup straight.el
+(setq package-enable-at-startup nil) ;; Disable package.el
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 6))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
 ;;; Setup use-package
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-(eval-when-compile
-  (require 'use-package))
+(setq-default straight-use-package-by-default t)
+(straight-use-package 'use-package)
 (setq use-package-always-ensure t)
 
 ;;; Useful Defaults
@@ -51,8 +57,7 @@
 (delete-selection-mode 1)                 ; Selected text will be overwritten when you start typing
 (global-auto-revert-mode t)               ; Auto-update buffer if file has changed on disk
 (use-package undo-tree                    ; Enable undo-tree, sane undo/redo behavior
-  :init (global-undo-tree-mode)
-  :config (setq-default undo-tree-auto-save-history nil))
+  :init (global-undo-tree-mode))
 (add-hook 'before-save-hook
 	  'delete-trailing-whitespace)    ; Delete trailing whitespace on save
 (add-hook 'prog-mode-hook                 ; Show line numbers in programming modes

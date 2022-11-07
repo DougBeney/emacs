@@ -7,7 +7,9 @@ eshell/
 url/
 auto-save-list/
 irony/
+straight/
 elpa/
+elpy
 custom.el
 session.*
 .python-environments/
@@ -18,7 +20,6 @@ srecode-map.el
 semanticdb/
 transient/
 tramp
-elpy
 recentf
 
 .lsp*
