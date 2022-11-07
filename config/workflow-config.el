@@ -48,8 +48,7 @@
   :bind ("C-x C-/" . dabbrev-expand)
   :config
   (setq company-idle-delay 0)
-  (setq company-show-numbers t)
-  (use-package company-tabnine))
+  (setq company-show-numbers t))
 
 (use-package editorconfig
   :config
