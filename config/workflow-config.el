@@ -7,6 +7,10 @@
 
 (require 'helper-functions-config)
 
+(defun my/focus-new-client-frame ()
+  (select-frame-set-input-focus (selected-frame)))
+(add-hook 'server-after-make-frame-hook #'my/focus-new-client-frame)
+
 ;; evil - Vim keybindings for Emacs
 (use-package evil
   :init
@@ -15,7 +19,10 @@
   (evil-mode 1)
   (use-package evil-collection
 	:init
-	(evil-collection-init)))
+	(evil-collection-init))
+  (use-package evil-surround
+	:config
+	(global-evil-surround-mode 1)))
 
 ;; (use-package evil-collection
 ;;   :after evil

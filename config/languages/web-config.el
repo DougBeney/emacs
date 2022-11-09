@@ -22,8 +22,6 @@
 ;; (use-package vue-mode
 ;;   :mode "\\.vue\\'")
 
-(use-package php-mode)
-
 (use-package pug-mode
   :init
   (setq pug-tab-width 4)
