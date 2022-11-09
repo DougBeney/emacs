@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: php <pre>
+# key: <pre
+# --
+
+<pre>
+	<?php print_r( $0 ) ?>
+</pre>
