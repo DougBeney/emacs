@@ -10,6 +10,13 @@
 (setq-default tab-width custom-tab-width)
 (setq-default py-indent-tabs-mode t)
 
+(defun show-indentation ()
+  (interactive)
+  (setq whitespace-style '(face tabs tab-mark trailing))
+  (setq whitespace-display-mappings
+		'((tab-mark 9 [124 9] [92 9])))
+  (whitespace-mode))
+
 (add-hook 'prog-mode-hook
           (lambda ()
             (setq show-trailing-whitespace t)))
