@@ -37,6 +37,13 @@
   (split-window nil 8 'above)
   (ansi-term (getenv "SHELL")))
 
+(defun dougbeney/smart-ansi-term ()
+  "Open an ansi-term if it doesn't already exist, otherwise switch to current one."
+  (interactive)
+  (if (get-buffer "*ansi-term*")
+    (switch-to-buffer "*ansi-term*")
+  (ansi-term (getenv "SHELL"))))
+
 (defun dougbeney/view-blog-posts ()
   (interactive)
   (dired "~/Code/Jekyll/dougie.io/_posts"))
