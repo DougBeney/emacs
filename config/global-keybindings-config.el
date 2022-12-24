@@ -31,3 +31,5 @@
 ;; Terminal related bindings
 (global-set-key (kbd "M-7") 'dougbeney/terminal)
 (global-set-key (kbd "C-c t") #'dougbeney/open-terminal-in-workdir)
+
+(global-unset-key (kbd "C-z"))

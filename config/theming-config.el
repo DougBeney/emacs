@@ -23,7 +23,34 @@
 (use-package doom-modeline
   :init
   (doom-modeline-mode 1)
-  (use-package all-the-icons))
+  :config
+  (setq doom-modeline-hud t)
+  (setq doom-modeline-buffer-encoding nil))
+
+(defun dougie-modeline ()
+  (interactive)
+  (let ((new-format
+		 (list
+		  (format "%s "
+				  (propertize (all-the-icons-icon-for-buffer)
+							  'face `(:height 1.5 :family ,(all-the-icons-icon-family-for-buffer))))
+		  mode-line-buffer-identification
+		  mode-line-end-spaces
+		  " "
+		  (if (fboundp 'eyebrowse--get)
+			  (number-to-string (eyebrowse--get 'current-slot))
+			"")
+		  " %e"
+		  )))
+	(setq-default mode-line-format new-format)
+	(setq mode-line-format new-format)) t)
+
+;; Activate my modeline
+;; (dougie-modeline)
+;; (add-hook 'post-command-hook #'dougie-modeline)
+;; (add-hook 'window-configuration-change-hook #'dougie-modeline)
+
+(use-package all-the-icons)
 
 ;; Terminal-related tweaks include:
 ;;   - Different font / font size
@@ -31,12 +58,12 @@
 ;;   - Auto-scroll on new output to terminal
 (use-package term
   :commands ansi-term
-  :hook (term-mode . (lambda ()
-                       (dougbeney/set-font-local dougbeney-term-mode-face
-                                                 (:family "Ubuntu Mono"
-                                                          :height 90))
-                       (setq-local line-spacing 0)
-                       (setq-local mode-line-format nil)))
+  ;; :hook (term-mode . (lambda ()
+  ;;                      (dougbeney/set-font-local dougbeney-term-mode-face
+  ;;                                                (:family "Ubuntu Mono"
+  ;;                                                         :height 90))
+  ;;                      (setq-local line-spacing 0)
+  ;;                      (setq-local mode-line-format nil)))
   :config
   ;; Auto-scroll terminal on new output
   (setq comint-scroll-to-bottom-on-input t))

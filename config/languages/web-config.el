@@ -14,10 +14,19 @@
   :mode "\\.vue\\'"
   :mode "\\.jsx\\'"
   :mode "\\.js\\'"
+  :mode "\\.json\\'"
   :mode "\\.php\\'"
   :config
   (web-mode-use-tabs)
   (emmet-mode 1))
+
+(use-package svelte-mode
+  :mode "\\.svelte\\'"
+  :config
+  (emmet-mode 1))
+
+(use-package typescript-mode
+  :mode "\\.ts\\'")
 
 ;; (use-package vue-mode
 ;;   :mode "\\.vue\\'")

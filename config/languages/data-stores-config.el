@@ -8,8 +8,8 @@
 (use-package yaml-mode
   :mode "\\.ya?ml\\'")
 
-(use-package json-mode
-  :mode "\\.json\\'")
+;; (use-package json-mode
+;;   :mode "\\.json\\'")
 
 (use-package meson-mode
   :mode "meson//.build\\'")

@@ -51,7 +51,7 @@
 ;; Company is for code auto-completion
 (use-package company
   :hook (after-init . global-company-mode)
-  :bind ("M-/" . company-idle-delay-complete)
+  :bind ("M-/" . company-complete)
   :bind ("C-x C-/" . dabbrev-expand)
   :config
   (setq company-idle-delay 0)
@@ -114,6 +114,10 @@
             (define-key eyebrowse-mode-map (kbd "M-4") 'eyebrowse-switch-to-window-config-4)
             (eyebrowse-mode t)
             (setq eyebrowse-new-workspace t)))
+
+;; (use-package tab-bar
+;;   :ensure nil
+;;   :bind )
 
 ;; Automatically closes parenthesis, brackets, and quotes
 ;; (use-package autopair
