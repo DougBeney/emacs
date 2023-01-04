@@ -68,13 +68,18 @@
 
     (find-file (concat org-weeknotes-root week-note-fname ))))
 
+(defun org-open-business-ideas ()
+  (interactive)
+  (find-file (concat org-root "Business/business-ideas.org")))
+
 (use-package org
   :bind (("C-c o" . org-open-file)
          ("C-c C-o" . org-open-home)
          ("C-c \\" . org-open-todays-daynote)
          ("C-c C-x \\" . org-open-weeknote)
          ("C-c C-x C-\\" . org-open-weeknote)
-         ("C-c C-\\" . org-open-root-dir))
+         ("C-c C-\\" . org-open-root-dir)
+		 ("C-c C-b" . org-open-business-ideas))
   :config
   (setq-default org-src-preserve-indentation t)
   (org-babel-do-load-languages
