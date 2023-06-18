@@ -141,3 +141,21 @@
 
 (use-package expand-region
   :bind ("C-;" . er/expand-region))
+
+(defun surround2 (begin end open close)
+  "Put OPEN at START and CLOSE at END of the region.
+If you omit CLOSE, it will reuse OPEN."
+  (interactive  "r\nsStart: \nsEnd: ")
+  (when (string= close "")
+    (setq close open))
+  (save-excursion
+    (goto-char end)
+    (insert close)
+    (goto-char begin)
+    (insert open)))
+
+(defun surround (begin end char)
+  "Put OPEN at START and CLOSE at END of the region.
+If you omit CLOSE, it will reuse OPEN."
+  (interactive  "r\nsSurround with: ")
+  (surround2 begin end char char))
