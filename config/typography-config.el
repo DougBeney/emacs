@@ -9,6 +9,6 @@
 
 ;;; Set the default font
 (dougbeney/set-font '(:family "IBM Plex Mono"
-                              :height 110))
+                              :height 135))
 
 (setq-default line-spacing 0)

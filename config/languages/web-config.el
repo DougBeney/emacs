@@ -22,8 +22,7 @@
 
 (use-package svelte-mode
   :mode "\\.svelte\\'"
-  :config
-  (emmet-mode 1))
+  :hook (svelte-mode . emmet-mode))
 
 (use-package typescript-mode
   :mode "\\.ts\\'")

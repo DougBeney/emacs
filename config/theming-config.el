@@ -17,15 +17,16 @@
 (use-package doom-themes :defer t)
 ;; (use-package gruvbox-theme :defer t)
 (use-package monokai-theme :defer t)
+(use-package sublime-themes :defer t)
 
 (use-package all-the-icons :defer t)
 
 (use-package doom-modeline
-  :init
-  (doom-modeline-mode 1)
-  :config
-  (setq doom-modeline-hud t)
-  (setq doom-modeline-buffer-encoding nil))
+ :init
+ (doom-modeline-mode 1)
+ :config
+ (setq doom-modeline-hud t)
+ (setq doom-modeline-buffer-encoding nil))
 
 (defun dougie-modeline ()
   (interactive)

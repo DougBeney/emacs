@@ -33,3 +33,7 @@
 (global-set-key (kbd "C-c t") #'dougbeney/open-terminal-in-workdir)
 
 (global-unset-key (kbd "C-z"))
+
+;; Undo tree
+(global-set-key (kbd "C-z") #'undo-tree-undo)
+(global-set-key (kbd "C-S-z") #'undo-tree-redo)
