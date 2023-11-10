@@ -24,7 +24,7 @@
 (add-hook 'python-mode-hook
           (lambda ()
             (setq indent-tabs-mode t)
-            (setq python-indent 4)
+            (setq python-indent-offset 4)
             (setq tab-width 4)))
 
 ;; (add-hook 'scss-mode-hook
@@ -41,12 +41,8 @@
 			(setq tab-width 2)
 			(setq pug-tab-width 2)))
 
-(use-package highlight-indent-guides
-  :config
-  (setq highlight-indent-guides-method 'character))
-
 (defun dougbeney/use-spaces ()
   (setq indent-tabs-mode nil))
 
-(add-hook 'emacs-lisp-mode 'dougbeney/use-spaces)
-(add-hook 'lisp-mode 'dougbeney/use-spaces)
+;; (add-hook 'emacs-lisp-mode 'dougbeney/use-spaces)
+;; (add-hook 'lisp-mode 'dougbeney/use-spaces)

@@ -11,7 +11,7 @@
   (select-frame-set-input-focus (selected-frame)))
 (add-hook 'server-after-make-frame-hook #'my/focus-new-client-frame)
 
-;; evil - Vim keybindings for Emacs
+;;evil - Vim keybindings for Emacs
 ;; (use-package evil
 ;;   :init
 ;;   (setq evil-want-keybinding nil)
@@ -23,11 +23,6 @@
 ;;   (use-package evil-surround
 ;; 	:config
 ;; 	(global-evil-surround-mode 1)))
-
-;; (use-package evil-collection
-;;   :after evil
-;;   :config
-;;   (evil-collection-init))
 
 ;; Ivy - Provides a nifty auto-complete for finding files and shit.
 ;; Counsel - Adds Ivy completion for other Emacs shit. Ex. Viewing buffer list.
@@ -128,8 +123,7 @@
 ;; git related packages
 (use-package magit
   :config
-  (global-set-key (kbd "C-x g") 'magit-status)
-  (add-hook 'with-editor-mode-hook 'evil-insert-state))
+  (global-set-key (kbd "C-x g") 'magit-status))
 
 (use-package diff-hl
   :requires magit

@@ -11,6 +11,10 @@
 (setq org-weeknotes-root (concat org-root "Week Notes/"))
 (setq org-home-file (concat org-root "home.org"))
 
+(setq-default org-startup-truncated nil)
+
+(setq-default org-startup-folded 'show2levels)
+
 (defun org-open-root-dir ()
   (interactive)
   (dired org-root))
