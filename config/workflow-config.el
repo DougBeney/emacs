@@ -1,4 +1,4 @@
-;;;
+;;
 ;; workflow-config.el
 ;; Various packages that enhances the workflow of Emacs.
 ;;;
@@ -49,6 +49,7 @@
   :bind ("M-/" . company-complete)
   :bind ("C-x C-/" . dabbrev-expand)
   :config
+  (setq company-global-modes '(not org-mode))
   (setq company-idle-delay 0)
   (setq company-show-numbers t))
 
@@ -118,7 +119,7 @@
 ;; (use-package autopair
 ;;   :config
 ;;   (autopair-global-mode))
-(add-hook 'prog-mode-hook 'electric-pair-mode)
+;(add-hook 'prog-mode-hook 'electric-pair-mode)
 
 ;; git related packages
 (use-package magit
