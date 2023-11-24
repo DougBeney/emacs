@@ -30,6 +30,10 @@
     "Find Org file: "
     (concat "find '" org-root "' -type f -iname '*.org'"))))
 
+(defun org-open-journal ()
+  (interactive)
+  (find-file (concat org-root "Journal.org")))
+
 (defun org-open-todays-daynote ()
   (interactive)
   (let* ((todays-date (string-trim-right
@@ -74,15 +78,13 @@
 
 (defun org-open-business-ideas ()
   (interactive)
-  (find-file (concat org-root "Business/business-ideas.org")))
+  (find-file (concat org-root "business-ideas.org")))
 
 (use-package org
   :bind (("C-c o" . org-open-file)
          ("C-c C-o" . org-open-home)
-         ("C-c \\" . org-open-todays-daynote)
-         ("C-c C-x \\" . org-open-weeknote)
-         ("C-c C-x C-\\" . org-open-weeknote)
-         ("C-c C-\\" . org-open-root-dir)
+         ("C-c C-\\" . org-open-journal)
+         ("C-c \\" . org-open-root-dir)
 		 ("C-c C-b" . org-open-business-ideas))
   :config
   (use-package org-bullets)
@@ -96,8 +98,8 @@
 (add-hook 'org-mode-hook 'org-bullets-mode)
 
 (custom-set-faces
-  '(org-level-1 ((t (:inherit outline-1 :height 1.5))))
-  '(org-level-2 ((t (:inherit outline-2 :height 1.3))))
-  '(org-level-3 ((t (:inherit outline-3 :height 1.2))))
+  '(org-level-1 ((t (:inherit outline-1 :height 1.7))))
+  '(org-level-2 ((t (:inherit outline-2 :height 1.5))))
+  '(org-level-3 ((t (:inherit outline-3 :height 1.3))))
   '(org-level-4 ((t (:inherit outline-4 :height 1.1))))
   '(org-level-5 ((t (:inherit outline-5 :height 1.0)))))

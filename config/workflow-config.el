@@ -101,19 +101,31 @@
   (global-set-key (kbd "M-g g") 'avy-goto-line))
 
 ;; Workspaces
-(use-package eyebrowse
-  :diminish eyebrowse-mode
-  :config (progn
-            (define-key eyebrowse-mode-map (kbd "M-1") 'eyebrowse-switch-to-window-config-1)
-            (define-key eyebrowse-mode-map (kbd "M-2") 'eyebrowse-switch-to-window-config-2)
-            (define-key eyebrowse-mode-map (kbd "M-3") 'eyebrowse-switch-to-window-config-3)
-            (define-key eyebrowse-mode-map (kbd "M-4") 'eyebrowse-switch-to-window-config-4)
-            (eyebrowse-mode t)
-            (setq eyebrowse-new-workspace t)))
+;; (use-package eyebrowse
+;;   :diminish eyebrowse-mode
+;;   :config (progn
+;;             (define-key eyebrowse-mode-map (kbd "M-1") 'eyebrowse-switch-to-window-config-1)
+;;             (define-key eyebrowse-mode-map (kbd "M-2") 'eyebrowse-switch-to-window-config-2)
+;;             (define-key eyebrowse-mode-map (kbd "M-3") 'eyebrowse-switch-to-window-config-3)
+;;             (define-key eyebrowse-mode-map (kbd "M-4") 'eyebrowse-switch-to-window-config-4)
+;;             (eyebrowse-mode t)
+;;             (setq eyebrowse-new-workspace t)))
 
-;; (use-package tab-bar
-;;   :ensure nil
-;;   :bind )
+(use-package tab-bar
+  :ensure nil
+  :bind (("M-1" . 'tab-bar-select-tab)
+		 ("M-2" . 'tab-bar-select-tab)
+		 ("M-3" . 'tab-bar-select-tab)
+		 ("M-4" . 'tab-bar-select-tab)
+		 ("M-5" . 'tab-bar-select-tab)
+		 ("M-6" . 'tab-bar-select-tab)
+		 ("M-7" . 'tab-bar-select-tab)
+		 ("M-8" . 'tab-bar-select-tab)
+		 ("M-9" . 'tab-bar-select-tab)
+		 ("M-9" . 'tab-bar-select-tab))
+  :config
+  (tab-bar-mode 1)
+  (setq tab-bar-select-tab-modifiers "M"))
 
 ;; Automatically closes parenthesis, brackets, and quotes
 ;; (use-package autopair
