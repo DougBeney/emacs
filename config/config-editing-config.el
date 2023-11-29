@@ -16,10 +16,11 @@
 
 (defun dougbeney/edit-emacs-config-file ()
   (interactive)
-  (helm-find-files
-   (dougbeney/shell-cmd-output-completion
-    "Select Config you wish to edit: "
-    "find ~/.emacs.d/ -maxdepth 1 -type f -iname '*.el' && find ~/.emacs.d/config -type f -iname '*.el'")))
+  (let ((config_file
+		 (dougbeney/shell-cmd-output-completion
+		  "Select Config you wish to edit: "
+		  "find ~/.emacs.d/ -maxdepth 1 -type f -iname '*.el' && find ~/.emacs.d/config -type f -iname '*.el'")))
+	(find-file config_file)))
 
 (defun dougbeney/bspwm-dir ()
   (interactive)
