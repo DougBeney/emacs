@@ -28,10 +28,11 @@
 
 (defun dougie-org-open-file ()
   (interactive)
-  (find-file
-   (dougbeney/shell-cmd-output-completion
-    "Find Org file: "
-    (concat "find '" org-root "' -type f -iname '*.org'"))))
+  (let ((selected_file
+		(dougbeney/shell-cmd-output-completion
+		 "Find Org file: "
+		 (concat "find '" org-root "' -type f -iname '*.org'"))))
+	(find-file selected_file)))
 
 (defun dougie-org-open-journal ()
   (interactive)
@@ -86,8 +87,8 @@
 (use-package org
   :bind  (("C-c o" . dougie-org-open-file)
          ("C-c C-o" . dougie-org-open-home)
-         ("C-c C-\\" . dougie-org-open-journal)
-         ("C-c \\" . dougie-org-open-root-dir)
+         ("C-c \\" . dougie-org-open-journal)
+         ("C-c C-\\" . dougie-org-open-root-dir)
 		 ("C-c C-b" . dougie-org-open-business-ideas))
   :config
   (use-package org-bullets)
@@ -101,8 +102,8 @@
 (add-hook 'org-mode-hook 'org-bullets-mode)
 
 (custom-set-faces
-  '(org-level-1 ((t (:inherit outline-1 :height 1.7))))
-  '(org-level-2 ((t (:inherit outline-2 :height 1.5))))
-  '(org-level-3 ((t (:inherit outline-3 :height 1.3))))
-  '(org-level-4 ((t (:inherit outline-4 :height 1.1))))
+  '(org-level-1 ((t (:inherit outline-1 :height 1.0))))
+  '(org-level-2 ((t (:inherit outline-2 :height 1.0))))
+  '(org-level-3 ((t (:inherit outline-3 :height 1.0))))
+  '(org-level-4 ((t (:inherit outline-4 :height 1.0))))
   '(org-level-5 ((t (:inherit outline-5 :height 1.0)))))
