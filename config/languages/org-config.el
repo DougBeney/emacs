@@ -9,32 +9,35 @@
 (setq org-root (concat (shell-command-to-string "printf $HOME") "/Sync/Org/"))
 (setq org-daynotes-root (concat org-root "Day Notes/"))
 (setq org-weeknotes-root (concat org-root "Week Notes/"))
-(setq org-home-file (concat org-root "home.org"))
+(setq org-home-file (concat org-root "Home.org"))
+
+(setq org-agenda-files '("~/Sync/Org/TODO.org"))
+
 
 (setq-default org-startup-truncated nil)
 
 (setq-default org-startup-folded 'show2levels)
 
-(defun org-open-root-dir ()
+(defun dougie-org-open-root-dir ()
   (interactive)
   (dired org-root))
 
-(defun org-open-home ()
+(defun dougie-org-open-home ()
   (interactive)
   (find-file org-home-file))
 
-(defun org-open-file ()
+(defun dougie-org-open-file ()
   (interactive)
   (find-file
    (dougbeney/shell-cmd-output-completion
     "Find Org file: "
     (concat "find '" org-root "' -type f -iname '*.org'"))))
 
-(defun org-open-journal ()
+(defun dougie-org-open-journal ()
   (interactive)
   (find-file (concat org-root "Journal.org")))
 
-(defun org-open-todays-daynote ()
+(defun dougie-org-open-todays-daynote ()
   (interactive)
   (let* ((todays-date (string-trim-right
                        (shell-command-to-string "date '+%F-%A'")))
@@ -48,7 +51,7 @@
 
     (find-file (concat org-daynotes-root todays-daynote-fname ))))
 
-(defun org-open-weeknote ()
+(defun dougie-org-open-weeknote ()
   (interactive)
   (let* ((week-date (string-trim-right
                        (shell-command-to-string "date +%Y-%m-week-%U")))
@@ -62,7 +65,7 @@
 
     (find-file (concat org-weeknotes-root week-note-fname ))))
 
-(defun org-open-next-weeknote ()
+(defun dougie-org-open-next-weeknote ()
   (interactive)
   (let* ((week-date (string-trim-right
                      (shell-command-to-string "date -d \"next monday\" +%Y-%m-week-2%U")))
@@ -76,16 +79,16 @@
 
     (find-file (concat org-weeknotes-root week-note-fname ))))
 
-(defun org-open-business-ideas ()
+(defun dougie-org-open-business-ideas ()
   (interactive)
   (find-file (concat org-root "business-ideas.org")))
 
 (use-package org
-  :bind (("C-c o" . org-open-file)
-         ("C-c C-o" . org-open-home)
-         ("C-c C-\\" . org-open-journal)
-         ("C-c \\" . org-open-root-dir)
-		 ("C-c C-b" . org-open-business-ideas))
+  :bind  (("C-c o" . dougie-org-open-file)
+         ("C-c C-o" . dougie-org-open-home)
+         ("C-c C-\\" . dougie-org-open-journal)
+         ("C-c \\" . dougie-org-open-root-dir)
+		 ("C-c C-b" . dougie-org-open-business-ideas))
   :config
   (use-package org-bullets)
   (define-key org-mode-map (kbd "C-c C-r") 'org-refile)

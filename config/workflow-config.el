@@ -13,7 +13,7 @@
 
 ;;evil - Vim keybindings for Emacs
 ;; (use-package evil
-;;   :init
+;;   :inithh
 ;;   (setq evil-want-keybinding nil)
 ;;   :config
 ;;   (evil-mode 1)
@@ -28,20 +28,29 @@
 ;; Counsel - Adds Ivy completion for other Emacs shit. Ex. Viewing buffer list.
 ;; Swiper - Better search for searching for text in document. C-s
 ;; Note: This is NOT code auto-completion. Refer to company for that.
-(use-package counsel ;; ivy
+;; (use-package counsel ;; ivy
+;;   :config
+;;   (ivy-mode 1)
+;;   (setq ivy-height 25)
+;;   (use-package ivy-posframe)
+;;   ;(setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
+;;   ;(ivy-posframe-mode 1)
+;;   (setq ivy-use-virtual-buffers t)
+;;   (setq enable-recursive-minibuffers t)
+;;   (global-set-key "\C-s" 'swiper)
+;;   (global-set-key (kbd "M-x") 'counsel-M-x)
+;;   (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+;;   (global-set-key (kbd "C-c k") 'counsel-ag)
+;;   (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
+
+(use-package helm
+  :bind (("M-x" . helm-M-x)
+		 ("C-x C-f" . helm-find-files)
+		 ("C-s" . helm-occur))
   :config
-  (ivy-mode 1)
-  (setq ivy-height 25)
-  (use-package ivy-posframe)
-  ;(setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
-  ;(ivy-posframe-mode 1)
-  (setq ivy-use-virtual-buffers t)
-  (setq enable-recursive-minibuffers t)
-  (global-set-key "\C-s" 'swiper)
-  (global-set-key (kbd "M-x") 'counsel-M-x)
-  (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-  (global-set-key (kbd "C-c k") 'counsel-ag)
-  (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
+  (setq completion-styles '(flex))
+  :init
+  (helm-mode 1))
 
 ;; Company is for code auto-completion
 (use-package company
@@ -72,10 +81,10 @@
         projectile-project-search-path (cddr (directory-files "~/Code" t))
 		projectile-auto-discover nil)
   (projectile-mode +1)
-  (use-package counsel-projectile
-    :requires counsel
-    :config
-    (counsel-projectile-mode +1))
+  ;; (use-package counsel-projectile
+  ;;   :requires counsel
+  ;;   :config
+  ;;   (counsel-projectile-mode +1))
   (define-key projectile-mode-map (kbd "M-m") 'projectile-command-map))
 
 (use-package neotree
@@ -166,3 +175,7 @@ If you omit CLOSE, it will reuse OPEN."
 If you omit CLOSE, it will reuse OPEN."
   (interactive  "r\nsSurround with: ")
   (surround2 begin end char char))
+
+(use-package activity-watch-mode
+  :config
+  (global-activity-watch-mode))

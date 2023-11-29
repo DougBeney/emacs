@@ -16,7 +16,7 @@
 
 (defun dougbeney/edit-emacs-config-file ()
   (interactive)
-  (find-file
+  (helm-find-files
    (dougbeney/shell-cmd-output-completion
     "Select Config you wish to edit: "
     "find ~/.emacs.d/ -maxdepth 1 -type f -iname '*.el' && find ~/.emacs.d/config -type f -iname '*.el'")))
