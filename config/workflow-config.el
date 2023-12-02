@@ -175,7 +175,3 @@ If you omit CLOSE, it will reuse OPEN."
 If you omit CLOSE, it will reuse OPEN."
   (interactive  "r\nsSurround with: ")
   (surround2 begin end char char))
-
-(use-package activity-watch-mode
-  :config
-  (global-activity-watch-mode))

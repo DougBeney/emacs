@@ -91,7 +91,8 @@
          ("C-c C-\\" . dougie-org-open-root-dir)
 		 ("C-c C-b" . dougie-org-open-business-ideas))
   :config
-  (use-package org-bullets)
+  (setq org-startup-indented t)
+  ;; (use-package org-superstar)
   (define-key org-mode-map (kbd "C-c C-r") 'org-refile)
   (setq-default org-src-preserve-indentation t)
   (org-babel-do-load-languages
@@ -99,11 +100,10 @@
    '((python . t) (emacs-lisp . t))))
 
 (add-hook 'org-mode-hook 'flyspell-mode)
-(add-hook 'org-mode-hook 'org-bullets-mode)
 
 (custom-set-faces
-  '(org-level-1 ((t (:inherit outline-1 :height 1.0))))
-  '(org-level-2 ((t (:inherit outline-2 :height 1.0))))
-  '(org-level-3 ((t (:inherit outline-3 :height 1.0))))
-  '(org-level-4 ((t (:inherit outline-4 :height 1.0))))
-  '(org-level-5 ((t (:inherit outline-5 :height 1.0)))))
+  '(org-level-1 ((t (:inherit outline-1 :height 1.4))))
+  '(org-level-2 ((t (:inherit outline-2 :height 1.35))))
+  '(org-level-3 ((t (:inherit outline-3 :height 1.3))))
+  '(org-level-4 ((t (:inherit outline-4 :height 1.25))))
+  '(org-level-5 ((t (:inherit outline-5 :height 1.2)))))
