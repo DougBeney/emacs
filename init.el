@@ -35,3 +35,4 @@
 (put 'upcase-region 'disabled nil)
 
 (setq byte-compile-warnings '(cl-functions)) ; Supress cl deprecated warning
+(put 'narrow-to-region 'disabled nil)

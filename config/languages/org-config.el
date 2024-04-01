@@ -11,8 +11,9 @@
 (setq org-weeknotes-root (concat org-root "Week Notes/"))
 (setq org-home-file (concat org-root "Home.org"))
 
-(setq org-agenda-files '("~/Sync/Org/TODO.org"))
+(setq org-agenda-files '("~/Sync/Org/TODO.org" "~/Sync/Org/Work.org" "~/Sync/Org/Personal.org" "~/Sync/Org/Events.org" "~/Sync/Org/Journal.org"))
 
+(add-hook 'org-agenda-finalize-hook #'hl-line-mode)
 
 (setq-default org-startup-truncated nil)
 
@@ -90,9 +91,10 @@
          ("C-c \\" . dougie-org-open-journal)
          ("C-c C-\\" . dougie-org-open-root-dir)
 		 ("C-c C-b" . dougie-org-open-business-ideas))
+  :hook (org-mode . (lambda () (display-line-numbers-mode -1)))
   :config
   (setq org-startup-indented t)
-  ;; (use-package org-superstar)
+  (use-package org-superstar)
   (define-key org-mode-map (kbd "C-c C-r") 'org-refile)
   (setq-default org-src-preserve-indentation t)
   (org-babel-do-load-languages

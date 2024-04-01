@@ -17,6 +17,8 @@
   :init
   (setq markdown-header-scaling t))
 
+(use-package define-word)
+
 (use-package olivetti
   :init
   (setq-default olivetti-body-width 140))

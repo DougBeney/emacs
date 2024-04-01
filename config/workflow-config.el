@@ -7,6 +7,9 @@
 
 (require 'helper-functions-config)
 
+(setq desktop-path '("~/.emacs.d/"))
+;(desktop-save-mode 1)
+
 (defun my/focus-new-client-frame ()
   (select-frame-set-input-focus (selected-frame)))
 (add-hook 'server-after-make-frame-hook #'my/focus-new-client-frame)
@@ -49,6 +52,7 @@
 		 ("C-s" . helm-occur))
   :config
   (setq completion-styles '(flex))
+  (setq helm-move-to-line-cycle-in-source nil)
   :init
   (helm-mode 1))
 
@@ -131,7 +135,13 @@
 		 ("M-7" . 'tab-bar-select-tab)
 		 ("M-8" . 'tab-bar-select-tab)
 		 ("M-9" . 'tab-bar-select-tab)
-		 ("M-9" . 'tab-bar-select-tab))
+		 ("M-9" . 'tab-bar-select-tab)
+		 ("M-t" . 'tab-bar-new-tab)
+		 ("M-S-<left>" . 'dougie-tab-move-left)
+		 ("M-S-<right>" . 'dougie-tab-move-right))
+  :init
+  (defun dougie-tab-move-right () (interactive) (tab-move 1))
+  (defun dougie-tab-move-left () (interactive) (tab-move -1))
   :config
   (tab-bar-mode 1)
   (setq tab-bar-select-tab-modifiers "M"))
