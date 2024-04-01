@@ -137,8 +137,10 @@
 		 ("M-9" . 'tab-bar-select-tab)
 		 ("M-9" . 'tab-bar-select-tab)
 		 ("M-t" . 'tab-bar-new-tab)
-		 ("M-S-<left>" . 'dougie-tab-move-left)
-		 ("M-S-<right>" . 'dougie-tab-move-right))
+		 ("M-[" . 'tab-previous)
+		 ("M-]" . 'tab-next)
+		 ("M-C-[" . 'dougie-tab-move-left)
+		 ("M-C-]" . 'dougie-tab-move-right))
   :init
   (defun dougie-tab-move-right () (interactive) (tab-move 1))
   (defun dougie-tab-move-left () (interactive) (tab-move -1))
