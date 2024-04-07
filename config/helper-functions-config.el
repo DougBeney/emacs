@@ -28,6 +28,10 @@
          ,new-face-description)
        (buffer-face-set ',new-face-name))))
 
+(lambda ()
+  (let ((org-agenda-window-setup 'only-window))
+	(org-agenda nil "a")))
+
 (defun dougbeney/shell-cmd-output-completion (prompt shellcmd)
   (let ((selection (split-string (shell-command-to-string shellcmd) "[\n\r]")))
     (completing-read prompt selection)))
@@ -92,3 +96,8 @@
           (print buffer-file-name))
         (setq light-theme-activated nil) (setq dark-theme-activated t)
         (enable-theme dark-theme)))))
+
+(defun dougbeney/org-agenda ()
+  (interactive)
+  (let ((org-agenda-window-setup 'only-window))
+	(org-agenda nil)))

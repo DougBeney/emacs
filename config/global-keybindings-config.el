@@ -12,6 +12,8 @@
 (global-set-key (kbd "C-c C-e") #'dougbeney/edit-emacs-config)
 (global-set-key (kbd "C-c e") #'dougbeney/edit-emacs-config-file)
 
+(global-set-key (kbd "C-M-o") #'dougbeney/org-agenda)
+
 (global-set-key (kbd "C-c C-x b") #'dougbeney/edit-bspwm-config-file)
 (global-set-key (kbd "C-c C-x C-b") #'dougbeney/bspwm-dir)
 

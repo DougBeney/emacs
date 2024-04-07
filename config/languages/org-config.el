@@ -11,13 +11,20 @@
 (setq org-weeknotes-root (concat org-root "Week Notes/"))
 (setq org-home-file (concat org-root "Home.org"))
 
-(setq org-agenda-files '("~/Sync/Org/TODO.org" "~/Sync/Org/Work.org" "~/Sync/Org/Personal.org" "~/Sync/Org/Events.org" "~/Sync/Org/Journal.org"))
+(setq org-agenda-files '("~/Sync/Org/Work.org" "~/Sync/Org/Personal.org" "~/Sync/Org/Events.org" "~/Sync/Org/Journal.org"))
 
 (add-hook 'org-agenda-finalize-hook #'hl-line-mode)
 
 (setq-default org-startup-truncated nil)
 
 (setq-default org-startup-folded 'show2levels)
+
+(use-package org-download)
+
+(use-package org-roam
+  :config
+  (setq org-roam-directory (file-truename "~/Sync/Org"))
+  (org-roam-db-autosync-mode))
 
 (defun dougie-org-open-root-dir ()
   (interactive)
@@ -86,8 +93,8 @@
   (find-file (concat org-root "business-ideas.org")))
 
 (use-package org
-  :bind  (("C-c o" . dougie-org-open-file)
-         ("C-c C-o" . dougie-org-open-home)
+  :bind  (("C-c o" . org-roam-node-find)
+         ("C-c C-o" . dougie-roam-capture)
          ("C-c \\" . dougie-org-open-journal)
          ("C-c C-\\" . dougie-org-open-root-dir)
 		 ("C-c C-b" . dougie-org-open-business-ideas))

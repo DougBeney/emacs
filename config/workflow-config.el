@@ -7,8 +7,10 @@
 
 (require 'helper-functions-config)
 
-(setq desktop-path '("~/.emacs.d/"))
+;; (setq desktop-path '("~/.emacs.d/"))
 ;(desktop-save-mode 1)
+
+(setq history-delete-duplicates t)
 
 (defun my/focus-new-client-frame ()
   (select-frame-set-input-focus (selected-frame)))
@@ -146,6 +148,11 @@
   (defun dougie-tab-move-left () (interactive) (tab-move -1))
   :config
   (tab-bar-mode 1)
+  (setq tab-bar-show 1)                      ;; hide bar if <= 1 tabs open
+  (setq tab-bar-close-button-show nil)       ;; hide tab close / X button
+  (setq tab-bar-new-tab-choice "*scratch*");; buffer to show in new tabs
+  (setq tab-bar-format '(tab-bar-format-tabs tab-bar-separator))
+
   (setq tab-bar-select-tab-modifiers "M"))
 
 ;; Automatically closes parenthesis, brackets, and quotes
