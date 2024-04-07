@@ -97,7 +97,9 @@
          ("C-c C-o" . dougie-roam-capture)
          ("C-c \\" . dougie-org-open-journal)
          ("C-c C-\\" . dougie-org-open-root-dir)
-		 ("C-c C-b" . dougie-org-open-business-ideas))
+		 ("C-c C-b" . dougie-org-open-business-ideas)
+		 (:map org-mode-map
+			   ("C-c l" . org-roam-node-insert)))
   :hook (org-mode . (lambda () (display-line-numbers-mode -1)))
   :config
   (setq org-startup-indented t)
