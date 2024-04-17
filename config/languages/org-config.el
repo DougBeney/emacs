@@ -13,6 +13,12 @@
 
 (setq org-agenda-files '("~/Sync/Org/Work.org" "~/Sync/Org/Personal.org" "~/Sync/Org/Events.org" "~/Sync/Org/Journal.org"))
 
+(setq org-capture-templates
+      '(("t" "Personal TODO" entry (file+headline "~/Sync/Org/Personal.org" "Inbox")
+         "* TODO %?")
+		("w" "Work TODO" entry (file+headline "~/Sync/Org/Work.org" "Inbox")
+         "* TODO %?")))
+
 (add-hook 'org-agenda-finalize-hook #'hl-line-mode)
 
 (setq-default org-startup-truncated nil)
@@ -94,12 +100,13 @@
 
 (use-package org
   :bind  (("C-c o" . org-roam-node-find)
-         ("C-c C-o" . dougie-roam-capture)
-         ("C-c \\" . dougie-org-open-journal)
-         ("C-c C-\\" . dougie-org-open-root-dir)
-		 ("C-c C-b" . dougie-org-open-business-ideas)
-		 (:map org-mode-map
-			   ("C-c l" . org-roam-node-insert)))
+          ("C-c C-o" . org-capture)
+          ("C-M-c" . org-capture)
+          ("C-c \\" . dougie-org-open-journal)
+          ("C-c C-\\" . dougie-org-open-root-dir)
+		  ("C-c C-b" . dougie-org-open-business-ideas)
+		  (:map org-mode-map
+				("C-c l" . org-roam-node-insert)))
   :hook (org-mode . (lambda () (display-line-numbers-mode -1)))
   :config
   (setq org-startup-indented t)
@@ -109,6 +116,11 @@
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((python . t) (emacs-lisp . t))))
+
+(use-package org-agenda
+  :ensure nil
+  :bind ((:map org-agenda-mode-map
+				("c" . org-capture))))
 
 (add-hook 'org-mode-hook 'flyspell-mode)
 
