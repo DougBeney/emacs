@@ -14,10 +14,10 @@
 
 ;; (use-package elpy
 ;;   :init
-;;   (setenv "PYTHONUSERBASE" "/home/doug/.local/opt/packages/python")
-;;   (setq python-shell-interpreter "python3")
-;;   (setq elpy-rpc-virtualenv-path 'default)
-;;   (setq elpy-rpc-python-command "python3")
+;;   ;; (setenv "PYTHONUSERBASE" "/home/doug/.local/opt/packages/python")
+;;   ;; (setq python-shell-interpreter "python3")
+;;   ;; (setq elpy-rpc-virtualenv-path 'default)
+;;   ;; (setq elpy-rpc-python-command "python3")
 ;;   (setq elpy-syntax-check-command "flake8 --ignore W191,E501")
 ;;   (elpy-enable))
 
@@ -25,17 +25,17 @@
   ;; :hook (ruby-mode . lsp)
   )
 
-(use-package lsp-mode
-  :hook ((c-mode-hook . lsp)
-         (c++-mode-hook . lsp))
-  :commands lsp
-  :init
-  (setq gc-cons-threshold 100000000)
-  (setq lsp-idle-delay 0.500)
-  (setq lsp-keymap-prefix "C-c l")
-  :config
-  (use-package lsp-ui :commands lsp-ui-mode)
-  (use-package lsp-ivy :commands lsp-ivy-workspace-symbol))
+;; (use-package lsp-mode
+;;   :hook ((c-mode-hook . lsp)
+;;          (c++-mode-hook . lsp)
+;; 		 (python-mode-hook . lsp))
+;;   :commands lsp
+;;   :init
+;;   (setq gc-cons-threshold 100000000)
+;;   (setq lsp-idle-delay 0.500)
+;;   (setq lsp-keymap-prefix "C-c l")
+;;   :config
+;;   (use-package lsp-ui :commands lsp-ui-mode))
 
 ;; (use-package lsp-pyright
 ;;   :hook (python-mode . (lambda ()

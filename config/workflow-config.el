@@ -58,6 +58,8 @@
   :init
   (helm-mode 1))
 
+(use-package helm-projectile)
+
 ;; Company is for code auto-completion
 (use-package company
   :hook (after-init . global-company-mode)
@@ -147,7 +149,6 @@
   (defun dougie-tab-move-right () (interactive) (tab-move 1))
   (defun dougie-tab-move-left () (interactive) (tab-move -1))
   :config
-  (tab-bar-mode 1)
   (setq tab-bar-show 1)                      ;; hide bar if <= 1 tabs open
   (setq tab-bar-close-button-show nil)       ;; hide tab close / X button
   (setq tab-bar-new-tab-choice "*scratch*");; buffer to show in new tabs

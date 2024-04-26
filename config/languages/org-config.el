@@ -110,12 +110,16 @@
   :hook (org-mode . (lambda () (display-line-numbers-mode -1)))
   :config
   (setq org-startup-indented t)
-  (use-package org-superstar)
   (define-key org-mode-map (kbd "C-c C-r") 'org-refile)
   (setq-default org-src-preserve-indentation t)
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((python . t) (emacs-lisp . t))))
+
+(use-package org-superstar
+  :hook ((org-mode . org-superstar-mode))
+  :config
+  (org-superstar-configure-like-org-bullets))
 
 (use-package org-agenda
   :ensure nil
