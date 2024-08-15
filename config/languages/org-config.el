@@ -11,13 +11,17 @@
 (setq org-weeknotes-root (concat org-root "Week Notes/"))
 (setq org-home-file (concat org-root "Home.org"))
 
-(setq org-agenda-files '("~/Sync/Org/Work.org" "~/Sync/Org/Personal.org" "~/Sync/Org/Events.org" "~/Sync/Org/Journal.org"))
+(setq org-agenda-files '("~/Sync/Org/Main/Work.org" "~/Sync/Org/Main/Personal.org" "~/Sync/Org/Main/Events.org" "~/Sync/Org/Journal.org" "~/Sync/Org/Automotive.org"))
 
 (setq org-capture-templates
-      '(("t" "Personal TODO" entry (file+headline "~/Sync/Org/Personal.org" "Inbox")
+      '(("t" "Personal TODO" entry (file+headline "~/Sync/Org/Main/Personal.org" "Inbox")
          "* TODO %?")
-		("w" "Work TODO" entry (file+headline "~/Sync/Org/Work.org" "Inbox")
-         "* TODO %?")))
+		("w" "Work TODO" entry (file+headline "~/Sync/Org/Main/Work.org" "Inbox")
+         "* TODO %?")
+		("r" "Review Work" entry (file+headline "~/Sync/Org/Main/Work.org" "Review Work")
+         "* TODO %?")
+		("e" "Event" entry (file+headline "~/Sync/Org/Main/Events.org" "Reminders")
+         "* %?\nSCHEDULED: %^T\n")))
 
 (add-hook 'org-agenda-finalize-hook #'hl-line-mode)
 
