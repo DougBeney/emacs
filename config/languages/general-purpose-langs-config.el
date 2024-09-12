@@ -25,23 +25,25 @@
   ;; :hook (ruby-mode . lsp)
   )
 
-;; (use-package lsp-mode
-;;   :hook ((c-mode-hook . lsp)
-;;          (c++-mode-hook . lsp)
-;; 		 (python-mode-hook . lsp))
-;;   :commands lsp
-;;   :init
-;;   (setq gc-cons-threshold 100000000)
-;;   (setq lsp-idle-delay 0.500)
-;;   (setq lsp-keymap-prefix "C-c l")
-;;   :config
-;;   (use-package lsp-ui :commands lsp-ui-mode))
+(use-package lsp-mode
+  :hook ((c-mode . lsp)
+         (c++-mode . lsp)
+		 (python-mode . lsp)
+		 (css-mode . lsp)
+		 (scss-mode . lsp))
+  :init
+  (setq gc-cons-threshold 100000000)
+  (setq lsp-idle-delay 0.500)
+  (setq lsp-keymap-prefix "C-c l")
+  :config
+  (use-package lsp-ui :commands lsp-ui-mode))
+
+(use-package flycheck)
 
 ;; (use-package lsp-pyright
 ;;   :hook (python-mode . (lambda ()
 ;;                          (require 'lsp-pyright)
 ;;                          (lsp))))
 
-(use-package eglot)
-
+;(use-package eglot)
 (use-package pyvenv)

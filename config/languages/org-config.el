@@ -11,7 +11,7 @@
 (setq org-weeknotes-root (concat org-root "Week Notes/"))
 (setq org-home-file (concat org-root "Home.org"))
 
-(setq org-agenda-files '("~/Sync/Org/Main/Work.org" "~/Sync/Org/Main/Personal.org" "~/Sync/Org/Main/Events.org" "~/Sync/Org/Journal.org" "~/Sync/Org/Automotive.org"))
+(setq org-agenda-files '("~/Sync/Org/Main/Events.org" "~/Sync/Org/Main/Work.org" "~/Sync/Org/Main/Personal.org" "~/Sync/Org/Journal.org" "~/Sync/Org/Automotive.org"))
 
 (setq org-capture-templates
       '(("t" "Personal TODO" entry (file+headline "~/Sync/Org/Main/Personal.org" "Inbox")

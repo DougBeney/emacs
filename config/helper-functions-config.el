@@ -63,6 +63,12 @@
       (neotree-toggle)
     (neotree-show)))
 
+(defun dougbeney/treemacs-smart-toggle ()
+  (interactive)
+  (if (string= major-mode "treemacs-mode")
+	  (treemacs)
+	(treemacs-select-window)))
+
 (defun dougbeney/neotree-cd-to-pwd ()
   (interactive)
   (neo-global--open-dir default-directory))

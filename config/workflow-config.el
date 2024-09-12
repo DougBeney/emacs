@@ -9,6 +9,7 @@
 
 ;; (setq desktop-path '("~/.emacs.d/"))
 ;(desktop-save-mode 1)
+(electric-pair-mode t)
 
 (setq history-delete-duplicates t)
 
@@ -73,7 +74,6 @@
 (use-package editorconfig
   :config
   (editorconfig-mode 1))
-
 ;; Snippets
 (use-package yasnippet
   :hook (prog-mode . yas-minor-mode))
@@ -82,21 +82,22 @@
 (use-package projectile
   :init
   :config
-  (setq projectile-completion-system 'ivy
-        projectile-globally-ignored-files '("db.sqlite3")
-        projectile-globally-ignored-directories '(".venv" "node_modules")
-        projectile-globally-ignored-file-suffixes '("sqlite" "sqlite3")
-        projectile-project-search-path (cddr (directory-files "~/Code" t))
-		projectile-auto-discover nil)
+  (setq
+   projectile-indexing-method 'hybrid
+   projectile-globally-ignored-files '("db.sqlite3")
+   projectile-globally-ignored-file-suffixes '("sqlite" "sqlite3")
+   projectile-project-search-path (cddr (directory-files "~/Code" t))
+   projectile-auto-discover nil)
+
+  (setq projectile-globally-ignored-directories
+		(append projectile-globally-ignored-directories '("*.venv" "*node_modules" "*dist" "*__pycache__" "*migrations")))
+
   (projectile-mode +1)
-  ;; (use-package counsel-projectile
-  ;;   :requires counsel
-  ;;   :config
-  ;;   (counsel-projectile-mode +1))
+
   (define-key projectile-mode-map (kbd "M-m") 'projectile-command-map))
 
 (use-package neotree
-  :bind ("M-0" . dougbeney/neotree-smart-toggle)
+  ;; :bind ("M-0" . dougbeney/neotree-smart-toggle)
   :bind ("M-9" . dougbeney/neotree-cd-to-pwd-and-show)
   :bind ("M-8" . dougbeney/neotree-cd-to-code-dir)
   :hook (neotree-mode . (lambda ()
@@ -110,23 +111,18 @@
   (defun neo-path--insert-header-buttonized (path) nil)
   (setq neo-banner-message " "))
 
+(use-package treemacs
+  :bind ("M-0" . dougbeney/treemacs-smart-toggle))
+
+(use-package ace-window
+  :bind ("C-x o" . ace-window))
+
 ;; Jump to a character. Avy is an alternative to ace.
 (use-package avy
   :config
   (global-set-key (kbd "C-:") 'avy-goto-char)
   (global-set-key (kbd "C-\"") 'avy-goto-char-2)
   (global-set-key (kbd "M-g g") 'avy-goto-line))
-
-;; Workspaces
-;; (use-package eyebrowse
-;;   :diminish eyebrowse-mode
-;;   :config (progn
-;;             (define-key eyebrowse-mode-map (kbd "M-1") 'eyebrowse-switch-to-window-config-1)
-;;             (define-key eyebrowse-mode-map (kbd "M-2") 'eyebrowse-switch-to-window-config-2)
-;;             (define-key eyebrowse-mode-map (kbd "M-3") 'eyebrowse-switch-to-window-config-3)
-;;             (define-key eyebrowse-mode-map (kbd "M-4") 'eyebrowse-switch-to-window-config-4)
-;;             (eyebrowse-mode t)
-;;             (setq eyebrowse-new-workspace t)))
 
 (use-package tab-bar
   :ensure nil
@@ -156,12 +152,6 @@
 
   (setq tab-bar-select-tab-modifiers "M"))
 
-;; Automatically closes parenthesis, brackets, and quotes
-;; (use-package autopair
-;;   :config
-;;   (autopair-global-mode))
-;(add-hook 'prog-mode-hook 'electric-pair-mode)
-
 ;; git related packages
 (use-package magit
   :config
@@ -172,7 +162,6 @@
   :hook ((after-init . global-diff-hl-mode)
          (magit-post-refresh . diff-hl-magit-post-refresh)))
 
-;; (use-package yafolding)
 (use-package origami)
 
 (use-package expand-region

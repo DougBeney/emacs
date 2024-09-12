@@ -78,27 +78,30 @@
 (defun set-tab-bar-colors (bg fg bg_inactive fg_inactive)
   (custom-set-faces
    `(tab-bar ((t (:box nil))))
-   `(tab-bar-tab ((t (:background ,bg :foreground ,fg :box (:line-width (10 . 10) :color ,bg :style flat-button) :weight bold :height 99 :width condensed :family "Roboto"))))
+   `(tab-bar-tab ((t (:background ,bg :foreground ,fg :weight bold :height 99 :width condensed :family "Roboto" :box (:line-width (10 . 10) :color ,bg)))))
    `(tab-bar-tab-group-current ((t (:inherit tab-bar-tab :box nil :weight bold))))
    `(tab-bar-tab-group-inactive ((t (:inherit (shadow tab-bar-tab-inactive)))))
-   `(tab-bar-tab-inactive ((t (:inherit tab-line-tab :background ,bg_inactive :foreground ,fg_inactive :box (:line-width (10 . 10) :color ,bg_inactive :style flat-button) :weight bold :height 99 :width condensed :family "Roboto"))))
+   `(tab-bar-tab-inactive ((t (:inherit tab-line-tab :background ,bg_inactive :foreground ,fg_inactive :weight bold :height 99 :width condensed :family "Roboto"))))
    `(tab-bar-tab-ungrouped ((t (:inherit (shadow tab-bar-tab-inactive)))))))
 
-;; Example of using theme colors
-;; (set-tab-bar-colors
-;;  (face-attribute 'highlight :background)   ; Selected tab backgrounddes
-;;  (face-attribute 'highlight :foreground)   ; Selected tab foreground
-;;  (face-attribute 'default :background)   ; Inactive tab background
-;;  (face-attribute 'default :foreground))  ; Inactive tab foreground
+(setq tab-bar-auto-width t)
 
-(set-tab-bar-colors "white" "black" "white" "gray")
+(setq dark-theme 'cyberpunk
+      light-theme 'adwaita)
+
+;; (load-theme dark-theme)
+
+(set-tab-bar-colors
+ (face-attribute 'highlight :background)   ; Selected tab backgrounddes
+ (face-attribute 'highlight :foreground)   ; Selected tab foreground
+ (face-attribute 'default :background)   ; Inactive tab background
+ (face-attribute 'default :foreground))  ; Inactive tab foreground
+
+;; (set-tab-bar-colors "white" "black" "white" "gray")
 
 ;; Fancy pants stuff for auto theme-switching
 
-;; (setq dark-theme 'cyberpunk
-;;       light-theme 'adwaita)
 
-;; (load-theme dark-theme)
 ;; (load-theme light-theme t t)
 
 ;; (setq dark-theme-activated t
