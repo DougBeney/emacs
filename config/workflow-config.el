@@ -122,7 +122,6 @@
   :config
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
   (setq neo-window-fixed-size nil)
-  (setq projectile-switch-project-action 'neotree-projectile-action)
   (defun neo-path--insert-header-buttonized (path) nil)
   (setq neo-banner-message " "))
 
@@ -209,3 +208,6 @@
     ;; (add-to-list 'hs-special-modes-alist
     ;; 			 '(web-mode "{\\|<[^/>]*?" "}\\|</[^/>]*[^/]>" "<!--" web-mode-forward-sexp nil))
     )
+
+(use-package project
+    :straight t)

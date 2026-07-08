@@ -13,7 +13,7 @@
 (global-unset-key (kbd "C-z"))     ; Remapping suspend-frame
 
 (global-set-key (kbd "M-s") #'isearch-forward)
-(global-set-key (kbd "M-r") #'isearch-backward)a
+(global-set-key (kbd "M-r") #'isearch-backward)
 
 (global-set-key (kbd "M-;") #'comment-dwim)
 

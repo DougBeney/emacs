@@ -18,17 +18,17 @@
              'env
              'helper-functions
              'indentation-and-whitespace
-             'workflow
              'data-stores
              'general-purpose-langs
+             'workflow
              'shell-langs
              'web
              'writing
              'org
              'fun
              'config-editing
-			 'ai
-			 'email
+             'ai
+             'email
              'space-leader-map)
 
 (put 'downcase-region 'disabled nil)
