@@ -122,6 +122,9 @@
 (unless (file-exists-p custom-file)
   (write-region "" nil custom-file))
 ;;; Load custom file. Don't hide errors. Hide success message
+(with-eval-after-load (expand-file-name custom-file)
+  (if (not custom-enabled-themes)
+    (load-theme 'wheatgrass t)))
 (load custom-file nil t)
 
 ;;; Put Emacs auto-save and backup files to /tmp/ or C:/Temp/
@@ -140,9 +143,6 @@
 (setq create-lockfiles nil)
 
 ;;; Load wheatgrass as the default theme if one is not loaded already
-
-(if (not custom-enabled-themes)
-    (load-theme 'wheatgrass t))
 
 (defun reload-config ()
   (interactive)

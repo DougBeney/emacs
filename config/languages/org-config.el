@@ -29,15 +29,15 @@
 (setq org-capture-templates
       '(("t" "Personal TODO" entry (file+headline "~/Documents/Org/TODO/Inbox.org" "Personal")
          "* TODO %?")
-		("w" "Work TODO" entry (file+headline "~/Documents/Org/TODO/Inbox.org" "Work")
+        ("w" "Work TODO" entry (file+headline "~/Documents/Org/TODO/Inbox.org" "Work")
          "* TODO %?")
-		("e" "Event" entry (file+headline "~/Documents/Org/Main/Events.org" "Reminders")
+        ("e" "Event" entry (file+headline "~/Documents/Org/Main/Events.org" "Reminders")
          "* %?\nSCHEDULED: %^T\n")
-		("s" "Sprint daynote" entry (file+headline "~/Documents/Org/TODO/Sprint.org" "Daynotes")
-		 "* %t %?" :prepend t)
-		("1" "10x journal entry" entry (file+headline "~/Documents/Org/Main/10x.org" "10x Journal")
-		 "* %U\n%?" :prepend t)
-		))
+        ("s" "Sprint daynote" entry (file+headline "~/Documents/Org/TODO/Sprint.org" "Daynotes")
+         "* %t %?" :prepend t)
+        ("1" "10x journal entry" entry (file+headline "~/Documents/Org/Main/10x.org" "10x Journal")
+         "* %U\n%?" :prepend t)
+        ))
 
 ;; Most importantly, this will show holidays in org-mode
 (setq org-agenda-include-diary t)
@@ -59,10 +59,10 @@
 (defun dougie-org-open-file ()
   (interactive)
   (let ((selected_file
-		(dougbeney/shell-cmd-output-completion
-		 "Find Org file: "
-		 (concat "find '" org-root "' -type f -iname '*.org'"))))
-	(find-file selected_file)))
+        (dougbeney/shell-cmd-output-completion
+         "Find Org file: "
+         (concat "find '" org-root "' -type f -iname '*.org'"))))
+    (find-file selected_file)))
 
 (defun dougie-org-open-journal ()
   (interactive)
@@ -115,14 +115,14 @@
   (find-file (concat org-root "business-ideas.org")))
 
 (use-package org
-  :bind  (("C-c o" . org-roam-node-find)
+  :bind      (("C-c o" . org-roam-node-find)
           ("C-c C-o" . org-capture)
           ("C-M-c" . org-capture)
           ("C-c \\" . dougie-org-open-journal)
           ("C-c C-\\" . dougie-org-open-root-dir)
-		  ("C-c C-b" . dougie-org-open-business-ideas)
-		  (:map org-mode-map
-				("C-c l" . org-roam-node-insert)))
+          ("C-c C-b" . dougie-org-open-business-ideas)
+          (:map org-mode-map
+                ("C-c l" . org-roam-node-insert)))
   :hook (org-mode . (lambda () (display-line-numbers-mode -1)))
   :config
   (when (require 'evil nil t)
@@ -143,7 +143,8 @@
   :ensure nil
   :straight nil
   :bind ((:map org-agenda-mode-map
-	       ("c" . org-capture))))
+               ("c" . org-capture)))
+  :hook (org-agenda-mode . hl-line-mode))
 
 (use-package org-modern
   :hook ((org-mode . org-modern-mode)))
@@ -170,7 +171,7 @@
 (defun dougbeney/org-agenda ()
   (interactive)
   (let ((org-agenda-window-setup 'only-window))
-	(org-agenda nil)))
+    (org-agenda nil)))
 
 ;; KEYBINDINGS
 (global-set-key (kbd "C-M-o") #'dougbeney/org-agenda)

@@ -11,56 +11,38 @@
 (setq window-divider-default-bottom-width 5)
 (setq window-divider-default-right-width 5)
 
-;; Themes
-;; (use-package cyberpunk-theme :defer t)
-;; (use-package dracula-theme :defer t)
-;; (use-package atom-one-dark-theme :defer t)
-;; (use-package doom-themes :defer t)
-;; (use-package gruvbox-theme :defer t)
-;; (use-package monokai-theme :defer t)
-;; (use-package sublime-themes :defer t)
-;; (use-package catppuccin-theme
-;;   :vc (:url "https://github.com/catppuccin/emacs"
-;; 	    :rev :newest)
-;;   :init
-;;   (setq catppuccin-flavor 'mocha)
-;;   :config
-;;   (load-theme 'catppuccin)
-;;   (set-tab-bar-colors-based-on-theme))
-
-;; (use-package modus-themes
-;;     :config
-;;   (modus-themes-load-theme 'modus-vivendi))
-
+;; Theme Packs
+(use-package cyberpunk-theme :defer t)
+(use-package dracula-theme :defer t)
+(use-package atom-one-dark-theme :defer t)
+(use-package doom-themes :defer t)
+(use-package gruvbox-theme :defer t)
+(use-package monokai-theme :defer t)
+(use-package sublime-themes :defer t)
+(use-package modus-themes :defer t)
 (use-package modus-flexoki
-    :straight (:type git
-               :host github
-               :repo "dpassen/modus-flexoki")
-    :demand t
-    :config
-    (load-theme 'modus-flexoki-dark :no-confirm))
+    :defer t
+    :straight (:type git :host github :repo "dpassen/modus-flexoki"))
 
+(load-theme 'doom-monokai-classic)
 
 (use-package all-the-icons :defer t)
 (use-package nerd-icons) ; useful for custom modelines and such
 
-;; (use-package doom-modeline
-;;  :init
-;;  (doom-modeline-mode 1)
-;;  :config
-;;  (setq doom-modeline-hud t)
-;;  (setq doom-modeline-buffer-encoding nil))
+(use-package doom-modeline
+ :init
+ (doom-modeline-mode 1))
 
-(use-package mood-line
-  :config
-  (mood-line-mode)
-  (set-face-attribute 'header-line nil
-                      :box `(:line-width (3 . 3)
-                                         :color ,(face-background 'header-line)))
-  :custom
-  (mood-line-glyph-alist mood-line-glyphs-fira-code)
-  (mood-line-format mood-line-format-default-extended)
-)
+;; (use-package mood-line
+;;   :config
+;;   (mood-line-mode)
+;;   (set-face-attribute 'header-line nil
+;;                       :box `(:line-width (3 . 3)
+;;                                          :color ,(face-background 'header-line)))
+;;   :custom
+;;   (mood-line-glyph-alist mood-line-glyphs-fira-code)
+;;   (mood-line-format mood-line-format-default-extended)
+;; )
 
 (use-package rainbow-mode)
 
