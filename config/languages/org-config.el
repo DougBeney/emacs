@@ -6,35 +6,47 @@
 (provide 'org-config)
 (require 'helper-functions-config)
 
-(setq org-root (concat (shell-command-to-string "printf $HOME") "/Sync/Org/"))
+(setq org-root (concat (shell-command-to-string "printf $HOME") "/Documents/Org/"))
 (setq org-daynotes-root (concat org-root "Day Notes/"))
 (setq org-weeknotes-root (concat org-root "Week Notes/"))
 (setq org-home-file (concat org-root "Home.org"))
+(setq org-agenda-skip-scheduled-if-done t)
 
-(setq org-agenda-files '("~/Sync/Org/Main/Events.org" "~/Sync/Org/Main/Work.org" "~/Sync/Org/Main/Personal.org" "~/Sync/Org/Journal.org" "~/Sync/Org/Automotive.org"))
+(setq org-agenda-files
+      '("~/Documents/Org/Main/Events.org"
+        "~/Documents/Org/TODO/Inbox.org"
+        "~/Documents/Org/TODO/Work.org"
+        "~/Documents/Org/TODO/Personal.org"
+        "~/Documents/Org/TODO/Sprint.org"
+        "~/Documents/Org/TODO/Archive.org"
+        ))
+
+(setq org-refile-targets
+      '((org-agenda-files :maxlevel . 1)
+        ("~/Documents/Org/TODO/Projects.org"
+         :maxlevel . 1)))
 
 (setq org-capture-templates
-      '(("t" "Personal TODO" entry (file+headline "~/Sync/Org/Main/Personal.org" "Inbox")
+      '(("t" "Personal TODO" entry (file+headline "~/Documents/Org/TODO/Inbox.org" "Personal")
          "* TODO %?")
-		("w" "Work TODO" entry (file+headline "~/Sync/Org/Main/Work.org" "Inbox")
+		("w" "Work TODO" entry (file+headline "~/Documents/Org/TODO/Inbox.org" "Work")
          "* TODO %?")
-		("r" "Review Work" entry (file+headline "~/Sync/Org/Main/Work.org" "Review Work")
-         "* TODO %?")
-		("e" "Event" entry (file+headline "~/Sync/Org/Main/Events.org" "Reminders")
-         "* %?\nSCHEDULED: %^T\n")))
+		("e" "Event" entry (file+headline "~/Documents/Org/Main/Events.org" "Reminders")
+         "* %?\nSCHEDULED: %^T\n")
+		("s" "Sprint daynote" entry (file+headline "~/Documents/Org/TODO/Sprint.org" "Daynotes")
+		 "* %t %?" :prepend t)
+		("1" "10x journal entry" entry (file+headline "~/Documents/Org/Main/10x.org" "10x Journal")
+		 "* %U\n%?" :prepend t)
+		))
 
-(add-hook 'org-agenda-finalize-hook #'hl-line-mode)
+;; Most importantly, this will show holidays in org-mode
+(setq org-agenda-include-diary t)
+
+(setq-default org-image-actual-width nil)
 
 (setq-default org-startup-truncated nil)
 
 (setq-default org-startup-folded 'show2levels)
-
-(use-package org-download)
-
-(use-package org-roam
-  :config
-  (setq org-roam-directory (file-truename "~/Sync/Org"))
-  (org-roam-db-autosync-mode))
 
 (defun dougie-org-open-root-dir ()
   (interactive)
@@ -113,6 +125,13 @@
 				("C-c l" . org-roam-node-insert)))
   :hook (org-mode . (lambda () (display-line-numbers-mode -1)))
   :config
+  (when (require 'evil nil t)
+    (evil-define-key 'normal org-mode-map
+      (kbd "t") #'org-todo)
+    (evil-define-key 'normal org-mode-map
+      (kbd "+") #'org-priority-up
+      (kbd "-") #'org-priority-down))
+  (setq org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
   (setq org-startup-indented t)
   (define-key org-mode-map (kbd "C-c C-r") 'org-refile)
   (setq-default org-src-preserve-indentation t)
@@ -120,21 +139,38 @@
    'org-babel-load-languages
    '((python . t) (emacs-lisp . t))))
 
-(use-package org-superstar
-  :hook ((org-mode . org-superstar-mode))
-  :config
-  (org-superstar-configure-like-org-bullets))
-
 (use-package org-agenda
   :ensure nil
+  :straight nil
   :bind ((:map org-agenda-mode-map
-				("c" . org-capture))))
+	       ("c" . org-capture))))
+
+(use-package org-modern
+  :hook ((org-mode . org-modern-mode)))
+
+(use-package org-download)
+(use-package org-contacts)
+
+(use-package org-roam
+  :config
+  (setq org-roam-directory (file-truename "~/Documents/Org"))
+  (org-roam-db-autosync-mode))
 
 (add-hook 'org-mode-hook 'flyspell-mode)
 
-(custom-set-faces
-  '(org-level-1 ((t (:inherit outline-1 :height 1.4))))
-  '(org-level-2 ((t (:inherit outline-2 :height 1.35))))
-  '(org-level-3 ((t (:inherit outline-3 :height 1.3))))
-  '(org-level-4 ((t (:inherit outline-4 :height 1.25))))
-  '(org-level-5 ((t (:inherit outline-5 :height 1.2)))))
+(defun org-refile-any ()
+  "Refile to *any* subtree (deep search), without modifying global settings."
+  (interactive)
+  (let ((org-refile-targets '((nil :maxlevel . 10)
+                              (org-agenda-files :maxlevel . 10)))
+        (org-refile-use-outline-path 'full)
+        (org-outline-path-complete-in-steps nil))
+    (org-refile)))
+
+(defun dougbeney/org-agenda ()
+  (interactive)
+  (let ((org-agenda-window-setup 'only-window))
+	(org-agenda nil)))
+
+;; KEYBINDINGS
+(global-set-key (kbd "C-M-o") #'dougbeney/org-agenda)

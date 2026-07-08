@@ -17,23 +17,14 @@
   :mode "\\.json\\'"
   :mode "\\.php\\'"
   :config
+  (setq web-mode-enable-auto-pairing nil)
+  (setq web-mode-enable-current-element-highlight t)
+  (setq web-mode-engines-alist '(("django" . "\\.html\\'")))
   (web-mode-use-tabs)
   (emmet-mode 1))
 
-(use-package svelte-mode
-  :mode "\\.svelte\\'"
-  :hook (svelte-mode . emmet-mode))
-
 (use-package typescript-mode
   :mode "\\.ts\\'")
-
-;; (use-package vue-mode
-;;   :mode "\\.vue\\'")
-
-(use-package pug-mode
-  :init
-  (setq pug-tab-width 4)
-  :mode "\\.pug\\'")
 
 (use-package scss-mode
   :mode "\\.scss\\'")

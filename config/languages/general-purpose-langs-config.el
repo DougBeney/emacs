@@ -2,48 +2,56 @@
 ;; general-purpose-langs-config.el
 ;; General purpose languages like Python, Ruby, or even C++
 ;;;
-
-;; (global-font-lock-mode -1)
-
-;; (use-package tree-sitter
-;;   :config
-;;   (global-tree-sitter-mode)
-;;   (use-package tree-sitter-langs))
-
 (provide 'general-purpose-langs-config)
 
-;; (use-package elpy
-;;   :init
-;;   ;; (setenv "PYTHONUSERBASE" "/home/doug/.local/opt/packages/python")
-;;   ;; (setq python-shell-interpreter "python3")
-;;   ;; (setq elpy-rpc-virtualenv-path 'default)
-;;   ;; (setq elpy-rpc-python-command "python3")
-;;   (setq elpy-syntax-check-command "flake8 --ignore W191,E501")
-;;   (elpy-enable))
+(setq read-process-output-max (* 1024 1024))  ; 1MB
+(setq gc-cons-threshold 100000000)
 
-(use-package ruby-mode
-  ;; :hook (ruby-mode . lsp)
-  )
-
-(use-package lsp-mode
-  :hook ((c-mode . lsp)
-         (c++-mode . lsp)
-		 (python-mode . lsp)
-		 (css-mode . lsp)
-		 (scss-mode . lsp))
-  :init
-  (setq gc-cons-threshold 100000000)
-  (setq lsp-idle-delay 0.500)
-  (setq lsp-keymap-prefix "C-c l")
+(use-package eglot
   :config
-  (use-package lsp-ui :commands lsp-ui-mode))
+  (add-to-list 'eglot-server-programs
+               '((python-mode python-ts-mode) . ("pyright-langserver" "--stdio"))))
 
-(use-package flycheck)
+(use-package flycheck-eglot
+  :ensure t
+  :after (flycheck eglot)
+  :config
+  (global-flycheck-eglot-mode 1))
 
-;; (use-package lsp-pyright
-;;   :hook (python-mode . (lambda ()
-;;                          (require 'lsp-pyright)
-;;                          (lsp))))
+(use-package lisp-mode
+  :ensure nil
+  :straight nil
+  :custom
+  (lisp-indent-function 'common-lisp-indent-function))
 
-;(use-package eglot)
 (use-package pyvenv)
+
+(use-package ruby-mode)
+
+(use-package dart-mode
+  :bind ("C-M-x" . #'flutter-hot-reload)
+  :init
+  ; env var for Flutter
+  (setenv "CHROME_EXECUTABLE" "chromium")
+  :config
+  (use-package lsp-dart)
+  (use-package flutter))
+
+(defun flutter-enable-hot-reload-on-save-local ()
+  (interactive)
+  (flutter-run)
+  (add-hook 'after-save-hook #'flutter-hot-reload nil t))
+
+(defun flutter-enable-hot-reload-on-save ()
+  (interactive)
+  (add-hook 'after-save-hook #'flutter-hot-reload))
+
+(defun flutter-disable-hot-reload-on-save ()
+  (interactive)
+  (disable-hook 'after-save-hook #'flutter-hot-reload))
+
+(use-package treesit-auto
+  :custom
+  (treesit-auto-install 'prompt)
+  :config
+  (global-treesit-auto-mode))

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Django if statement
+# key: /for
+# --
+
+{% for ${1:statement} %}
+   $0
+{% endfor %}

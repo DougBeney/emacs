@@ -7,20 +7,33 @@
 
 (require 'helper-functions-config)
 
-;; (setq desktop-path '("~/.emacs.d/"))
-;(desktop-save-mode 1)
 (electric-pair-mode t)
 
 (setq history-delete-duplicates t)
 
-(defun my/focus-new-client-frame ()
-  (select-frame-set-input-focus (selected-frame)))
-(add-hook 'server-after-make-frame-hook #'my/focus-new-client-frame)
+;; Dired customizations
+(add-hook 'dired-mode-hook #'dired-hide-details-mode)
+(add-hook 'dired-mode-hook (lambda () (display-line-numbers-mode -1)))
+
+(setq-default dired-listing-switches "-alg --group-directories-first")
+(use-package dired-subtree
+	:after dired
+	:commands (dired-subtree-toggle dired-subtree-remove dired-subtree-cycle)
+	:bind
+	(:map dired-mode-map
+		;; TAB toggles subtree only in Dired buffers
+		("<tab>" . dired-subtree-toggle)))
+
+;; Have to see if I still need this
+;; (defun my/focus-new-client-frame ()
+;;   (select-frame-set-input-focus (selected-frame)))
+;; (add-hook 'server-after-make-frame-hook #'my/focus-new-client-frame)
 
 ;;evil - Vim keybindings for Emacs
 ;; (use-package evil
-;;   :inithh
+;;   :init
 ;;   (setq evil-want-keybinding nil)
+;;   (setq evil-kill-on-visual-paste nil)
 ;;   :config
 ;;   (evil-mode 1)
 ;;   (use-package evil-collection
@@ -28,73 +41,75 @@
 ;; 	(evil-collection-init))
 ;;   (use-package evil-surround
 ;; 	:config
-;; 	(global-evil-surround-mode 1)))
+;; 	(global-evil-surround-mode 1))
+;;   (use-package evil-org
+;; 	:hook (org-mode . (lambda () evil-org-mode))
+;; 	:config
+;; 	(require 'evil-org-agenda)
+;; 	(evil-org-agenda-set-keys)))
 
-;; Ivy - Provides a nifty auto-complete for finding files and shit.
-;; Counsel - Adds Ivy completion for other Emacs shit. Ex. Viewing buffer list.
-;; Swiper - Better search for searching for text in document. C-s
-;; Note: This is NOT code auto-completion. Refer to company for that.
-;; (use-package counsel ;; ivy
+;; (use-package evil-better-visual-line
+;;   :ensure t
 ;;   :config
-;;   (ivy-mode 1)
-;;   (setq ivy-height 25)
-;;   (use-package ivy-posframe)
-;;   ;(setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
-;;   ;(ivy-posframe-mode 1)
-;;   (setq ivy-use-virtual-buffers t)
-;;   (setq enable-recursive-minibuffers t)
-;;   (global-set-key "\C-s" 'swiper)
-;;   (global-set-key (kbd "M-x") 'counsel-M-x)
-;;   (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-;;   (global-set-key (kbd "C-c k") 'counsel-ag)
-;;   (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
+;;   (evil-better-visual-line-on))
+
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode 1)
+  (setq which-key-idle-delay 0.3))
 
 (use-package helm
   :bind (("M-x" . helm-M-x)
 		 ("C-x C-f" . helm-find-files)
-		 ("C-s" . helm-occur))
+		 ("C-s" . helm-occur)
+         ("C-M-SPC" .  helm-imenu))
   :config
   (setq completion-styles '(flex))
   (setq helm-move-to-line-cycle-in-source nil)
   :init
   (helm-mode 1))
 
-(use-package helm-projectile)
+;; (use-package ivy
+;;   :config
+;;   (setopt ivy-use-virtual-buffers nil)
+;;   :init
+;;   (ivy-mode 1))
 
-;; Company is for code auto-completion
+;; (use-package ivy-posframe
+;;   :config
+;;   (ivy-posframe-mode 1))
+
+;; (use-package counsel
+;;   :bind ("M-x" . #'counsel-M-x)
+;;   :bind ("C-x C-f" . #'counsel-find-file)
+;;   :init
+;;   (counsel-mode 1))
+
+(use-package swiper
+    :bind (("C-s" . #'swiper)))
+
+(use-package flycheck)
+
 (use-package company
-  :hook (after-init . global-company-mode)
-  :bind ("M-/" . company-complete)
-  :bind ("C-x C-/" . dabbrev-expand)
+    :hook (after-init . global-company-mode)
+    :bind ("M-/" . company-complete)
+    :bind ("C-x C-/" . dabbrev-expand)
+    :config
+    (setq company-global-modes '(not org-mode))
+    (setq company-idle-delay 0.3)
+    (setq company-show-numbers t))
+
+(use-package yasnippet
+  :after (company)
+  :hook (prog-mode . yas-minor-mode)
   :config
-  (setq company-global-modes '(not org-mode))
-  (setq company-idle-delay 0)
-  (setq company-show-numbers t))
+  (setq company-backends
+		(append (or company-backends '()) '(company-yasnippet))))
 
 (use-package editorconfig
   :config
   (editorconfig-mode 1))
-;; Snippets
-(use-package yasnippet
-  :hook (prog-mode . yas-minor-mode))
-
-;; Project management
-(use-package projectile
-  :init
-  :config
-  (setq
-   projectile-indexing-method 'hybrid
-   projectile-globally-ignored-files '("db.sqlite3")
-   projectile-globally-ignored-file-suffixes '("sqlite" "sqlite3")
-   projectile-project-search-path (cddr (directory-files "~/Code" t))
-   projectile-auto-discover nil)
-
-  (setq projectile-globally-ignored-directories
-		(append projectile-globally-ignored-directories '("*.venv" "*node_modules" "*dist" "*__pycache__" "*migrations")))
-
-  (projectile-mode +1)
-
-  (define-key projectile-mode-map (kbd "M-m") 'projectile-command-map))
 
 (use-package neotree
   ;; :bind ("M-0" . dougbeney/neotree-smart-toggle)
@@ -114,18 +129,21 @@
 (use-package treemacs
   :bind ("M-0" . dougbeney/treemacs-smart-toggle))
 
-(use-package ace-window
-  :bind ("C-x o" . ace-window))
+; For some reason this only works if I define it outside of the use-package
+(add-hook 'treemacs-mode-hook
+          (lambda ()
+            (display-line-numbers-mode -1)))
 
-;; Jump to a character. Avy is an alternative to ace.
+
 (use-package avy
-  :config
+   :config
   (global-set-key (kbd "C-:") 'avy-goto-char)
   (global-set-key (kbd "C-\"") 'avy-goto-char-2)
   (global-set-key (kbd "M-g g") 'avy-goto-line))
 
 (use-package tab-bar
   :ensure nil
+  :straight nil
   :bind (("M-1" . 'tab-bar-select-tab)
 		 ("M-2" . 'tab-bar-select-tab)
 		 ("M-3" . 'tab-bar-select-tab)
@@ -157,30 +175,37 @@
   :config
   (global-set-key (kbd "C-x g") 'magit-status))
 
+(use-package magit-todos
+  :after magit
+  :config (magit-todos-mode 1))
+
 (use-package diff-hl
   :requires magit
   :hook ((after-init . global-diff-hl-mode)
          (magit-post-refresh . diff-hl-magit-post-refresh)))
 
-(use-package origami)
-
 (use-package expand-region
   :bind ("C-;" . er/expand-region))
 
-(defun surround2 (begin end open close)
-  "Put OPEN at START and CLOSE at END of the region.
-If you omit CLOSE, it will reuse OPEN."
-  (interactive  "r\nsStart: \nsEnd: ")
-  (when (string= close "")
-    (setq close open))
-  (save-excursion
-    (goto-char end)
-    (insert close)
-    (goto-char begin)
-    (insert open)))
+(use-package multiple-cursors
+  :bind (("C-S-c C-S-c" . 'mc/edit-lines)
+		 ("C->" . 'mc/mark-next-like-this)
+		 ("C-<" . 'mc/mark-previous-like-this)
+		 ("C-c C-<" . 'mc/mark-all-like-this)))
 
-(defun surround (begin end char)
-  "Put OPEN at START and CLOSE at END of the region.
-If you omit CLOSE, it will reuse OPEN."
-  (interactive  "r\nsSurround with: ")
-  (surround2 begin end char char))
+;; Emacs terminal emulator
+(use-package eat)
+
+(use-package hideshow
+    :ensure nil
+    :bind (("C-," . hs-toggle-hiding)
+           ("C-M-," . hs-show-all)
+           ("M-," . hs-hide-all))
+    :hook (prog-mode . hs-minor-mode)
+
+    :config
+    ;; Not sure if I need the below
+    ;; Makes hideshow folding work with web-mode enabled
+    ;; (add-to-list 'hs-special-modes-alist
+    ;; 			 '(web-mode "{\\|<[^/>]*?" "}\\|</[^/>]*[^/]>" "<!--" web-mode-forward-sexp nil))
+    )

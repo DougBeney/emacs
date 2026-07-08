@@ -13,3 +13,10 @@
 
 (use-package meson-mode
   :mode "meson//.build\\'")
+
+(use-package conf-mode
+  :ensure nil
+  :straight nil
+  :mode "\\.env\\(?:\\.[a-zA-Z0-9._-]+\\)?\\'")
+
+(use-package caddyfile-mode)

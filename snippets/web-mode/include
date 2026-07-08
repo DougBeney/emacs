@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Django include
+# key: include
+# --
+
+{% include "$0" %}

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Django static
+# key: /st
+# --
+
+{% static '${1:file}' %}

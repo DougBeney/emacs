@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Django use
+# key: /use
+# --
+
+{% use ${1:module} %}

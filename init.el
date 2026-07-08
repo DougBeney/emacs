@@ -1,5 +1,4 @@
-(load "~/.emacs.d/sanemacs.el" nil t) ; https://Sanemacs.com
-(setq byte-compile-warnings '(cl-functions))
+(load "~/.emacs.d/sanemacs-straight.el" nil t) ; https://sanemacs.com
 
 ;; Time to load up my config!
 ;; All of my main configuration files are in ~/.emacs.d/config/
@@ -16,9 +15,7 @@
 (load-config 'theming
              'typography
              'global-keybindings
-             'package-management
              'env
-             'commands
              'helper-functions
              'indentation-and-whitespace
              'workflow
@@ -29,10 +26,13 @@
              'writing
              'org
              'fun
-             'config-editing)
+             'config-editing
+			 'ai
+			 'email
+             'space-leader-map)
 
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
-
-(setq byte-compile-warnings '(cl-functions)) ; Supress cl deprecated warning
 (put 'narrow-to-region 'disabled nil)
+
+;(setq byte-compile-warnings '(cl-functions)) ; Supress cl deprecated warning
