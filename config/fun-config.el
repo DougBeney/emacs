@@ -20,8 +20,9 @@
 ;;   (global-activity-watch-mode))
 
 (use-package calc
-  :custom
-  (calc-display-trail nil))
+    :ensure nil
+    :custom
+    (calc-display-trail nil))
 
 (defun marketing/lucidlink-links-format ()
   (interactive)

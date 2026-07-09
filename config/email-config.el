@@ -4,7 +4,6 @@
 ;;
 
 (require 'cl-lib)
-(require 'mu4e)
 (provide 'email-config)
 
 
@@ -50,25 +49,29 @@
                        (concat archive-dir "/Archive/" year)))))
              ))))
 
+; Newer transient package required for mu4e
+(use-package transient :ensure t)
+
 (use-package mu4e
+  :after transient
   :ensure nil
   :straight nil
-	:bind
-	(:map mu4e-view-mode-map
-		  ("e" . #'mu4e-view-save-attachments))
+    :bind
+    (:map mu4e-view-mode-map
+          ("e" . #'mu4e-view-save-attachments))
     :hook ((mu4e-main-mode . (lambda () (display-line-numbers-mode -1)))
            (mu4e-headers-mode . (lambda () (display-line-numbers-mode -1)))
            (mu4e-compose-mode . (lambda () (display-line-numbers-mode -1)))
            (mu4e-view-mode . (lambda () (display-line-numbers-mode -1)))
            (mu4e-view-mode . (lambda ()
                                (when (require 'evil nil t)
-							     (evil-local-set-key 'normal (kbd "e")
-								  #'mu4e-view-save-attachments))))
-		   )
+                                 (evil-local-set-key 'normal (kbd "e")
+                                  #'mu4e-view-save-attachments))))
+           )
     :custom
     ;; Receiving email
     (mu4e-get-mail-command "mbsync --all")
-	(mu4e-update-interval 300)
+    (mu4e-update-interval 300)
 
     ;; Sending email
     (message-send-mail-function 'sendmail-send-it)
@@ -77,8 +80,8 @@
     (message-sendmail-extra-arguments '("--read-envelope-from"))
     (message-sendmail-envelope-from 'header)
     (message-cite-reply-position 'above)
-	(message-citation-line-format "\n\nOn %a %d %b %Y at %R, %f wrote:\n")
-	(message-citation-line-function 'message-insert-formatted-citation-line)
+    (message-citation-line-format "\n\nOn %a %d %b %Y at %R, %f wrote:\n")
+    (message-citation-line-function 'message-insert-formatted-citation-line)
 
     ;; General usability
     (mu4e-context-policy 'pick-first)
@@ -100,7 +103,7 @@
 
     (mu4e-split-view 'vertical)
 
-	(mu4e-attachment-dir "/home/doug/Downloads")
+    (mu4e-attachment-dir "/home/doug/Downloads")
 
     (setq mu4e-bookmarks dougie/mu4e-bookmarks)
 

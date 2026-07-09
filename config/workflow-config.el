@@ -17,12 +17,12 @@
 
 (setq-default dired-listing-switches "-alg --group-directories-first")
 (use-package dired-subtree
-	:after dired
-	:commands (dired-subtree-toggle dired-subtree-remove dired-subtree-cycle)
-	:bind
-	(:map dired-mode-map
-		;; TAB toggles subtree only in Dired buffers
-		("<tab>" . dired-subtree-toggle)))
+    :after dired
+    :commands (dired-subtree-toggle dired-subtree-remove dired-subtree-cycle)
+    :bind
+    (:map dired-mode-map
+        ;; TAB toggles subtree only in Dired buffers
+        ("<tab>" . dired-subtree-toggle)))
 
 ;; Have to see if I still need this
 ;; (defun my/focus-new-client-frame ()
@@ -37,16 +37,16 @@
 ;;   :config
 ;;   (evil-mode 1)
 ;;   (use-package evil-collection
-;; 	:init
-;; 	(evil-collection-init))
+;;      :init
+;;      (evil-collection-init))
 ;;   (use-package evil-surround
-;; 	:config
-;; 	(global-evil-surround-mode 1))
+;;      :config
+;;      (global-evil-surround-mode 1))
 ;;   (use-package evil-org
-;; 	:hook (org-mode . (lambda () evil-org-mode))
-;; 	:config
-;; 	(require 'evil-org-agenda)
-;; 	(evil-org-agenda-set-keys)))
+;;      :hook (org-mode . (lambda () evil-org-mode))
+;;      :config
+;;      (require 'evil-org-agenda)
+;;      (evil-org-agenda-set-keys)))
 
 ;; (use-package evil-better-visual-line
 ;;   :ensure t
@@ -61,8 +61,8 @@
 
 (use-package helm
   :bind (("M-x" . helm-M-x)
-		 ("C-x C-f" . helm-find-files)
-		 ("C-s" . helm-occur)
+         ("C-x C-f" . helm-find-files)
+         ("C-s" . helm-occur)
          ("C-M-SPC" .  helm-imenu))
   :config
   (setq completion-styles '(flex))
@@ -105,7 +105,7 @@
   :hook (prog-mode . yas-minor-mode)
   :config
   (setq company-backends
-		(append (or company-backends '()) '(company-yasnippet))))
+        (append (or company-backends '()) '(company-yasnippet))))
 
 (use-package editorconfig
   :config
@@ -144,20 +144,20 @@
   :ensure nil
   :straight nil
   :bind (("M-1" . 'tab-bar-select-tab)
-		 ("M-2" . 'tab-bar-select-tab)
-		 ("M-3" . 'tab-bar-select-tab)
-		 ("M-4" . 'tab-bar-select-tab)
-		 ("M-5" . 'tab-bar-select-tab)
-		 ("M-6" . 'tab-bar-select-tab)
-		 ("M-7" . 'tab-bar-select-tab)
-		 ("M-8" . 'tab-bar-select-tab)
-		 ("M-9" . 'tab-bar-select-tab)
-		 ("M-9" . 'tab-bar-select-tab)
-		 ("M-t" . 'tab-bar-new-tab)
-		 ("M-[" . 'tab-previous)
-		 ("M-]" . 'tab-next)
-		 ("M-C-[" . 'dougie-tab-move-left)
-		 ("M-C-]" . 'dougie-tab-move-right))
+         ("M-2" . 'tab-bar-select-tab)
+         ("M-3" . 'tab-bar-select-tab)
+         ("M-4" . 'tab-bar-select-tab)
+         ("M-5" . 'tab-bar-select-tab)
+         ("M-6" . 'tab-bar-select-tab)
+         ("M-7" . 'tab-bar-select-tab)
+         ("M-8" . 'tab-bar-select-tab)
+         ("M-9" . 'tab-bar-select-tab)
+         ("M-9" . 'tab-bar-select-tab)
+         ("M-t" . 'tab-bar-new-tab)
+         ("M-[" . 'tab-previous)
+         ("M-]" . 'tab-next)
+         ("M-C-[" . 'dougie-tab-move-left)
+         ("M-C-]" . 'dougie-tab-move-right))
   :init
   (defun dougie-tab-move-right () (interactive) (tab-move 1))
   (defun dougie-tab-move-left () (interactive) (tab-move -1))
@@ -188,9 +188,9 @@
 
 (use-package multiple-cursors
   :bind (("C-S-c C-S-c" . 'mc/edit-lines)
-		 ("C->" . 'mc/mark-next-like-this)
-		 ("C-<" . 'mc/mark-previous-like-this)
-		 ("C-c C-<" . 'mc/mark-all-like-this)))
+         ("C->" . 'mc/mark-next-like-this)
+         ("C-<" . 'mc/mark-previous-like-this)
+         ("C-c C-<" . 'mc/mark-all-like-this)))
 
 ;; Emacs terminal emulator
 (use-package eat)
@@ -206,8 +206,8 @@
     ;; Not sure if I need the below
     ;; Makes hideshow folding work with web-mode enabled
     ;; (add-to-list 'hs-special-modes-alist
-    ;; 			 '(web-mode "{\\|<[^/>]*?" "}\\|</[^/>]*[^/]>" "<!--" web-mode-forward-sexp nil))
+    ;;               '(web-mode "{\\|<[^/>]*?" "}\\|</[^/>]*[^/]>" "<!--" web-mode-forward-sexp nil))
     )
 
 (use-package project
-    :straight t)
+    :ensure nil)

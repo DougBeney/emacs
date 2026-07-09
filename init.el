@@ -1,4 +1,7 @@
-(load "~/.emacs.d/sanemacs-straight.el" nil t) ; https://sanemacs.com
+(load "~/.emacs.d/sanemacs-elpaca.el" nil t) ; https://sanemacs.com
+
+;; Uncomment when debugging errors
+;; (toggle-debug-on-error)
 
 ;; Time to load up my config!
 ;; All of my main configuration files are in ~/.emacs.d/config/
@@ -29,7 +32,8 @@
              'config-editing
              'ai
              'email
-             'space-leader-map)
+             'space-leader-map
+             )
 
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)

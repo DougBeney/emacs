@@ -8,6 +8,7 @@
 (setq gc-cons-threshold 100000000)
 
 (use-package eglot
+  :ensure nil
   :config
   (add-to-list 'eglot-server-programs
                '((python-mode python-ts-mode) . ("pyright-langserver" "--stdio"))))
@@ -26,16 +27,15 @@
 
 (use-package pyvenv)
 
-(use-package ruby-mode)
+(use-package ruby-mode :ensure nil)
 
 (use-package dart-mode
   :bind ("C-M-x" . #'flutter-hot-reload)
   :init
   ; env var for Flutter
-  (setenv "CHROME_EXECUTABLE" "chromium")
-  :config
-  (use-package lsp-dart)
-  (use-package flutter))
+  (setenv "CHROME_EXECUTABLE" "chromium"))
+(use-package lsp-dart)
+(use-package flutter)
 
 (defun flutter-enable-hot-reload-on-save-local ()
   (interactive)

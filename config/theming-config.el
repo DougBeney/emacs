@@ -3,13 +3,7 @@
 ;;;
 
 (provide 'theming-config)
-
 (require 'helper-functions-config)
-
-(setq cursor-type 'bar)
-(setq window-divider-default-places t)
-(setq window-divider-default-bottom-width 5)
-(setq window-divider-default-right-width 5)
 
 ;; Theme Packs
 (use-package cyberpunk-theme :defer t)
@@ -21,10 +15,18 @@
 (use-package sublime-themes :defer t)
 (use-package modus-themes :defer t)
 (use-package modus-flexoki
-    :defer t
-    :straight (:type git :host github :repo "dpassen/modus-flexoki"))
+  :defer t
+  :ensure (:host github :repo "dpassen/modus-flexoki"))
 
-(load-theme 'doom-monokai-classic)
+;; LOAD THE THEME
+(add-hook 'elpaca-after-init-hook
+          (lambda ()
+            (load-theme 'doom-monokai-classic)))
+
+(setq cursor-type 'bar)
+(setq window-divider-default-places t)
+(setq window-divider-default-bottom-width 5)
+(setq window-divider-default-right-width 5)
 
 (use-package all-the-icons :defer t)
 (use-package nerd-icons) ; useful for custom modelines and such
