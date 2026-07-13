@@ -24,7 +24,7 @@
 (setq org-refile-targets
       '((org-agenda-files :maxlevel . 1)
         ("~/Documents/Org/TODO/Projects.org"
-         :maxlevel . 1)))
+         :maxlevel . 2)))
 
 (setq org-capture-templates
       '(("t" "Personal TODO" entry (file+headline "~/Documents/Org/TODO/Inbox.org" "Personal")

@@ -57,7 +57,8 @@
   :ensure t
   :config
   (which-key-mode 1)
-  (setq which-key-idle-delay 0.3))
+  (setq which-key-idle-delay 0)
+  (setq which-key-popup-type 'minibuffer))
 
 (use-package helm
   :bind (("M-x" . helm-M-x)
@@ -210,4 +211,6 @@
     )
 
 (use-package project
-    :ensure nil)
+    :ensure nil
+    :config
+    (global-set-key (kbd "M-m") project-prefix-map))
