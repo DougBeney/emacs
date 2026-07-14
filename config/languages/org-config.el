@@ -125,19 +125,23 @@
                 ("C-c l" . org-roam-node-insert)))
   :hook (org-mode . (lambda () (display-line-numbers-mode -1)))
   :config
+  (setq
+   org-use-speed-commands t
+   org-blank-before-new-entry '((heading . nil) (plain-list-item . nil))
+   org-startup-indented t
+   org-src-preserve-indentation t)
+  (define-key org-mode-map (kbd "C-c C-r") 'org-refile)
+
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((python . t) (emacs-lisp . t)))
+
   (when (require 'evil nil t)
     (evil-define-key 'normal org-mode-map
       (kbd "t") #'org-todo)
     (evil-define-key 'normal org-mode-map
       (kbd "+") #'org-priority-up
-      (kbd "-") #'org-priority-down))
-  (setq org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
-  (setq org-startup-indented t)
-  (define-key org-mode-map (kbd "C-c C-r") 'org-refile)
-  (setq-default org-src-preserve-indentation t)
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((python . t) (emacs-lisp . t))))
+      (kbd "-") #'org-priority-down)))
 
 (use-package org-agenda
   :ensure nil
