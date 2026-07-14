@@ -1,3 +1,4 @@
+;;; email-config.el -*- lexical-binding: t; -*-
 ;;
 ;; mu4e config
 ;; make sure "mu" is installed on system...it'll bring along the mu4e emacs package
