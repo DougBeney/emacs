@@ -134,7 +134,9 @@
 
   (org-babel-do-load-languages
    'org-babel-load-languages
-   '((python . t) (emacs-lisp . t)))
+   '((python . t)
+     (emacs-lisp . t)
+     (calc . t)))
 
   (when (require 'evil nil t)
     (evil-define-key 'normal org-mode-map
