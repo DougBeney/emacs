@@ -55,3 +55,7 @@
   (treesit-auto-install 'prompt)
   :config
   (global-treesit-auto-mode))
+
+;; Rust
+(use-package rust-mode
+    :hook (rust-mode . eglot-ensure))

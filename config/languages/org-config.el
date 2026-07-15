@@ -136,7 +136,8 @@
    'org-babel-load-languages
    '((python . t)
      (emacs-lisp . t)
-     (calc . t)))
+     (calc . t)
+     (rust . t)))
 
   (when (require 'evil nil t)
     (evil-define-key 'normal org-mode-map
@@ -162,6 +163,15 @@
   :config
   (setq org-roam-directory (file-truename "~/Documents/Org"))
   (org-roam-db-autosync-mode))
+
+(use-package org-appear
+  :after org
+  :hook (org-mode . org-appear-mode)
+  :config
+  (setq org-appear-autolinks t
+        org-hide-emphasis-markers t))
+
+(use-package ob-rust)
 
 (add-hook 'org-mode-hook 'flyspell-mode)
 
