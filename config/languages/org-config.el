@@ -35,6 +35,8 @@
          "* %?\nSCHEDULED: %^T\n")
         ("s" "Sprint daynote" entry (file+headline "~/Documents/Org/TODO/Sprint.org" "Daynotes")
          "* %t %?" :prepend t)
+        ("m" "Meeting Notes" entry (file "~/Documents/Org/Meeting Notes.org")
+         "* %t %?" :prepend t)
         ("1" "10x journal entry" entry (file+headline "~/Documents/Org/Main/10x.org" "10x Journal")
          "* %U\n%?" :prepend t)
         ))
@@ -164,11 +166,13 @@
   (setq org-roam-directory (file-truename "~/Documents/Org"))
   (org-roam-db-autosync-mode))
 
+(use-package org-roam-ui :after (org org-roam))
+
 (use-package org-appear
   :after org
   :hook (org-mode . org-appear-mode)
   :config
-  (setq org-appear-autolinks t
+  (setq org-appear-autolinks nil
         org-hide-emphasis-markers t))
 
 (use-package ob-rust)
