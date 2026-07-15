@@ -24,6 +24,7 @@
   :doc "Gptel actions"
   "g" #'gptel-send
   "m" #'gptel-menu
+  "r" #'gptel-rewrite
   )
 
 (defvar-keymap dougbeney/emoji-map
