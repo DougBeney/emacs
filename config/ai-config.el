@@ -3,7 +3,8 @@
 (use-package agent-shell)
 
 (use-package gptel
-    :config
+  :config
+  (setq gptel-include-reasoning nil)
   ;; Configure the below securely
   ;; (setq
   ;;  gptel-model 'openai/example-model
