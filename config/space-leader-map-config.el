@@ -20,13 +20,29 @@
   "j" #'split-window-below
   )
 
+(defvar-keymap dougbeney/gptel-map
+  :doc "Gptel actions"
+  "g" #'gptel-send
+  "m" #'gptel-menu
+  )
+
+(defvar-keymap dougbeney/emoji-map
+  :doc "Gptel actions"
+  "e" #'emoji-insert
+  "s" #'emoji-search
+  "r" #'emoji-recent
+  )
+
 (defvar-keymap dougbeney/space-leader-map
   :doc "Awesome Menu"
   "b" (cons "Bookmarks" dougbeney/bookmark-map)
   "f" (cons "Files" dougbeney/file-map)
   "w" (cons "Windows" dougbeney/window-map)
+  "g" (cons "Gptel" dougbeney/gptel-map)
   "s" (cons "Scratch buffer" (lambda () (interactive) (switch-to-buffer "*scratch*")))
-  "o" (cons "Toggle olivetti" #'olivetti-mode))
+  "o" (cons "Toggle olivetti" #'olivetti-mode)
+  "e" (cons "Emoji" dougbeney/emoji-map)
+  )
 
 ;; space-leader-map for Vanilla Emacs
 (keymap-global-set "M-SPC" dougbeney/space-leader-map)
