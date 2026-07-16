@@ -30,3 +30,18 @@
   ;;                  :key "secret-key-here" ;can be a function that returns the key
   ;;                  :models '(openai/example-model)))
   )
+
+(use-package mcp
+    :ensure t
+    :after gptel
+    :init
+    (defcustom mcp--searxng-url nil
+      "URL of searx-ng instance"
+      :type 'string
+      :group 'mcp)
+      :custom (mcp-hub-servers
+              `(("searxng" . (:command "npx"
+                              :args ("-y" "mcp-searxng")
+                              :env (:SEARXNG_URL mcp--searxng-url)))))
+     :config (require 'mcp-hub)
+                 :hook (after-init . mcp-hub-start-all-server))
