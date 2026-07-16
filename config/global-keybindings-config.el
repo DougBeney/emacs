@@ -34,3 +34,7 @@
 
 ;; Dupliate a line
 (global-set-key (kbd "C-c C-d") (kbd "C-a C-SPC C-n M-w C-y C-p"))
+
+;; Scroll up/down by one line
+(global-set-key (kbd "C-S-<up>") 'scroll-down-line)
+(global-set-key (kbd "C-S-<down>") 'scroll-up-line)
