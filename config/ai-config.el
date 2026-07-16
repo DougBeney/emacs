@@ -3,8 +3,22 @@
 (use-package agent-shell)
 
 (use-package gptel
-  :config
-  (setq gptel-include-reasoning nil)
+    :config
+  (setq gptel-include-reasoning nil
+        gptel-system-prompt
+        "You are a helpful assistant. You respond in Emacs Org-mode markup. always use headings that are deeper than the current heading level. Never use the same level or shallower headings. Any quotations or code blocks should be surrounded my proper org-mode markup. Follow org-mode best practices. Never answer your message with follow-up questions to the user."
+
+        gptel-directives
+        `(
+         (default . ,gptel-system-prompt)
+         (programming . "You are a large language model and a careful programmer. Provide code and only code as output without any additional text, prompt or note."))
+
+        gptel-org-convert-response nil ; Disable the totally unnecessary markdown->org conversion function
+        gptel-default-mode 'org-mode   ; Major mode for dedicated chat buffers
+
+        gptel-prompt-prefix-alist
+        '((markdown-mode . "# ") (org-mode . "* ") (text-mode . "$ "))
+        )
   ;; Configure the below securely
   ;; (setq
   ;;  gptel-model 'openai/example-model
