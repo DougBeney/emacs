@@ -23,14 +23,20 @@
       :type '(repeat symbol)
       :group 'doug-gptel)
 
+    (defcustom doug/gptel-default-model 'claude-haiku-4-5
+      "Default model for gptel to use."
+      :type 'symbol
+      :group 'doug-gptel)
+
     (setq
      gptel-include-reasoning nil
      gptel-system-prompt
-     "You are a helpful assistant. You respond in Emacs Org-mode markup. always use headings that are deeper than the current heading level. Never use the same level or shallower headings. Any quotations or code blocks should be surrounded my proper org-mode markup. Follow org-mode best practices. Never answer your message with follow-up questions to the user."
+     "You are a helpful assistant. You can either respond in Emacs org-mode markup or a simple unformatted text paragraph depending on the complexity of what the user is asking and what is most appropriate for an answer.  When using org-mode heading,always use headings that are deeper than the current heading level. Never use the same level or shallower headings. Any quotations or code blocks should be surrounded my proper org-mode markup. Follow org-mode best practices. Never answer your message with follow-up questions to the user."
 
      gptel-directives
      `(
        (default . ,gptel-system-prompt)
+       (org-paragraph . "Respond with a concise, friendly, easy to understand plain-text paragraph surround by an org-mode example block - #+BEGIN_EXAMPLE as the first line and #+END_EXAMPLE as the last line.")
        (programming . "You are a large language model and a careful programmer. Provide code and only code as output without any additional text, prompt or note."))
 
      gptel-org-convert-response nil ; Disable the totally unnecessary markdown->org conversion function
@@ -50,7 +56,7 @@
             :key #'gptel-api-key-from-auth-source
             :models doug/gptel-models
             :stream t)
-          gptel-model 'mimo-v2.5-pro))
+          gptel-model 'doug/gptel-default-model))
 
 (use-package mcp
     :ensure t
