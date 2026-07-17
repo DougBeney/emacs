@@ -38,5 +38,5 @@
                           :height (plist-get dougbeney/typography :size)
                           :weight 'normal))
 
-(setq-default line-spacing 2)
+(setq-default line-spacing 0)
 (setq-default truncate-lines t)
