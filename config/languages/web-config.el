@@ -25,6 +25,3 @@
 
 (use-package typescript-mode
   :mode "\\.ts\\'")
-
-(use-package scss-mode
-  :mode "\\.scss\\'")
