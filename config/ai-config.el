@@ -4,6 +4,7 @@
 
 (use-package gptel
     :config
+    (require 'gptel-integrations)
     (defgroup doug-gptel nil
       "Personal gptel backend settings."
       :group 'gptel)
@@ -68,7 +69,6 @@
       :group 'mcp)
     :custom (mcp-hub-servers
              `(("searxng" . (:command "npx"
-                                      :args ("-y" "mcp-searxng")
-                                      :env (:SEARXNG_URL mcp--searxng-url)))))
-    :config (require 'mcp-hub)
+                             :args ("-y" "mcp-searxng")
+                             :env (:SEARXNG_URL mcp--searxng-url)))))
     :hook (after-init . mcp-hub-start-all-server))
