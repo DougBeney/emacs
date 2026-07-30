@@ -16,7 +16,7 @@
   (interactive)
   (setq whitespace-style '(face tabs tab-mark trailing))
   (setq whitespace-display-mappings
-        '((tab-mark 9 [124 9] [92 9])))
+        '((tab-mark ?\t [?\u00B7 ?\t] [?\\ ?\t])))
   (whitespace-mode))
 
 (defun dougbeney/python-indentation ()
