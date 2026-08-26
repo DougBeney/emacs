@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;;;
 ;; org-config.el
 ;; Org-Mode Configuration

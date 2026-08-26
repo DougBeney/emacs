@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;;;
 ;; web-config.el
 ;; Various editing modes for html, js, css and other web-related files.

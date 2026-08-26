@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;;;
 ;; general-purpose-langs-config.el
 ;; General purpose languages like Python, Ruby, or even C++

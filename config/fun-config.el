@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;;;
 ;; fun-config.el
 ;; Misc fun, entertaining, or not-directly-programming-related Emacs packages

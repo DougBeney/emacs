@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (load "~/.emacs.d/sanemacs-elpaca.el" nil t) ; https://sanemacs.com
 
 ;; Uncomment when debugging errors

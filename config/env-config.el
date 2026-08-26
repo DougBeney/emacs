@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;;;
 ;; env-config.el
 ;; Different features for setting up the environment of emacs. Ex. Tweaking PATH

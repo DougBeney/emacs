@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;;
 ;; workflow-config.el
 ;; Various packages that enhances the workflow of Emacs.

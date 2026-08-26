@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Sanemacs version 1.0.0 (BETA) (elpaca.el) ;;;
 ;;; https://sanemacs.com                      ;;;

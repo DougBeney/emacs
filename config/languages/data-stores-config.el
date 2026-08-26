@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;;;
 ;; data-stores-config.el
 ;; This file stores configuration for files such as json or yaml.
