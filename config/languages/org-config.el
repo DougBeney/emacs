@@ -11,6 +11,7 @@
 (setq org-weeknotes-root (concat org-root "Week Notes/"))
 (setq org-home-file (concat org-root "Home.org"))
 (setq org-agenda-skip-scheduled-if-done t)
+(setq org-agenda-start-on-weekday 0)
 
 (setq org-agenda-files
       '("~/Documents/Org/Main/Events.org"
@@ -35,6 +36,8 @@
          "* %?\nSCHEDULED: %^T\n")
         ("s" "Sprint daynote" entry (file+headline "~/Documents/Org/TODO/Sprint.org" "Daynotes")
          "* %t %?" :prepend t)
+        ("d" "Distraction Note" entry (file "~/Documents/Org/TODO/Distraction Notes.org")
+         "* %?")
         ("m" "Meeting Notes" entry (file "~/Documents/Org/Meeting Notes.org")
          "* %t %?" :prepend t)
         ("1" "10x journal entry" entry (file+headline "~/Documents/Org/Main/10x.org" "10x Journal")
