@@ -6,8 +6,8 @@
 (provide 'typography-config)
 
 ;; Set font & size here...
-(setq dougbeney/typography '(:font "JetBrainsMono Nerd Font"
-                             :size 110))
+(setq dougbeney/typography '(:font "FiraCode Nerd Font"
+                             :size 90))
 
 (defun dougbeney/set-font (options &optional face)
   (let ((family (plist-get options :family))
@@ -34,9 +34,10 @@
        (buffer-face-set ',new-face-name))))
 
 ;;; Set the default font
-(dougbeney/set-font (list :family (plist-get dougbeney/typography :font)
-                          :height (plist-get dougbeney/typography :size)
-                          :weight 'normal))
+(defun dougbeney/setup-typography ()
+  (dougbeney/set-font (list :family (plist-get dougbeney/typography :font)
+                            :height (plist-get dougbeney/typography :size)
+                            :weight 'normal)))
 
 (setq-default line-spacing 0)
 (setq-default truncate-lines t)
