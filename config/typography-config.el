@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;;;
 ;; typography-config.el
 ;; Tweaks to the typography

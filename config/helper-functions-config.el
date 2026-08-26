@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;;;
 ;; helper-functions-config.el
 ;;;

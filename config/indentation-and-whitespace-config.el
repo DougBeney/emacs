@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;;;
 ;; indentation-and-whitespace-config.el
 ;;;

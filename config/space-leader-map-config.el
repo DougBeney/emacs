@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (provide 'space-leader-map-config)
 
 (defvar-keymap dougbeney/bookmark-map

@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;;;
 ;; Theming-config.el
 ;;;

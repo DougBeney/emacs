@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (provide 'shell-langs-config)
 
 (use-package fish-mode)

@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (provide 'ai-config)
 
 (use-package agent-shell)

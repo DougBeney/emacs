@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;;;
 ;; writing-config.el
 ;; Filetypes for writing, such as markdown. (go to org-config.el for org-mode configuration)
