@@ -21,9 +21,9 @@
   :ensure (:host github :repo "dpassen/modus-flexoki"))
 
 ;; LOAD THE THEME
-(add-hook 'elpaca-after-init-hook
-          (lambda ()
-            (load-theme 'doom-monokai-classic)))
+;; (add-hook 'elpaca-after-init-hook
+;;           (lambda ()
+;;             (load-theme 'doom-monokai-classic)))
 
 (setq cursor-type 'bar)
 (setq window-divider-default-places t)
@@ -55,12 +55,27 @@
   (when (display-graphic-p)
 	(custom-set-faces
 	 `(tab-bar ((t (:box nil))))
-	 `(tab-bar-tab ((t (:background ,bg :foreground ,fg :weight bold :height 99 :width condensed :family "Roboto" :box (:line-width (10 . 10) :color ,bg)))))
+	 `(tab-bar-tab ((t (:background ,bg :foreground ,fg :weight bold :height 100 :width condensed :family "Roboto" :box (:line-width (1 . 2) :color ,bg)))))
 	 `(tab-bar-tab-group-current ((t (:inherit tab-bar-tab :box nil :weight bold))))
 	 `(tab-bar-tab-group-inactive ((t (:inherit (shadow tab-bar-tab-inactive)))))
-	 `(tab-bar-tab-inactive ((t (:inherit tab-line-tab :background ,bg_inactive :foreground ,fg_inactive :weight bold :height 99 :width condensed :family "Roboto"))))
+	 `(tab-bar-tab-inactive ((t (:background ,bg_inactive :box (:line-width (1 . 2) :color ,bg_inactive) :foreground ,fg_inactive :weight bold :height 100 :width condensed :family "Roboto"))))
 	 `(tab-bar-tab-ungrouped ((t (:inherit (shadow tab-bar-tab-inactive))))))))
 
+(defun dougbeney/tab-bar-padding (name tab _i)
+  (let ((face (funcall tab-bar-tab-face-function tab)))
+    (concat
+     (propertize "  " 'face face)
+     name
+     (propertize "  " 'face face))))
+
+(setq tab-bar-tab-name-format-functions
+      '(tab-bar-tab-name-format-hints
+        tab-bar-tab-name-format-close-button
+        tab-bar-tab-name-format-face
+        dougbeney/tab-bar-padding
+        tab-bar-tab-name-format-mouse-face))
+
+(setq tab-bar-separator "")
 (setq tab-bar-auto-width t)
 
 (setq dark-theme 'cyberpunk
