@@ -4,7 +4,7 @@
 
 (defvar-keymap dougbeney/bookmark-map
   :doc "Bookmark actions"
-  "b" #'counsel-bookmark
+  "b" #'helm-bookmarks
   "m" #'bookmark-set
   "d" #'bookmark-delete
   "s" #'bookmark-save
