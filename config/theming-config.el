@@ -50,23 +50,54 @@
 
 (use-package rainbow-mode)
 
-(defun set-tab-bar-colors (bg fg bg_inactive fg_inactive)
+(defun set-tab-bar-colors (bg fg bg-inactive fg-inactive)
   ;; (set-tab-bar-colors "white" "black" "white" "gray")
   (when (display-graphic-p)
-	(custom-set-faces
-	 `(tab-bar ((t (:box nil))))
-	 `(tab-bar-tab ((t (:background ,bg :foreground ,fg :weight bold :height 100 :width condensed :family "Roboto" :box (:line-width (1 . 2) :color ,bg)))))
-	 `(tab-bar-tab-group-current ((t (:inherit tab-bar-tab :box nil :weight bold))))
-	 `(tab-bar-tab-group-inactive ((t (:inherit (shadow tab-bar-tab-inactive)))))
-	 `(tab-bar-tab-inactive ((t (:background ,bg_inactive :box (:line-width (1 . 2) :color ,bg_inactive) :foreground ,fg_inactive :weight bold :height 100 :width condensed :family "Roboto"))))
-	 `(tab-bar-tab-ungrouped ((t (:inherit (shadow tab-bar-tab-inactive))))))))
+    (set-face-attribute
+     'tab-bar nil
+     :background bg-inactive
+     :box nil)
+
+    (set-face-attribute
+     'tab-bar-tab nil
+     :background bg
+     :foreground fg
+     :weight 'bold
+     :height 100
+     :width 'condensed
+     :family "Roboto"
+     :box `(:line-width (1 . 3) :color ,bg))
+
+    (set-face-attribute
+     'tab-bar-tab-group-current nil
+     :inherit 'tab-bar-tab
+     :box nil
+     :weight 'bold)
+
+    (set-face-attribute
+     'tab-bar-tab-group-inactive nil
+     :inherit '(shadow tab-bar-tab-inactive))
+
+    (set-face-attribute
+     'tab-bar-tab-inactive nil
+     :background bg-inactive
+     :foreground fg-inactive
+     :weight 'bold
+     :height 100
+     :width 'condensed
+     :family "Roboto"
+     :box nil)
+
+    (set-face-attribute
+     'tab-bar-tab-ungrouped nil
+     :inherit '(shadow tab-bar-tab-inactive))))
 
 (defun dougbeney/tab-bar-padding (name tab _i)
   (let ((face (funcall tab-bar-tab-face-function tab)))
     (concat
-     (propertize "  " 'face face)
+     (propertize "   " 'face face)
      name
-     (propertize "  " 'face face))))
+     (propertize "   " 'face face))))
 
 (setq tab-bar-tab-name-format-functions
       '(tab-bar-tab-name-format-hints
