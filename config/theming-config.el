@@ -29,17 +29,6 @@
  :init
  (doom-modeline-mode 1))
 
-;; (use-package mood-line
-;;   :config
-;;   (mood-line-mode)
-;;   (set-face-attribute 'header-line nil
-;;                       :box `(:line-width (3 . 3)
-;;                                          :color ,(face-background 'header-line)))
-;;   :custom
-;;   (mood-line-glyph-alist mood-line-glyphs-fira-code)
-;;   (mood-line-format mood-line-format-default-extended)
-;; )
-
 (use-package rainbow-mode)
 
 (defun set-tab-bar-colors (bg fg bg-inactive fg-inactive)
