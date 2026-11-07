@@ -1,17 +1,12 @@
 ;; -*- lexical-binding: t; -*-
-
 ;;;
 ;; data-stores-config.el
 ;; This file stores configuration for files such as json or yaml.
 ;;;
-
 (provide 'data-stores-config)
 
 (use-package yaml-mode
-  :mode "\\.ya?ml\\'")
-
-;; (use-package json-mode
-;;   :mode "\\.json\\'")
+  :mode ("\\.ya?ml\\'" "\\.ya?ml\\.j2\\'"))
 
 (use-package meson-mode
   :mode "meson//.build\\'")
