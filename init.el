@@ -2,6 +2,9 @@
 
 (load "~/.emacs.d/sanemacs-elpaca.el" nil t) ; https://sanemacs.com
 
+;; Some bullshit fix for the clipboard
+(setopt select-active-regions nil)
+
 ;; Uncomment when debugging errors
 ;; (toggle-debug-on-error)
 
@@ -35,6 +38,7 @@
              'ai
              'email
              'space-leader-map
+             'remote-file-editing
              )
 
 (put 'downcase-region 'disabled nil)
