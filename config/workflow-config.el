@@ -38,17 +38,21 @@
 ;;   (setq evil-kill-on-visual-paste nil)
 ;;   :config
 ;;   (evil-mode 1)
-;;   (use-package evil-collection
-;;      :init
-;;      (evil-collection-init))
-;;   (use-package evil-surround
-;;      :config
-;;      (global-evil-surround-mode 1))
-;;   (use-package evil-org
-;;      :hook (org-mode . (lambda () evil-org-mode))
-;;      :config
-;;      (require 'evil-org-agenda)
-;;      (evil-org-agenda-set-keys)))
+;;   (add-hook 'git-commit-mode-hook #'evil-insert-state))
+
+;; (use-package evil-collection
+;;     :init
+;;   (evil-collection-init))
+
+;; (use-package evil-surround
+;;     :config
+;;   (global-evil-surround-mode 1))
+
+;; (use-package evil-org
+;;     :hook (org-mode . (lambda () evil-org-mode))
+;;     :config
+;;     (require 'evil-org-agenda)
+;;     (evil-org-agenda-set-keys))
 
 ;; (use-package evil-better-visual-line
 ;;   :ensure t
