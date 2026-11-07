@@ -13,35 +13,31 @@
 (setq org-weeknotes-root (concat org-root "Week Notes/"))
 (setq org-home-file (concat org-root "Home.org"))
 (setq org-agenda-skip-scheduled-if-done t)
-(setq org-agenda-start-on-weekday 0)
+(setq org-agenda-start-on-weekday 1)
 
 (setq org-agenda-files
       '("~/Documents/Org/Main/Events.org"
-        "~/Documents/Org/TODO/Inbox.org"
-        "~/Documents/Org/TODO/Work.org"
-        "~/Documents/Org/TODO/Personal.org"
-        "~/Documents/Org/TODO/Sprint.org"
-        "~/Documents/Org/TODO/Archive.org"
+        "~/Documents/Org/TODO/inbox.org"
+        "~/Documents/Org/TODO/tasks.org"
+        "~/Documents/Org/TODO/sprint.org"
+        "~/Documents/Org/TODO/archive.org"
+        "~/Documents/Org/TODO/habits.org"
         ))
 
 (setq org-refile-targets
-      '((org-agenda-files :maxlevel . 1)
-        ("~/Documents/Org/TODO/Projects.org"
-         :maxlevel . 2)))
+      '((org-agenda-files :maxlevel . 1)))
 
 (setq org-capture-templates
-      '(("t" "Personal TODO" entry (file+headline "~/Documents/Org/TODO/Inbox.org" "Personal")
+      '(("t" "Personal TODO" entry (file+headline "~/Documents/Org/TODO/inbox.org" "Personal")
          "* TODO %?")
-        ("w" "Work TODO" entry (file+headline "~/Documents/Org/TODO/Inbox.org" "Work")
+        ("w" "Work TODO" entry (file+headline "~/Documents/Org/TODO/inbox.org" "Work")
          "* TODO %?")
         ("e" "Event" entry (file+headline "~/Documents/Org/Main/Events.org" "Reminders")
          "* %?\nSCHEDULED: %^T\n")
-        ("s" "Sprint daynote" entry (file+headline "~/Documents/Org/TODO/Sprint.org" "Daynotes")
+        ("s" "Sprint daynote" entry (file+headline "~/Documents/Org/TODO/sprint.org" "Daynotes")
          "* %t %?" :prepend t)
-        ("d" "Distraction Note" entry (file "~/Documents/Org/TODO/Distraction Notes.org")
+        ("d" "Distraction Note" entry (file "~/Documents/Org/TODO/distraction.org")
          "* %?")
-        ("m" "Meeting Notes" entry (file "~/Documents/Org/Meeting Notes.org")
-         "* %t %?" :prepend t)
         ("1" "10x journal entry" entry (file+headline "~/Documents/Org/Main/10x.org" "10x Journal")
          "* %U\n%?" :prepend t)
         ))
