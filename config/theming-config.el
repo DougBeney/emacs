@@ -8,17 +8,9 @@
 (require 'helper-functions-config)
 
 ;; Theme Packs
-(use-package cyberpunk-theme :defer t)
-(use-package dracula-theme :defer t)
-(use-package atom-one-dark-theme :defer t)
 (use-package doom-themes :defer t)
-(use-package gruvbox-theme :defer t)
 (use-package monokai-theme :defer t)
 (use-package sublime-themes :defer t)
-(use-package modus-themes :defer t)
-(use-package modus-flexoki
-  :defer t
-  :ensure (:host github :repo "dpassen/modus-flexoki"))
 
 ;; LOAD THE THEME
 ;; (add-hook 'elpaca-after-init-hook
