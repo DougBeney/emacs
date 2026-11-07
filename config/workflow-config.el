@@ -179,14 +179,11 @@
   :config (magit-todos-mode 1))
 
 (use-package diff-hl
-  :init
-  (defun dougbeney/turn-on-diff-hl-except-tramp ()
-    "Enable diff-hl-mode unless the current buffer is a remote Tramp buffer."
-    )
-  :hook (magit-post-refresh 'diff-hl-magit-post-refresh)
-  :hook (prog-mode . (lambda ()
-                       (unless (file-remote-p default-directory)
-                         (turn-on-diff-hl-mode)))))
+  :custom
+  (diff-hl-disable-on-remote t)
+  :hook
+  ((prog-mode . turn-on-diff-hl-mode)
+   (magit-post-refresh . diff-hl-magit-post-refresh)))
 
 (use-package expand-region
   :bind ("C-;" . er/expand-region))
