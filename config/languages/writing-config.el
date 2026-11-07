@@ -10,14 +10,9 @@
 (use-package markdown-mode
    :mode "//.md\\'"
    :mode "\\.markdown\\'"
-   ;; :hook (markdown-mode . (lambda ()
-   ;;                          (dougbeney/set-font-local dougbeney-term-mode-face
-   ;;                                                    (:family "Liberation Serif"
-   ;;                                                             :height 150))
-   ;;                          (fringe-mode -1)))
-   :init
-   ;; (setq markdown-header-scaling t)
-    )
+   :custom
+   (markdown-hide-markup t)
+   (markdown-header-scaling t))
 
 (use-package define-word)
 
@@ -27,10 +22,9 @@
 ;;   (buffer-face-mode))
 
 (use-package olivetti
+  :hook (markdown-mode . olivetti-mode)
   :init
-  ;(setq-default olivetti-body-width nil)
-  ;; (setq-default olivetti-style 'fancy)
-  ;; (add-hook 'org-mode-hook #'olivetti-mode)
-  )
+  (setq-default olivetti-body-width 108)
+  (setq-default olivetti-style 'fancy))
 
 (setq-default truncate-lines nil)
