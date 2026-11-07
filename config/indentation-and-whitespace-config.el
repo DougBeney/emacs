@@ -43,3 +43,5 @@
 (add-hook 'python-ts-mode-hook #'dougbeney/python-indentation)
 (add-hook 'emacs-lisp-mode-hook 'dougbeney/use-spaces)
 (add-hook 'lisp-mode-hook 'dougbeney/use-spaces)
+(add-hook 'lua-mode-hook 'dougbeney/use-spaces)
+(add-hook 'lua-ts-mode-hook 'dougbeney/use-spaces)
