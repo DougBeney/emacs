@@ -21,7 +21,7 @@
 
 (defun dougbeney/edit-hyprland-config ()
   (interactive)
-  (find-file "~/.config/hypr/hyprland.conf"))
+  (find-file "~/.config/hypr/hyprland.lua"))
 
 ;; Keybindings
 
