@@ -27,15 +27,15 @@
 (when (version< emacs-version "26.3")
   (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"))
 
-;;; Setup straight.el
+;;; Setup elpaca.el
 (defvar elpaca-installer-version 0.12)
 (defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
 (defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
 (defvar elpaca-sources-directory (expand-file-name "sources/" elpaca-directory))
 (defvar elpaca-order '(elpaca :repo "https://github.com/progfolio/elpaca.git"
-                       :ref nil :depth 1 :inherit ignore
-                       :files (:defaults "elpaca-test.el" (:exclude "extensions"))
-                       :build (:not elpaca-activate)))
+                              :ref nil :depth 1 :inherit ignore
+                              :files (:defaults "elpaca-test.el" (:exclude "extensions"))
+                              :build (:not elpaca-activate)))
 (let* ((repo  (expand-file-name "elpaca/" elpaca-sources-directory))
        (build (expand-file-name "elpaca/" elpaca-builds-directory))
        (order (cdr elpaca-order))
@@ -47,9 +47,9 @@
     (condition-case-unless-debug err
         (if-let* ((buffer (pop-to-buffer-same-window "*elpaca-bootstrap*"))
                   ((zerop (apply #'call-process `("git" nil ,buffer t "clone"
-                                                        ,@(when-let* ((depth (plist-get order :depth)))
-                                                            (list (format "--depth=%d" depth) "--no-single-branch"))
-                                                        ,(plist-get order :repo) ,repo))))
+                                                  ,@(when-let* ((depth (plist-get order :depth)))
+                                                      (list (format "--depth=%d" depth) "--no-single-branch"))
+                                                  ,(plist-get order :repo) ,repo))))
                   ((zerop (call-process "git" nil buffer t "checkout"
                                         (or (plist-get order :ref) "--"))))
                   (emacs (concat invocation-directory invocation-name))
@@ -155,9 +155,9 @@
 (unless (file-exists-p custom-file)
   (write-region "" nil custom-file))
 ;;; Load custom file. Don't hide errors. Hide success message
-(with-eval-after-load (expand-file-name custom-file)
-  (if (not custom-enabled-themes)
-    (load-theme 'wheatgrass t)))
+;; (with-eval-after-load (expand-file-name custom-file)
+;;   (if (not custom-enabled-themes)
+;;     (load-theme 'wheatgrass t)))
 (load custom-file nil t)
 
 ;;; Put Emacs auto-save and backup files to /tmp/ or C:/Temp/
