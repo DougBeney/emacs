@@ -9,7 +9,7 @@
 
 ;; Set font & size here...
 (setq dougbeney/typography '(:font "FiraCode Nerd Font"
-                             :size 100))
+                             :size 105))
 
 (defun dougbeney/set-font (options &optional face)
   (let ((family (plist-get options :family))
@@ -42,5 +42,5 @@
                             :height (plist-get dougbeney/typography :size)
                             :weight 'normal)))
 
-(setq-default line-spacing 0)
+(setq-default line-spacing nil)
 (setq-default truncate-lines t)
