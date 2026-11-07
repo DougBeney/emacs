@@ -34,6 +34,26 @@
    (point-min)
    (point-max)))
 
+(defun marketing/copysail-links-format ()
+  (interactive)
+  (replace-string
+   "&approved=not_approved" ""
+   nil
+   (point-min)
+   (point-max))
+  (replace-string
+   "https://copysail.com" "copySail: https://copysail.com"
+   nil
+   (point-min)
+   (point-max))
+  (replace-string
+   "copySail: copySail: https://copysail.com" "copySail: https://copysail.com"
+   nil
+   (point-min)
+   (point-max)))
+
+
+
 ;; Credit line for diomal
 (defun diomal-cred ()
   (interactive)
