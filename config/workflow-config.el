@@ -182,9 +182,11 @@
   :init
   (defun dougbeney/turn-on-diff-hl-except-tramp ()
     "Enable diff-hl-mode unless the current buffer is a remote Tramp buffer."
-    (unless (file-remote-p default-directory)
-      (turn-on-diff-hl-mode)))
-  :hook (prog-mode . dougbeney/turn-on-diff-hl-except-tramp))
+    )
+  :hook (magit-post-refresh 'diff-hl-magit-post-refresh)
+  :hook (prog-mode . (lambda ()
+                       (unless (file-remote-p default-directory)
+                         (turn-on-diff-hl-mode)))))
 
 (use-package expand-region
   :bind ("C-;" . er/expand-region))
