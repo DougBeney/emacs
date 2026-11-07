@@ -9,7 +9,7 @@
 
 ;; Set font & size here...
 (setq dougbeney/typography '(:font "FiraCode Nerd Font"
-                             :size 90))
+                             :size 100))
 
 (defun dougbeney/set-font (options &optional face)
   (let ((family (plist-get options :family))
@@ -37,6 +37,7 @@
 
 ;;; Set the default font
 (defun dougbeney/setup-typography ()
+  (interactive)
   (dougbeney/set-font (list :family (plist-get dougbeney/typography :font)
                             :height (plist-get dougbeney/typography :size)
                             :weight 'normal)))
