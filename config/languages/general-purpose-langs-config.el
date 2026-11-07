@@ -47,13 +47,12 @@
   (disable-hook 'after-save-hook #'flutter-hot-reload))
 
 (use-package treesit-auto
-  :init
-  ;; Remove yaml from the languages handled by treesit-auto
-  (setq treesit-auto-langs (delete 'yaml treesit-auto-langs))
   :custom
   (treesit-auto-install 'prompt)
   :config
-  (global-treesit-auto-mode))
+  (global-treesit-auto-mode)
+  ;; Remove YAML
+  (setq treesit-auto-langs (delete 'yaml treesit-auto-langs)))
 
 ;; Rust
 (use-package rust-mode
