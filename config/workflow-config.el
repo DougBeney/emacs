@@ -32,17 +32,17 @@
 ;; (add-hook 'server-after-make-frame-hook #'my/focus-new-client-frame)
 
 ;;evil - Vim keybindings for Emacs
-;; (use-package evil
-;;   :init
-;;   (setq evil-want-keybinding nil)
-;;   (setq evil-kill-on-visual-paste nil)
-;;   :config
-;;   (evil-mode 1)
-;;   (add-hook 'git-commit-mode-hook #'evil-insert-state))
+(use-package evil
+  :init
+  (setq evil-want-keybinding nil)
+  (setq evil-kill-on-visual-paste nil)
+  :config
+  (evil-mode 1)
+  (add-hook 'git-commit-mode-hook #'evil-insert-state))
 
-;; (use-package evil-collection
-;;     :init
-;;   (evil-collection-init))
+(use-package evil-collection
+    :init
+  (evil-collection-init))
 
 ;; (use-package evil-surround
 ;;     :config
@@ -58,13 +58,6 @@
 ;;   :ensure t
 ;;   :config
 ;;   (evil-better-visual-line-on))
-
-(use-package which-key
-  :ensure t
-  :config
-  (which-key-mode 1)
-  (setq which-key-idle-delay 0)
-  (setq which-key-popup-type 'minibuffer))
 
 (use-package helm
   :bind (("M-x" . helm-M-x)
