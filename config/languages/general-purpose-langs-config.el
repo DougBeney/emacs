@@ -21,12 +21,6 @@
   :config
   (global-flycheck-eglot-mode 1))
 
-(use-package lisp-mode
-  :ensure nil
-  :straight nil
-  :custom
-  (lisp-indent-function 'common-lisp-indent-function))
-
 (use-package pyvenv)
 
 (use-package ruby-mode :ensure nil)
@@ -53,6 +47,9 @@
   (disable-hook 'after-save-hook #'flutter-hot-reload))
 
 (use-package treesit-auto
+  :init
+  ;; Remove yaml from the languages handled by treesit-auto
+  (setq treesit-auto-langs (delete 'yaml treesit-auto-langs))
   :custom
   (treesit-auto-install 'prompt)
   :config
