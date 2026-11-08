@@ -20,7 +20,7 @@
         "~/Documents/Org/TODO/inbox.org"
         "~/Documents/Org/TODO/tasks.org"
         "~/Documents/Org/TODO/sprint.org"
-        "~/Documents/Org/TODO/archive.org"
+        ;; "~/Documents/Org/TODO/archive.org"
         "~/Documents/Org/TODO/habits.org"
         ))
 
@@ -129,6 +129,7 @@
   :hook (org-mode . (lambda () (display-line-numbers-mode -1)))
   :config
   (setq
+   org-agenda-window-setup 'only-window
    org-use-speed-commands t
    org-blank-before-new-entry '((heading . nil) (plain-list-item . nil))
    org-startup-indented t
