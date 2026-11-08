@@ -143,31 +143,57 @@
 (use-package tab-bar
   :ensure nil
   :straight nil
-  :bind (("M-1" . 'tab-bar-select-tab)
-         ("M-2" . 'tab-bar-select-tab)
-         ("M-3" . 'tab-bar-select-tab)
-         ("M-4" . 'tab-bar-select-tab)
-         ("M-5" . 'tab-bar-select-tab)
-         ("M-6" . 'tab-bar-select-tab)
-         ("M-7" . 'tab-bar-select-tab)
-         ("M-8" . 'tab-bar-select-tab)
-         ("M-9" . 'tab-bar-select-tab)
-         ("M-9" . 'tab-bar-select-tab)
-         ("M-t" . 'tab-bar-new-tab)
-         ("M-[" . 'tab-previous)
-         ("M-]" . 'tab-next)
-         ("M-C-[" . 'dougie-tab-move-left)
-         ("M-C-]" . 'dougie-tab-move-right))
+  :bind (("M-1" . dougie-tab-select-or-create)
+         ("M-2" . dougie-tab-select-or-create)
+         ("M-3" . dougie-tab-select-or-create)
+         ("M-4" . dougie-tab-select-or-create)
+         ("M-5" . dougie-tab-select-or-create)
+         ("M-6" . dougie-tab-select-or-create)
+         ("M-7" . dougie-tab-select-or-create)
+         ("M-8" . dougie-tab-select-or-create)
+         ("M-9" . dougie-tab-select-or-create)
+         ("M-t" . tab-bar-new-tab)
+         ("M-[" . tab-previous)
+         ("M-]" . tab-next)
+         ("C-M-[" . dougie-tab-move-left)
+         ("C-M-]" . dougie-tab-move-right))
   :init
-  (defun dougie-tab-move-right () (interactive) (tab-move 1))
-  (defun dougie-tab-move-left () (interactive) (tab-move -1))
-  :config
-  (setq tab-bar-show 1)                      ;; hide bar if <= 1 tabs open
-  (setq tab-bar-close-button-show nil)       ;; hide tab close / X button
-  (setq tab-bar-new-tab-choice "*scratch*");; buffer to show in new tabs
-  (setq tab-bar-format '(tab-bar-format-tabs tab-bar-separator))
+  (defun dougie-tab-select-or-create (number)
+    "Select tab NUMBER, appending tabs as needed."
+    (interactive
+     (let ((key (event-basic-type last-command-event)))
+       (list (if (and (integerp key) (<= ?1 key ?9))
+                 (- key ?0)
+               (read-number "Tab number: " 1)))))
+    (unless (> number 0)
+      (user-error "Tab numbers start at 1"))
+    (let ((count (length (funcall tab-bar-tabs-function))))
+      (if (<= number count)
+          (tab-bar-select-tab number)
+        (tab-bar-new-tab-to -1))))
 
-  (setq tab-bar-select-tab-modifiers "M"))
+  (defun dougie-tab-move-left ()
+    (interactive)
+    (tab-move -1))
+
+  (defun dougie-tab-move-right ()
+    (interactive)
+    (tab-move 1))
+
+  :config
+  (setq tab-bar-tab-hints t
+        tab-bar-select-tab-modifiers nil
+        tab-bar-show 1
+        tab-bar-close-button-show nil
+        tab-bar-new-tab-choice "*scratch*"
+        tab-bar-format '(tab-bar-format-tabs tab-bar-separator))
+  (tab-bar-mode 1))
+
+(with-eval-after-load 'eat
+  (dolist (key '("M-1" "M-2" "M-3" "M-4" "M-5"
+                 "M-6" "M-7" "M-8" "M-9"
+                 "M-t" "M-[" "M-]" "C-M-[" "C-M-]"))
+    (keymap-unset eat-semi-char-mode-map key)))
 
 ;; git related packages
 (use-package magit
