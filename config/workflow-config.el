@@ -34,6 +34,7 @@
 ;;evil - Vim keybindings for Emacs
 (use-package evil
   :init
+  (setq evil-undo-system 'undo-redo)
   (setq evil-want-keybinding nil)
   (setq evil-kill-on-visual-paste nil)
   :config
