@@ -53,7 +53,7 @@
 
       ;; Configuration
       "c"  (:ignore t :wk "Config editing")
-      "ce"  (dougbeney/edit-emacs-config :wk "Edit emacs config file")
+      "ce"  (dougbeney/edit-emacs-config-file :wk "Edit emacs config file")
       "ch"  (dougbeney/edit-hyprland-config :wk "Edit Hyperland config")
 
       ;; Emoji
