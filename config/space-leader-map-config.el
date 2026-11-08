@@ -32,13 +32,24 @@
     :non-normal-prefix "M-SPC")
 
   (defconst dougbeney/leader-bindings
-    '(;; Bookmarks
-      "b"  (:ignore t :wk "Bookmarks")
-      "bb" (helm-bookmarks :wk "list (helm)")
-      "bm" (bookmark-set :wk "set")
-      "bd" (bookmark-delete :wk "delete")
-      "bs" (bookmark-save :wk "save")
-      "bl" (bookmark-bmenu-list :wk "menu")
+    '(
+      ;; Buffers
+      "b"  (:ignore t :wk "Buffers")
+      "bb" (switch-to-buffer :wk "switch")
+      "bi" (ibuffer :wk "ibuffer")
+      "bu" ((lambda ()
+              (interactive)
+              (ibuffer nil "*Unsaved*" '((modified . t) (visiting-file . t))))
+            :wk
+            "unsaved buffers")
+
+      ;; Bookmarks
+      "B"  (:ignore t :wk "Bookmarks")
+      "Bb" (helm-bookmarks :wk "list (helm)")
+      "Bm" (bookmark-set :wk "set")
+      "Bd" (bookmark-delete :wk "delete")
+      "Bs" (bookmark-save :wk "save")
+      "Bl" (bookmark-bmenu-list :wk "menu")
 
       ;; Files
       "f"  (:ignore t :wk "Files")
