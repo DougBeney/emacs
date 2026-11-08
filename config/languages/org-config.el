@@ -20,8 +20,8 @@
         "~/Documents/Org/TODO/inbox.org"
         "~/Documents/Org/TODO/tasks.org"
         "~/Documents/Org/TODO/sprint.org"
-        ;; "~/Documents/Org/TODO/archive.org"
-        "~/Documents/Org/TODO/habits.org"
+        "~/Documents/Org/TODO/archive.org"
+        ;; "~/Documents/Org/TODO/habits.org"
         ))
 
 (setq org-refile-targets
@@ -42,8 +42,48 @@
          "* %U\n%?" :prepend t)
         ))
 
-;; Most importantly, this will show holidays in org-mode
+;; Holidays in org-agenda
+(require 'holidays)
 (setq org-agenda-include-diary t)
+(setq holiday-general-holidays nil)
+(setq holiday-oriental-holidays nil)
+(setq holiday-other-holidays nil)
+(setq holiday-hebrew-holidays nil)
+(setq holiday-islamic-holidays nil)
+(setq holiday-bahai-holidays nil)
+(setq holiday-christian-holidays nil)
+(setq holiday-local-holidays
+      '(;; --- Winter ---
+        (holiday-fixed 1 1 "New Year's Day")
+        (holiday-float 1 1 3 "Martin Luther King Day") ; 3rd Monday in Jan
+        (holiday-fixed 2 2 "Groundhog Day")
+        (holiday-fixed 2 14 "Valentine's Day")
+        (holiday-float 2 1 3 "President's Day")        ; 3rd Monday in Feb
+
+        ;; --- Spring ---
+        (holiday-fixed 3 17 "St. Patrick's Day")
+        (holiday-fixed 4 1 "April Fools' Day")
+        (holiday-fixed 4 22 "Earth Day")
+        (holiday-float 5 0 2 "Mother's Day")          ; 2nd Sunday in May
+        (holiday-float 5 1 -1 "Memorial Day")          ; Last Monday in May
+
+        ;; --- Summer ---
+        (holiday-fixed 6 14 "Flag Day")
+        (holiday-float 6 0 3 "Father's Day")           ; 3rd Sunday in June
+        (holiday-fixed 7 4 "Independence Day")
+        (holiday-float 9 1 1 "Labor Day")              ; 1st Monday in Sept
+
+        ;; --- Autumn & Winter ---
+        (holiday-float 10 1 2 "Columbus Day")          ; 2nd Monday in Oct
+        (holiday-fixed 10 31 "Halloween")
+        (holiday-fixed 11 11 "Veteran's Day")
+        (holiday-float 11 4 4 "Thanksgiving")          ; 4th Thursday in Nov
+        (holiday-float 11 5 4 "Black Friday")          ; Friday after 4th Thursday
+        (holiday-fixed 12 24 "Christmas Eve")
+        (holiday-fixed 12 25 "Christmas Day")
+        (holiday-fixed 12 31 "New Year's Eve")))
+
+(setq calendar-holidays holiday-local-holidays)
 
 (setq-default org-image-actual-width nil)
 
