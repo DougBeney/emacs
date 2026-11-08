@@ -33,6 +33,14 @@
 
   (defconst dougbeney/leader-bindings
     '(
+      ;; Bookmarks
+      "B"  (:ignore t :wk "Bookmarks")
+      "Bb" (helm-bookmarks :wk "list (helm)")
+      "Bm" (bookmark-set :wk "set")
+      "Bd" (bookmark-delete :wk "delete")
+      "Bs" (bookmark-save :wk "save")
+      "Bl" (bookmark-bmenu-list :wk "menu")
+
       ;; Buffers
       "b"  (:ignore t :wk "Buffers")
       "bb" (switch-to-buffer :wk "switch")
@@ -43,30 +51,10 @@
             :wk
             "unsaved buffers")
 
-      ;; Bookmarks
-      "B"  (:ignore t :wk "Bookmarks")
-      "Bb" (helm-bookmarks :wk "list (helm)")
-      "Bm" (bookmark-set :wk "set")
-      "Bd" (bookmark-delete :wk "delete")
-      "Bs" (bookmark-save :wk "save")
-      "Bl" (bookmark-bmenu-list :wk "menu")
-
-      ;; Files
-      "f"  (:ignore t :wk "Files")
-      "ff" (find-file :wk "find file")
-      "fs" (save-buffer :wk "save")
-
-      ;; Windows
-      "w"  (:ignore t :wk "Windows")
-      "wd" (delete-window :wk "delete")
-      "wl" (split-window-right :wk "split right")
-      "wj" (split-window-below :wk "split below")
-
-      ;; Gptel
-      "g"  (:ignore t :wk "Gptel")
-      "gg" (gptel-send :wk "send")
-      "gm" (gptel-menu :wk "menu")
-      "gr" (gptel-rewrite :wk "rewrite")
+      ;; Configuration
+      "c"  (:ignore t :wk "Config editing")
+      "ce"  (dougbeney/edit-emacs-config :wk "Edit emacs config file")
+      "ch"  (dougbeney/edit-hyprland-config :wk "Edit Hyperland config")
 
       ;; Emoji
       "e"  (:ignore t :wk "Emoji")
@@ -74,9 +62,37 @@
       "es" (emoji-search :wk "search")
       "er" (emoji-recent :wk "recent")
 
-      ;; Single keys
+      ;; Files
+      "f"  (:ignore t :wk "Files")
+      "ff" (find-file :wk "find file")
+      "fs" (save-buffer :wk "save")
+
+      ;; Gptel
+      "g"  (:ignore t :wk "Gptel")
+      "gg" (gptel-send :wk "send")
+      "gm" (gptel-menu :wk "menu")
+      "gr" (gptel-rewrite :wk "rewrite")
+
+      ;; Org-mode
+      "o" (:ignore t :wk "Org-Mode")
+      "oc" (org-capture :wk "Org capture")
+      "oa" (org-agenda-list :wk "Org Agenda")
+      "ot" (org-todo-list :wk "Org todo list")
+      "oo" ((lambda () (find-file "/home/doug/Documents/Org/TODO/tasks.org")) :wk "Open tasks file")
+      "od" (org-roam-dailies-capture-today :wk "Capture today's org-roam daily")
+      "oD" (org-roam-dailies-goto-today :wk "Today's org-roam daily")
+      "og" (org-roam-dailies-goto-date :wk "Goto org-roam daily by date")
+      "of" (org-roam-node-find :wk "Org-roam find node")
+
+      ;; Windows
+      "w"  (:ignore t :wk "Windows")
+      "wd" (delete-window :wk "delete")
+      "wl" (split-window-right :wk "split right")
+      "wj" (split-window-below :wk "split below")
+
+      ;; ...Single keys
       "s"  (scratch-buffer :wk "Scratch buffer")
-      "o"  (olivetti-mode :wk "Toggle olivetti")))
+      "O"  (olivetti-mode :wk "Toggle olivetti")))
 
   ;; The definers are macros that evaluate their args, so quote each
   ;; binding spec and splice the list in with eval.
