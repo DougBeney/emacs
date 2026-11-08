@@ -78,7 +78,7 @@
       "oc" (org-capture :wk "Org capture")
       "oa" (org-agenda-list :wk "Org Agenda")
       "ot" (org-todo-list :wk "Org todo list")
-      "oo" ((lambda () (find-file "/home/doug/Documents/Org/TODO/tasks.org")) :wk "Open tasks file")
+      "oo" ((lambda () (interactive) (find-file "/home/doug/Documents/Org/TODO/tasks.org")) :wk "Open tasks file")
       "od" (org-roam-dailies-capture-today :wk "Capture today's org-roam daily")
       "oD" (org-roam-dailies-goto-today :wk "Today's org-roam daily")
       "og" (org-roam-dailies-goto-date :wk "Goto org-roam daily by date")
