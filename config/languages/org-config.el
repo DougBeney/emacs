@@ -167,9 +167,10 @@
           (:map org-mode-map
                 ("C-c l" . org-roam-node-insert)))
   :hook (org-mode . (lambda () (display-line-numbers-mode -1)))
+  :hook (org-log-buffer-setup . evil-insert-state)
   :config
   (setq
-   org-agenda-window-setup 'only-window
+   org-agenda-window-setup 'current-window
    org-use-speed-commands t
    org-blank-before-new-entry '((heading . nil) (plain-list-item . nil))
    org-startup-indented t
