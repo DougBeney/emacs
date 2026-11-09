@@ -83,6 +83,12 @@
       "oD" (org-roam-dailies-goto-today :wk "Today's org-roam daily")
       "og" (org-roam-dailies-goto-date :wk "Goto org-roam daily by date")
       "of" (org-roam-node-find :wk "Org-roam find node")
+      "or" (org-roam-buffer-toggle :wk "Org-roam find node")
+
+      "t" (:ignore t :wk "Toggles")
+      "tt"  (toggle-truncate-lines :wk "Truncate lines")
+      "tl"  (display-line-numbers-mode :wk "Line numbers")
+      "to"  (olivetti-mode :wk "Olivetti")
 
       ;; Windows
       "w"  (:ignore t :wk "Windows")
@@ -91,8 +97,7 @@
       "wj" (split-window-below :wk "split below")
 
       ;; ...Single keys
-      "s"  (scratch-buffer :wk "Scratch buffer")
-      "O"  (olivetti-mode :wk "Toggle olivetti")))
+      "s"  (scratch-buffer :wk "Scratch buffer")))
 
   ;; The definers are macros that evaluate their args, so quote each
   ;; binding spec and splice the list in with eval.
