@@ -42,8 +42,16 @@
   (add-hook 'git-commit-mode-hook #'evil-insert-state))
 
 (use-package evil-collection
-    :init
+  :after org
+  :init
   (evil-collection-init))
+
+(use-package evil-org
+  :after org
+  :hook (org-mode . (lambda () (evil-org-mode)))
+  :config
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys))
 
 ;; (use-package evil-surround
 ;;     :config
